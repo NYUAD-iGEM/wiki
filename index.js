@@ -10,6 +10,7 @@ $(document).ready(function() {
         onCloseStart: function(){updateSideBarButton(open=true)},
     });
     
+    $('.collapsible').collapsible();
     $('.parallax').parallax();
     $('.carousel').carousel();
     $('.slider').slider({height:800});
