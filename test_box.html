@@ -24,25 +24,63 @@
     <body>
         <!-- Materialize core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <div class="row">
-            <div class="s12" style="position: relative;">
-                <a href="#"><div class="block-image">
-                        <img src="./assets/img/test_bg.jpeg" class="block-image-brightness">
-                        <div class="block-image-text-wrapper">
-                            <p>
-        Small headline not the heading </p>
-                            <div class="block-header">
-                                <h1>
-    Heading</h1>
-                                <div class="arrow"> 
-                                    <div class="arrow-top"></div>                                     
-                                    <div class="arrow-bottom"></div>                                     
-                                </div>
-                            </div>
-                            <p class="block-bottom">
-        Text to show at bottom of the panel veralksajlfka klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj </p>
-                        </div>
-                    </div></a>
+        <div class="block-panel" id="block-panel">
+            <img class="block-panel-img" id="panel-img" src="assets/img/background1.jpg">
+            <div class="block-panel-child-top">
+                <p>Paragraph</p>
+                <h1>What we do is kinda cool tbf</h1>
+            </div>
+            <div class="block-panel-child-top2">
+                <p>Blah blah blha blah bunch of text about whatever and like we are good and dope and we like u know what we do is very good. Listen to the Suburbs by Arcade Fire, it's a very good album, I'm listening to it as I write this right now! Won a freaking grammy. Very rare for an alterantive album to do so, but this one did it!</p>
+                <a class="arrow"><svg>
+                        <g>
+                            <line x2="227.62" y1="31.28" y2="31.28"></line>
+                            <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
+                            <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
+                        </g>
+                    </svg><font>Read More</font></a>
+            </div>
+            <div class="block-panel-child-bottom1 hvr-float">
+                <p>Long Subtext</p>
+                <h3>Heading 3</h3>
+                <div class="block-panel-child-bottom-context">
+                    <p>This is the first of three panels. Let's hope they all work. beep boop beep boop that's what a computer does. This is the first of three panels. Let's hope they all work. beep boop beep boop that's what a computer does. </p>
+                    <a class="arrow"><svg>
+                            <g>
+                                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
+                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
+                            </g>
+                        </svg><font>Read More</font></a>
+                </div>
+            </div>
+            <div class="block-panel-child-bottom2 hvr-float">
+                <p>Smaller Subtext</p>
+                <h3>Heading 3</h3>
+                <div class="block-panel-child-bottom-context">
+                    <p>Short one </p>
+                    <a class="arrow"><svg>
+                            <g>
+                                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
+                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
+                            </g>
+                        </svg><font>Read More</font></a>
+                </div>
+            </div>
+            <div class="block-panel-child-bottom3 hvr-float">
+                <p>idk somewhere in between?</p>
+                <h3>Heading 3</h3>
+                <div class="block-panel-child-bottom-context">
+                    <p>So, messi is about to leave Barca and I'm very sad, but hey they're hope for a brighter future right? </p>
+                    <a class="arrow"><svg>
+                            <g>
+                                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
+                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
+                            </g>
+                        </svg><font>Read More</font></a>
+                </div>
             </div>
         </div>
         <script src="assets/js/jquery.min.js"></script>
@@ -50,5 +88,6 @@
         <script>
             $(document).ready(function() { M.AutoInit() });
         </script>
+        <script type="text/javascript" src="index.js"></script>
     </body>
 </html>

@@ -33,6 +33,44 @@ $(document).ready(function() {
       instance.open();   
      }
     });
+    
+   
+    $('.hvr-float').hover(
+            function(){
+                $('#block-panel').addClass('white-toggle');
+          //$('#panel-img').fadeIn(200,function(){$(this).addClass("block-panel-img-show");});
+                $('a.arrow').addClass('white-toggle');
+                $('#panel-img').css('opacity','1');
+                $('a.arrow svg g line').addClass('white-toggle');
+                 $('a.arrow svg g circle').addClass('white-toggle');
+                 $('a.arrow svg g polyline').addClass('white-toggle');
+          
+        }, function(){
+          $('#block-panel').removeClass('white-toggle');
+             $('a.arrow').removeClass('white-toggle')
+            $('a.arrow svg g line').removeClass('white-toggle');
+                 $('a.arrow svg g circle').removeClass('white-toggle');
+                 $('a.arrow svg g polyline').removeClass('white-toggle');
+          //$('#panel-img').fadeOut(100,function(){$(this).removeClass("block-panel-img-show");});
+         		$('#panel-img').css('opacity','0');
+            }
+      );
+      
+    
+    /*
+    $('.hvr-float').hover(
+            function(){
+          $('#panel-img').addClass("block-panel-img-show");
+          $('#block-panel').css({"color":"white"});
+        }, function(){
+          $('#panel-img').removeClass("block-panel-img-show");
+          $('#block-panel').css({"color":"black"});
+        }
+       );
+          
+    */
+    
+    
                              
 });
 
