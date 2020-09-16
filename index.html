@@ -1,296 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Favicons-->
-        <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
-        <meta name="msapplication-TileColor" content="#FFFFFF">
-        <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-        <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
-        <title>Materialize</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Materialize core CSS -->
-        <link href="materialize/css/materialize.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="assets/js/html5shiv.js"></script>
-            <script src="assets/js/respond.min.js"></script>
-        <![endif]-->
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div id='side' class="side-btn btn-flat">
-            <div class="side-section center">Hello</div>
-            <button class="menu sidenav-close" aria-label="Main Menu" id="butt">
-                <svg viewbox="0 0 100 100">
-                    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"/>
-                    <path class="line line2" d="M 20,50 H 80"/>
-                    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"/>
-                </svg>
-            </button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicons-->
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="images/favicon/apple-touch-icon-152x152.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="images/favicon/mstile-144x144.png"
+    />
+    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+    <title>Materialize</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Materialize core CSS -->
+    <link href="materialize/css/materialize.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Loader animation is here -->
+    <div class="loader-container">
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+    </div>
+
+    <!-- Loader animation end-->
+    <div id="side" class="side-btn btn-flat">
+      <div class="side-section center">Hello</div>
+      <button class="menu sidenav-close" aria-label="Main Menu" id="butt">
+        <svg viewbox="0 0 100 100">
+          <path
+            class="line line1"
+            d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+          />
+          <path class="line line2" d="M 20,50 H 80" />
+          <path
+            class="line line3"
+            d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+          />
+        </svg>
+      </button>
+    </div>
+    <div id="my-content">
+      <div class="progress">
+        <div id="pgbar" class="determinate" style="width: 0%"></div>
+      </div>
+      <div class="parallax-container valign-wrapper">
+        <div class="parallax">
+          <img src="http://pinegrow.com/placeholders/img10.jpg" />
         </div>
-        <div id="my-content">
-            <div class="progress"> 
-                <div id='pgbar' class="determinate" style="width: 0%"></div>                 
-            </div>
-            <div class="parallax-container valign-wrapper"> 
-                <div class="parallax">
-                    <img src="http://pinegrow.com/placeholders/img10.jpg">
-                </div>                 
-                <h1 class="white-text center-align">Heading 1</h1>
-            </div>
-            <div class="container">
-                <h1>Cards</h1>
-                <div class="section scrollspy" id="Cards">
-                    <div class="card-panel teal"> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                    </div>
-                    <div class="card-panel teal"> 
-                        <span class="white-text">I am a very simple card. I am good at containing small bits of information.                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.                </span> 
-                    </div>
-                </div>
-                <h1>Big bad list of pictures</h1>
-                <div id="big bad list of pictures" class="slider section scrollspy" data-slider> 
-                    <ul class="slides z-depth-0"> 
-                        <li> 
-                            <img src="http://pinegrow.com/placeholders/img11.jpg"> 
-                            <div class="caption center-align"> 
-                                <h3>This is our big Tagline!</h3> 
-                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> 
-                            </div>                             
-                        </li>                         
-                        <li> 
-                            <img src="http://pinegrow.com/placeholders/img19.jpg"> 
-                            <div class="caption left-align"> 
-                                <h3>Left Aligned Caption</h3> 
-                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> 
-                            </div>                             
-                        </li>                         
-                        <li> 
-                            <img src="http://pinegrow.com/placeholders/img15.jpg"> 
-                            <div class="caption right-align"> 
-                                <h3>Right Aligned Caption</h3> 
-                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> 
-                            </div>                             
-                        </li>                         
-                        <li> 
-                            <img src="http://pinegrow.com/placeholders/img14.jpg"> 
-                            <div class="caption center-align"> 
-                                <h3>This is our big Tagline!</h3> 
-                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> 
-                            </div>                             
-                        </li>                         
-                    </ul>                     
-                </div>
-            </div>
-            <div class="row section scrollspy" id="Picture Blocks">
-                <h1 class="center">Picture Blocks</h1>
-                <div class="col s12 m6 l6"> 
-                    <a href="#"><div class="block-image" style="height:500px">
-                            <img src="./assets/img/test_bg.jpeg" class="block-image-brightness">
-                            <div class="block-image-text-wrapper">
-                                <p>
-        This one gets brighter+has zooooom </p>
-                                <div class="block-header">
-                                    <h1>
-    Heading</h1>
-                                    <div class="arrow"> 
-                                        <div class="arrow-top"></div>                                         
-                                        <div class="arrow-bottom"></div>                                         
-                                    </div>
-                                </div>
-                                <p class="block-bottom">
-        Text to show at bottom of the panel veralksajlfka klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj </p>
-                            </div>
-                        </div></a>
-                </div>
-                <div class="col s12 m6 l6">
-                    <a href="#"><div class="block-image" style="height:500px">
-                            <img src="./assets/img/test_bg.jpeg" class="block-image-color">
-                            <div class="block-image-text-wrapper">
-                                <p>
-        This one goes from grayscale to colorful. </p>
-                                <div class="block-header">
-                                    <h1>
-    Heading</h1>
-                                    <div class="arrow"> 
-                                        <div class="arrow-top"></div>                                         
-                                        <div class="arrow-bottom"></div>                                         
-                                    </div>
-                                </div>
-                                <p class="block-bottom">
-        Text to show at bottom of the panel veralksajlfka klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj </p>
-                            </div>
-                        </div></a> 
-                </div>
-                <div class="col s12 m6 l6">
-                    <a href="#"><div class="block-image" style="height:500px">
-                            <img src="./assets/img/test_bg.jpeg" class="block-image-blur">
-                            <div class="block-image-text-wrapper">
-                                <p>
-        From blurry to clear + zooms out </p>
-                                <div class="block-header">
-                                    <h1>
-    Heading</h1>
-                                    <div class="arrow"> 
-                                        <div class="arrow-top"></div>                                         
-                                        <div class="arrow-bottom"></div>                                         
-                                    </div>
-                                </div>
-                                <p class="block-bottom">
-        Text to show at bottom of the panel veralksajlfka klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj </p>
-                            </div>
-                        </div></a> 
-                </div>
-                <div class="col s12 m6 l6">
-                    <a href="#"><div class="block-image" style="height:500px">
-                            <img src="./assets/img/test_bg.jpeg" class="block-image-slowmo">
-                            <div class="block-image-text-wrapper">
-                                <p>
-        This one zooms in slowly, takes it time. </p>
-                                <div class="block-header">
-                                    <h1>
-    Heading</h1>
-                                    <div class="arrow"> 
-                                        <div class="arrow-top"></div>                                         
-                                        <div class="arrow-bottom"></div>                                         
-                                    </div>
-                                </div>
-                                <p class="block-bottom">
-        Text to show at bottom of the panel veralksajlfka klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj </p>
-                            </div>
-                        </div></a> 
-                </div>
-            </div>
+        <h1 class="white-text center-align">Heading 1</h1>
+      </div>
+      <div class="container">
+        <h1>Cards</h1>
+        <div class="section scrollspy" id="Cards">
+          <div class="card-panel teal">
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+          </div>
+          <div class="card-panel teal">
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+          </div>
         </div>
-        <!-- Materialize core JavaScript -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <div class="block-panel section scrollspy" id="block-panel">
-            <img class="block-panel-img" id="panel-img" src="assets/img/background1.jpg">
-            <div class="block-panel-child-top">
-                <p>Big Full Page</p>
-                <h1>What we do is kinda cool tbf</h1>
-            </div>
-            <div class="block-panel-child-top2">
-                <p>So,if you hover over the threee little things in the bottom, the background changes. Hmm blah blah testing for a long section. Listen to the Suburbs by Arcade Fire, it's a very good album, I'm listening to it as I write this right now! Won a freaking grammy. Very rare for an alterantive album to do so, but this one did it!</p>
-                <a class="arrow"><svg>
-                        <g>
-                            <line x2="227.62" y1="31.28" y2="31.28"></line>
-                            <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
-                            <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
-                        </g>
-                    </svg><font>Read More</font></a>
-            </div>
-            <div class="block-panel-child-bottom1 hvr-float">
-                <p>Long Subtext</p>
-                <h3>Heading 3</h3>
-                <div class="block-panel-child-bottom-context">
-                    <p>This is the first of three panels. Let's hope they all work. beep boop beep boop that's what a computer does. This is the first of three panels. Let's hope they all work. beep boop beep boop that's what a computer does. </p>
-                    <a class="arrow"><svg>
-                            <g>
-                                <line x2="227.62" y1="31.28" y2="31.28"></line>
-                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
-                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
-                            </g>
-                        </svg><font>Read More</font></a>
-                </div>
-            </div>
-            <div class="block-panel-child-bottom2 hvr-float">
-                <p>Smaller Subtext</p>
-                <h3>Heading 3</h3>
-                <div class="block-panel-child-bottom-context">
-                    <p>Short one </p>
-                    <a class="arrow" href="google.com"><svg>
-                            <g>
-                                <line x2="227.62" y1="31.28" y2="31.28"></line>
-                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
-                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
-                            </g>
-                        </svg><font>Read More</font></a>
-                </div>
-            </div>
-            <div class="block-panel-child-bottom3 hvr-float">
-                <p>idk somewhere in between?</p>
-                <h3>Heading 3</h3>
-                <div class="block-panel-child-bottom-context">
-                    <p>So, messi is about to leave Barca and I'm very sad, but hey they're hope for a brighter future right? </p>
-                    <a class="arrow"><svg>
-                            <g>
-                                <line x2="227.62" y1="31.28" y2="31.28"></line>
-                                <polyline points="222.62 25.78 228.12 31.28 222.62 36.78"></polyline>
-                                <circle cx="224.67" cy="30.94" r="30.5" transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"></circle>
-                            </g>
-                        </svg><font>Read More</font></a>
-                </div>
-            </div>
-        </div>
-        <ul class="sidenav" id="sidenav-9"> 
+        <h1>Big bad list of pictures</h1>
+        <div
+          id="big bad list of pictures"
+          class="slider section scrollspy"
+          data-slider
+        >
+          <ul class="slides z-depth-0">
             <li>
-                <a href="sass.html">Sass</a>
-            </li>             
-            <li>
-                <a href="badges.html">Components</a>
-            </li>             
-            <li>
-                <a href="collapsible.html">JavaScript</a>
-            </li>             
-            <li class="no-padding">
-                <ul class="collapsible collapsible-popout">
-                    <li>
-                        <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li>
-                                    <a href="#!">First</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Second</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Third</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Fourth</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+              <img src="http://pinegrow.com/placeholders/img11.jpg" />
+              <div class="caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">
+                  Here's our small slogan.
+                </h5>
+              </div>
             </li>
-            <li class="no-padding">
-                <ul class="collapsible collapsible-popout">
-                    <li>
-                        <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li>
-                                    <a href="#!">First</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Second</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Third</a>
-                                </li>
-                                <li>
-                                    <a href="#!">Fourth</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+            <li>
+              <img src="http://pinegrow.com/placeholders/img19.jpg" />
+              <div class="caption left-align">
+                <h3>Left Aligned Caption</h3>
+                <h5 class="light grey-text text-lighten-3">
+                  Here's our small slogan.
+                </h5>
+              </div>
             </li>
+            <li>
+              <img src="http://pinegrow.com/placeholders/img15.jpg" />
+              <div class="caption right-align">
+                <h3>Right Aligned Caption</h3>
+                <h5 class="light grey-text text-lighten-3">
+                  Here's our small slogan.
+                </h5>
+              </div>
+            </li>
+            <li>
+              <img src="http://pinegrow.com/placeholders/img14.jpg" />
+              <div class="caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">
+                  Here's our small slogan.
+                </h5>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row section scrollspy" id="Picture Blocks">
+        <h1 class="center">Picture Blocks</h1>
+        <div class="col s12 m6 l6">
+          <a href="#"
+            ><div class="block-image" style="height: 500px">
+              <img
+                src="./assets/img/test_bg.jpeg"
+                class="block-image-brightness"
+              />
+              <div class="block-image-text-wrapper">
+                <p>This one gets brighter+has zooooom</p>
+                <div class="block-header">
+                  <h1>Heading</h1>
+                  <div class="arrow">
+                    <div class="arrow-top"></div>
+                    <div class="arrow-bottom"></div>
+                  </div>
+                </div>
+                <p class="block-bottom">
+                  Text to show at bottom of the panel veralksajlfka
+                  klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf
+                  laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj
+                </p>
+              </div>
+            </div></a
+          >
+        </div>
+        <div class="col s12 m6 l6">
+          <a href="#"
+            ><div class="block-image" style="height: 500px">
+              <img src="./assets/img/test_bg.jpeg" class="block-image-color" />
+              <div class="block-image-text-wrapper">
+                <p>This one goes from grayscale to colorful.</p>
+                <div class="block-header">
+                  <h1>Heading</h1>
+                  <div class="arrow">
+                    <div class="arrow-top"></div>
+                    <div class="arrow-bottom"></div>
+                  </div>
+                </div>
+                <p class="block-bottom">
+                  Text to show at bottom of the panel veralksajlfka
+                  klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf
+                  laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj
+                </p>
+              </div>
+            </div></a
+          >
+        </div>
+        <div class="col s12 m6 l6">
+          <a href="#"
+            ><div class="block-image" style="height: 500px">
+              <img src="./assets/img/test_bg.jpeg" class="block-image-blur" />
+              <div class="block-image-text-wrapper">
+                <p>From blurry to clear + zooms out</p>
+                <div class="block-header">
+                  <h1>Heading</h1>
+                  <div class="arrow">
+                    <div class="arrow-top"></div>
+                    <div class="arrow-bottom"></div>
+                  </div>
+                </div>
+                <p class="block-bottom">
+                  Text to show at bottom of the panel veralksajlfka
+                  klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf
+                  laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj
+                </p>
+              </div>
+            </div></a
+          >
+        </div>
+        <div class="col s12 m6 l6">
+          <a href="#"
+            ><div class="block-image" style="height: 500px">
+              <img src="./assets/img/test_bg.jpeg" class="block-image-slowmo" />
+              <div class="block-image-text-wrapper">
+                <p>This one zooms in slowly, takes it time.</p>
+                <div class="block-header">
+                  <h1>Heading</h1>
+                  <div class="arrow">
+                    <div class="arrow-top"></div>
+                    <div class="arrow-bottom"></div>
+                  </div>
+                </div>
+                <p class="block-bottom">
+                  Text to show at bottom of the panel veralksajlfka
+                  klafjslkfjaslkfj alkj laksj lfkasjlkfasjlk ajslk fjalkj asljf
+                  laksjflaskjsfla jlka jlfkaj lk jafl kfjl ajl jafslk jalkj
+                </p>
+              </div>
+            </div></a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- Materialize core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <div class="block-panel section scrollspy" id="block-panel">
+      <img
+        class="block-panel-img"
+        id="panel-img"
+        src="assets/img/background1.jpg"
+      />
+      <div class="block-panel-child-top">
+        <p>Big Full Page</p>
+        <h1>What we do is kinda cool tbf</h1>
+      </div>
+      <div class="block-panel-child-top2">
+        <p>
+          So,if you hover over the threee little things in the bottom, the
+          background changes. Hmm blah blah testing for a long section. Listen
+          to the Suburbs by Arcade Fire, it's a very good album, I'm listening
+          to it as I write this right now! Won a freaking grammy. Very rare for
+          an alterantive album to do so, but this one did it!
+        </p>
+        <a class="arrow"
+          ><svg>
+            <g>
+              <line x2="227.62" y1="31.28" y2="31.28"></line>
+              <polyline
+                points="222.62 25.78 228.12 31.28 222.62 36.78"
+              ></polyline>
+              <circle
+                cx="224.67"
+                cy="30.94"
+                r="30.5"
+                transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"
+              ></circle>
+            </g></svg>Read More<</a>
+      </div>
+      <div class="block-panel-child-bottom1 hvr-float">
+        <p>Long Subtext</p>
+        <h3>Heading 3</h3>
+        <div class="block-panel-child-bottom-context">
+          <p>
+            This is the first of three panels. Let's hope they all work. beep
+            boop beep boop that's what a computer does. This is the first of
+            three panels. Let's hope they all work. beep boop beep boop that's
+            what a computer does.
+          </p>
+          <a class="arrow"
+            ><svg>
+              <g>
+                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                <polyline
+                  points="222.62 25.78 228.12 31.28 222.62 36.78"
+                ></polyline>
+                <circle
+                  cx="224.67"
+                  cy="30.94"
+                  r="30.5"
+                  transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"
+                ></circle>
+              </g></svg>Read More<</a>
+        </div>
+      </div>
+      <div class="block-panel-child-bottom2 hvr-float">
+        <p>Smaller Subtext</p>
+        <h3>Heading 3</h3>
+        <div class="block-panel-child-bottom-context">
+          <p>Short one</p>
+          <a class="arrow" href="google.com"
+            ><svg>
+              <g>
+                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                <polyline
+                  points="222.62 25.78 228.12 31.28 222.62 36.78"
+                ></polyline>
+                <circle
+                  cx="224.67"
+                  cy="30.94"
+                  r="30.5"
+                  transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"
+                ></circle>
+              </g></svg>Read More</a>
+        </div>
+      </div>
+      <div class="block-panel-child-bottom3 hvr-float">
+        <p>idk somewhere in between?</p>
+        <h3>Heading 3</h3>
+        <div class="block-panel-child-bottom-context">
+          <p>
+            So, messi is about to leave Barca and I'm very sad, but hey they're
+            hope for a brighter future right?
+          </p>
+          <a class="arrow"><svg>
+              <g>
+                <line x2="227.62" y1="31.28" y2="31.28"></line>
+                <polyline
+                  points="222.62 25.78 228.12 31.28 222.62 36.78"
+                ></polyline>
+                <circle
+                  cx="224.67"
+                  cy="30.94"
+                  r="30.5"
+                  transform="rotate(180 224.67 30.94) scale(1, -1) translate(0, -61)"
+                ></circle>
+              </g></svg>Read More</a>
+        </div>
+      </div>
+    </div>
+    <ul class="sidenav" id="sidenav-9">
+      <li>
+        <a href="sass.html">Sass</a>
+      </li>
+      <li>
+        <a href="badges.html">Components</a>
+      </li>
+      <li>
+        <a href="collapsible.html">JavaScript</a>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-popout">
+          <li>
+            <a class="collapsible-header"
+              >Dropdown<i class="material-icons">arrow_drop_down</i></a
+            >
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="#!">First</a>
+                </li>
+                <li>
+                  <a href="#!">Second</a>
+                </li>
+                <li>
+                  <a href="#!">Third</a>
+                </li>
+                <li>
+                  <a href="#!">Fourth</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="materialize/js/materialize.js"></script>
-        <script type="text/javascript" src="index.js"></script>
-    </body>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-popout">
+          <li>
+            <a class="collapsible-header"
+              >Dropdown<i class="material-icons">arrow_drop_down</i></a
+            >
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="#!">First</a>
+                </li>
+                <li>
+                  <a href="#!">Second</a>
+                </li>
+                <li>
+                  <a href="#!">Third</a>
+                </li>
+                <li>
+                  <a href="#!">Fourth</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <script src="loader.js"></script>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="materialize/js/materialize.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
 </html>
