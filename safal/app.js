@@ -80,3 +80,37 @@ gsap.to(".title-button", {
     },
 });
 ///////////////////////////////////////////////////////
+
+
+let tl2 = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".panel",
+				start: "top top",
+        // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
+				end: () => "+=" + document.querySelector(".panel").offsetHeight*2, 
+				scrub: true,
+				pin: true,
+        anticipatePin: 1
+			},
+			defaults: {ease: "none"},
+		});
+
+
+	tl2.addLabel("first",0);
+	tl2.addLabel("second",1);
+	// animate the container one way...
+	tl2.fromTo(".right-panel-2", { xPercent: -100, x: 0}, {xPercent: 0},"first")
+	  // ...and the image the opposite way (at the same time)
+	  .fromTo(".background-5", {xPercent: 100, x: 0}, {xPercent: 0},"first")
+
+      .fromTo(".left-panel-2", {yPercent: 100,y:0},{yPercent:0},"first")
+
+	  .fromTo(".background-2", {yPercent:-100,y:0},{yPercent:0},"first")
+      
+	  .fromTo(".right-panel-3",{ xPercent: -100, x: 0}, {xPercent: 0},"second")
+	  
+	  .fromTo(".background-6",{xPercent: 100, x: 0}, {xPercent: 0},"second")
+	  
+      .fromTo(".left-panel-3", {yPercent: 100,y:0},{yPercent:0},"second")
+
+	  .fromTo(".background-3", {yPercent:-100,y:0},{yPercent:0},"second");
