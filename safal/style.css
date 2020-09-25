@@ -1,0 +1,132 @@
+*{
+    font-family: sans-serif;
+    /* putting this here for the smooth animation on clicking the button on home */
+    scroll-behavior: smooth; 
+}
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('landing.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* this is the second image that slowly appears on the landing page */
+.cover{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) ), url('landing-2.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+.navbar-container{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 3em;
+    margin: 0 auto;
+    padding-top: 2em;
+}
+.landing{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.main-logo{
+    width: 100px;
+}
+
+.main-text-container{
+    width: 70%;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.down-icon{
+    position: absolute;
+    margin-top: 4em;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+/* down arrow animation */
+
+.round {
+    position: relative;
+    border: 3px solid #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    transform: scale(0.5);
+
+}
+
+span {
+    z-index: 999;
+    height: 3px;
+    margin:1px;
+    width: 25px;
+    background: #fff;
+    transition: 0.4s ease;
+}
+
+span:first-child {
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 35%;
+}
+
+span:nth-child(2) {
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 35%;
+}
+
+span:nth-child(3) {
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 54%;
+}
+
+span:nth-child(4) {
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 54%;
+}
+
+.round:hover span:nth-child(1) {
+    transform: rotate(-135deg);
+}
+
+.round:hover span:nth-child(2) {
+    transform: rotate(135deg);
+}
+
+.round:hover span:nth-child(3) {
+    transform: rotate(225deg);
+}
+
+.round:hover span:nth-child(4) {
+    transform: rotate(-225deg);
+}
+/* down animation end */
+
+
+.placeholder{
+    height: 1000px;
+}
