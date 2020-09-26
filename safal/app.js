@@ -114,3 +114,20 @@ let tl2 = gsap.timeline({
       .fromTo(".left-panel-3", {yPercent: 100,y:0},{yPercent:0},"second")
 
 	  .fromTo(".background-3", {yPercent:-100,y:0},{yPercent:0},"second");
+
+
+let tl3=gsap.timeline({
+			scrollTrigger: {
+				trigger: ".slider-background",
+				start: "top top",
+                end: () => "+=" + document.querySelector(".slider-background").offsetHeight, 
+				scrub: true,
+				pin: true,
+        anticipatePin: 1,
+            }
+            });
+    
+    tl3.fromTo(".slider-background-container",{xPercent: 0,x:0},{xPercent:-100})
+		.fromTo(".slider-background-image",{xPercent:0,x:0},{xPercent:50},0);
+
+
