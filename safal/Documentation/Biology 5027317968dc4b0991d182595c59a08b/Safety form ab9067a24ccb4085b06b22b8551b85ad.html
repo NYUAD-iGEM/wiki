@@ -1,0 +1,1395 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Safety form</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrumb"><li><a href="../Biology 5027317968dc4b0991d182595c59a08b.html">Biology</a></li><li>Safety form</li></ul><div id="page"><article class="page sans" id="ab9067a2-4ccb-4085-b06b-22b8551b85ad"><header><div class="page-header-icon undefined"><span class="icon">✅</span></div><h1 class="page-title">Safety form</h1></header><div class="page-body"><p class="" id="88db34e6-6086-49b0-9b58-cc3995d32264">
+</p><h1 class="" id="95ea23f2-eee6-4122-a294-b5b5348f7c1f"><strong>Part 1: Overview</strong></h1><p class="" id="620e44bd-e78c-4fe8-8680-e6a60c3ceb30"><strong>1. Please upload a photo or two of your lab to the iGEM 2020 server (include your team name in the file name), preferably showing the relevant safety features and paste the link here: </strong><em><strong>(Instructions on how to upload an image to our servers can be found </strong></em><a href="https://2020.igem.org/Resources/Wiki_Editing_Help"><em><strong>here</strong></em></a><em><strong>)</strong></em></p><p class="" id="cc43918b-210f-4bb8-81a0-140ede7c1c53">
+</p><p class="" id="abf34fee-1b31-4163-b973-aec040a8ad72">
+</p><p class="" id="1dab53a9-09a9-45c5-8629-5aa0880abe36"><strong>2. Describe the goal of your project: what is your engineered organism supposed to do? Please include specific technical details and names of important parts. </strong><em><strong>(Even though your project might change, please describe the main project idea you are working on right now. See the example answers for help.)</strong></em></p><p class="" id="13ad8cd3-16b0-4ff3-b096-809660f2eca5"><strong>Bad example answers (not enough detail) </strong>"We are engineering E. coli to cure liver cancer." "Climate change is a very important problem. Our algae will reduce CO2 emissions and fight climate change."</p><p class="" id="01b61f2a-42ea-4aa5-aa17-de2182a14a4f"><strong>Good example answers </strong>"Our bacteria will be engineered to interact with human cells. They will detect tumor cells that express biomarkers for liver cancer. They will use invasin to enter the tumor cells, and then secrete apoptin to kill the tumor cells." "Our algae will receive gasses high in CO2. We will increase their expression of Photosystem II proteins to make them absorb more CO2 from the gas."</p><ul class="bulleted-list" id="d46b1c5a-dc49-432d-b4f5-60a0f318ce64"><li>The goal for our project is to create a point-of-care device that detects the fungal infection on amphibians. Our DH5-Alpha E.coli will be transformed with non-pathogenic genes of our target diseases: Batrachochytrium dendrobatidis (Bd) and Batrachochytrium salamandrivorans (Bsal). They will be cultured in lab and used to test if our diagnostic device is functional. We will combine nucleic acid amplification step (RPA or LAMP) with CRISPR technology to look for the target sequence and produce —— signal if the target sequence is present in the given sample. </li></ul><p class="" id="5609544e-2d92-4e86-9d72-ebb40ed66581">
+</p><h1 class="" id="166a6c31-a792-4099-9ddc-da3bd688d278"><strong>Part 2: Identifying possible risks </strong></h1><p class="" id="351da211-6fc3-4cb5-99aa-d7314e33f070">iGEM has developed a <a href="https://2020.igem.org/Safety/Risk_Assessment_Tool"><strong>Risk Assessment Tool </strong></a>to help you identify possible risks to you, your colleagues, communities, or the environment. We encourage you to use this tool before filling in this part of the form. What are you using / planning to use? Some organisms and parts present risks beyond what is ordinary for lab work in synthetic biology. As your project progresses, you should consider the risks presented by each organism and part you plan to use.</p><p class="" id="3fce4134-a95a-4cec-bc57-0ec2569050e1"><strong>3. Which whole organisms, including viruses and cell lines, are you planning to use or using in your project? </strong><em><strong>Please provide as much detail as possible (such as strain information). If you are not using an organism, please note this.</strong></em></p><ul class="bulleted-list" id="ab592f0f-193d-4bd9-a0e9-9d1c467272c0"><li>E.Coli DH5-Alpha</li></ul><p class="" id="42b6103a-2ef3-4e80-88a0-3b242d04ba5b">
+</p><p class="" id="31d14fb1-c3ee-4543-964f-92bbd3ccdb18"><strong>4. What risks could these organisms pose to you or your colleagues in the laboratory, or to your community or the environment if they escape the lab?</strong><em><strong>If you are not using an organism, please note this.</strong></em></p><ul class="bulleted-list" id="223e0fd7-8bc2-478e-88dc-8326e3765607"><li>According to the Life Technologies Safety Data Sheets, the E. coli DH5-Alpha strain presents minimal potential hazard to laboratory personnel and the environment <a href="https://www.thermofisher.com/document-connect/document-connect.html?url=https%3A%2F%2Fassets.thermofisher.com%2FTFS-Assets%2FLSG%2FSDS%2F500512_MTR-EULT_BE.pdf&amp;title=NTAwNTEy">https://www.thermofisher.com/document-connect/document-connect.html?url=https%3A%2F%2Fassets.thermofisher.com%2FTFS-Assets%2FLSG%2FSDS%2F500512_MTR-EULT_BE.pdf&amp;title=NTAwNTEy</a></li></ul><p class="" id="5fdfb8a3-5d7d-4b63-a2e3-a759999c585b">
+</p><p class="" id="b5cdd5b4-8a60-4a7a-adcd-7045ccabe370"><strong>5. What organisms are you using as chasses in your project?</strong><em><strong>For the purposes of iGEM, a chassis is the organism in which you are putting your parts, or which you are modifying in your project. Many teams will use a common lab organism as a chassis. Some teams may use a more exotic organism. Some project may not involve a chassis.</strong></em> Escherichia coli <em>(give names of all strains you are using) </em> Yeast <em>(Saccharomyces cerevisiae) </em> Lactobacillus spp.  Bacillus subtilis  Others <em>(give species names) </em> No chassis organism <em>(please comment) </em></p><ul class="bulleted-list" id="2eb960eb-ad08-4f69-b8af-3a00dcc4f950"><li>E. coli (DH5-Alpha)</li></ul><p class="" id="e47221ef-3897-42fd-bc62-9427bb139a26">
+</p><p class="" id="8f7c587b-6116-4106-85d9-03f89b97f083"><strong>6. What risks could your chassis pose to you or your colleagues in the laboratory, or to your community or the environment if they escape the lab? </strong><em><strong>If not using a chassis organism, please note this.</strong></em></p><ul class="bulleted-list" id="ba287070-6b7d-41ec-ab38-be80aec03016"><li>According to the Life Technologies Safety Data Sheets, the E. coli DH5-Alpha strain presents minimal potential hazard to laboratory personnel and the environment.</li></ul><p class="" id="cc6925fd-b341-4339-a977-e4e8af18bcd2">
+</p><p class="" id="e1ed52ef-7f5c-4e8e-a7e7-4b34f63e742d"><strong>7. Which chemicals are you using in your project that might be hazardous? </strong> Heavy metals  Carcinogens  Mutagens Mutagens Other controlled chemicals<em>(If you selected any of the above, please list the chemicals)</em></p><p class="" id="0b7c230f-d3c1-4b73-b0de-ad8109ac3511">
+</p><h2 class="" id="923d7fd2-7cf4-487b-ab3b-bb111128be2f"><strong>Parts</strong></h2><p class="" id="6c9b1e5d-7f3e-46c4-82f7-866e8c0bfb31">This part of the form is for you to tell us about the parts you are planning to make or have developed during your project. It summarises information that might already have been submitted through <a href="https://2020.igem.org/Safety/Check_In"><strong>Check-in forms</strong></a>. If you submitted a <a href="https://2020.igem.org/Safety/Check_In"><strong>Check-In form</strong></a> for a part, you should still include it in this section. You may omit parts that were already in the Registry if you are using them without significant modifications. For more information on virulence factors see the <a href="https://2020.igem.org/Safety/Policies"><strong>Safety Policy</strong></a> page and the <a href="https://2020.igem.org/Safety/White_List"><strong>White List</strong></a>. </p><p class="" id="dcc89084-e540-4faf-b1c1-836ee77e1dc3"><strong>8. As part of your project, are you are planning to make / have made new parts or substantively changed existing parts in the Registry. </strong> Yes <em>(All relevant new or revised parts should be described on a spreadsheet)</em> No </p><p class="" id="2ca320e1-12ca-4250-b424-b46073330c8d">
+</p><p class="" id="3a035327-2e66-446e-ad36-e16be6ebb45c">
+</p><p class="" id="0103154e-0c43-4407-a6bd-b353f7a1140b">
+</p><p class="" id="0912674d-fd86-4038-b60d-e1be1ff5a1cb"><strong>9. Part information is submitted in a spreadsheet.</strong><em><strong>Instructions for parts spreadsheet: Remember to change the filename of your spreadsheet! Put your team's name in place of "TeamName". Please visit this page to download a blank copy of the spreadsheet for this question.</strong></em><a href="https://2020.igem.org/wiki/images/1/14/TeamName_Safety2020_Spreadsheet.xlsx"><strong>DOWNLOAD SPREADSHEET</strong></a><strong>A. Species name of parent organism (including strain):</strong> For an organism, give the scientific name of the species. Include a strain name or number (such as "K-12" for E. coli K-12) if there is one. For a part, give the name and strain of the organism that the part originally came from. If the part has no natural comparator, note this.<strong>B. Risk Group: </strong>Give the Risk Group of the organism in column A. You may use a categorization according to your home country, according to the USA, or according to the WHO. If the organism falls into an 'in-between' or special category such as 2+ or 2-Agricultural, explain this category in the Notes column. If you cannot find any Risk Group categorization for this organism, write "N/A" and explain in the Notes column. (Multicellular organisms generally do not have a Risk Group.)<em>Help about </em><a href="https://2020.igem.org/Safety/Risk_Groups"><em><strong>Risk Groups and Safety Levels</strong></em></a><strong>D. Disease risk to humans: </strong>Does this organism cause any disease in humans? If yes, what disease does it cause?<strong>E. Disease or other risks to the environment: </strong>Does the organism cause plant or animal diseases or would in any other way pose a risk to the environment if accidentally released?<strong>F. Part number/name:</strong> For a part: If it has a Registry part number (like BBa_XXXXX), write that number. If it has no Registry part number, give a short name for the part. (For example: "Actin", "Alcohol Dehydrogenase".) For a whole organism, leave this column blank.<strong>G. Natural function of part:</strong> For a part: Briefly describe what the part does in its parent organism. (If it is an enzyme, what reaction does it catalyze? If it is a receptor, what molecules does it bind to? Etc.) For a whole organism, leave this column blank.<strong>H. How did you acquire it: </strong>Describe how you acquired the organism/part. If you have not acquired it yet, describe how you plan to acquire it. (For example: did you receive the part DNA from another lab? Did you order the part DNA from a synthesis company? Did you use PCR to isolate the part from genomic DNA of its parent organism? Did you order the cell line from a company?)<strong>I. How will you use it: </strong>Describe how you are using the organism/part in the lab. (For example: "This organism is our chassis." "This part senses when the cells are exposed to glucose." "This organism is the source for a part that we are isolating by PCR." "This part produces the toxin which our bio-sensor is designed to detect.")<strong>J. Notes:</strong> Use this column to give any additional information that is necessary.<em><strong>Upload Spreadsheet</strong></em><em> Please do not change the "Destination Filename"! [File:T--TeamName--Safety2020_Spreadsheet.xls] You may upload multiple versions of your spreadsheet, using the same Destination Filename. The wiki software will keep track of different versions, and list them in chronological order.</em><a href="https://2020.igem.org/Safety/Final_Safety_Form"><strong>UPLOAD SPREADSHEET</strong></a></p><p class="" id="0731a43c-e93c-40f0-bcaa-28cd0f083e98">
+</p><p class="" id="02d9793d-7f94-41ab-939b-66db77d6d431">
+</p><p class="" id="31c1fdca-92a8-4991-9a3a-96037f8e3905">
+</p><p class="" id="55a865f5-4897-4458-ba3c-9c4ce496a74b"><strong>10. What experiments will you do with your organisms and parts? </strong><em><strong>Please explain briefly. We are particularly keen to understand the boundaries or scope of your project. You should include the names of species / cell lines / strains. You should include experiments involving parts taken from other organisms, even if they are being synthesized rather than isolated from nature – you need not include any parts already in the registry.Example answers </strong></em><em>"Our bacteria is meant to live on plant leaves, so we will test them on tobacco (Nicotiana benthamiana) in a lab greenhouse." "We want to use a protein from ants, but its sequence is unknown. So we will capture ants (Camponotus spp.) to extract DNA and RNA to find the sequence of the protein we want." "Our bacteria need to interact with human cells for a medical application. We will test them in human cell culture using the HEK293 cell line." “We are interested in a RNA-binding protein expressed in Kluyveromyces lactis. We have found the sequence in a paper and will have it synthesized by a provider.”</em></p><ul class="bulleted-list" id="b277c895-0bd0-447f-9981-55e1b2471812"><li>We will transform the E.Coli DH5-Alpha with specific and non-pathogenic genes of the target diseases. Then, RPA or LAMP will be used for specific nucleic acid amplification and CRISPR technology (CRISPR-Cas12a or CRISPR-Cas13a) will be used for nucleic acid detection. Combining those technologies, the — signal will be produced if the matched target sequence is present in the sample.</li></ul><p class="" id="147182ad-6885-4f9e-bbdf-d2dcfb23af54">
+</p><p class="" id="f15cb1a9-1071-40d5-8fd1-2b5d03d1745b"><strong>11. What risks could arise from these experiments?</strong><em><strong>For example, could they produce aerosols making it more likely that you could inhale something? Or are you using needles and could accidentally stick yourself? Could you produce something that is not inactivated using standard lab protocols? If you are not conducting any experiments, please note this.</strong></em></p><ul class="bulleted-list" id="91ffc910-1fae-4514-9521-356537ac07af"><li>No discernible risk is involved as all the genes used are non-pathogenic and disposal is taken proper care of, minimizing any potential hazards to laboratory personnel and the environment.</li></ul><p class="" id="f4e66217-4257-45fc-9546-2cdd0d0d77f8">
+</p><p class="" id="9f0f695d-eeaa-431f-a8b8-ed691110a41f">
+</p><p class="" id="d8e488ef-9eb9-42bd-8edd-490c5056e5d4"><strong>12. Are you collecting any data about people, such as their opinions, quotations, health information, gender, behavior, attitudes, or concerns?</strong><em><strong>This includes surveys and interviews carried out as part of human practices work, whether anonymous or not.</strong></em> No  Yes <em>(Please read iGEM's policy on </em><a href="https://2020.igem.org/Safety/Policies#subjects"><em><strong>Human Subjects Research</strong></em></a><em> very carefully. For good reasons, many countries require formal approval for Human Subjects Research, as well as consent procedures for participants. You may need formal permission from a Research Ethics Committee, Institutional Research Board, or equivalent. Remember compliance with relevant laws and regulations is a requirement for participation in iGEM.) </em></p><p class="" id="1048ef6a-b19b-4f39-8dc2-55b1971a5f81">
+</p><p class="" id="d1e759f6-a51c-467e-afab-4c4abefb32c7">
+</p><p class="" id="51845d20-ba72-4c67-ab02-db16dc749115">
+</p><p class="" id="79be2819-f975-47ff-94b6-7bd8d4c141b2"><strong>13. Imagine that your project was fully developed into a real product that real people could use. How would people use it? </strong><em><strong>Check all appropriate boxes and expand in the comments section. (Note: iGEM teams should not release modified organisms into the natural environment but you could imagine such a release if your project was fully developed.) </strong></em> </p><p class="" id="896dd175-2088-4377-ad7f-d067d658fefe">
+</p><p class="" id="dd7f9c1c-101e-426d-8789-0d1525495ff7">Our project is foundational / we do not have a specific real-world application in mind <em>(Examples: library of standardized promoters, system for communication between cells) </em> Only in the lab <em>(Examples: reporter strain for measuring the strength of promoters) </em> In a factory <em>(Examples: cells that make a flavor chemical for food, cells that make biofuel)</em> In a consumer product that ordinary people buy <em>(Examples: cells that clean your clothes, bread made with engineered yeast)</em> In agriculture / on a farm <em>(Examples: cells that guard against pests, engineered rice plants, cells that promote growth of crop plants)</em> In a small enclosed device <em>(Examples: a bio-sensing strip with cells that detect arsenic)</em> In the natural environment <em>(Examples: cells that remove pollution from lakes, engineered forest trees that can resist drought) </em> To be used in the human body, or in food <em>(Examples: anti-cancer bacteria, bread made with engineered yeast, engineered rice plants)</em> Other <em>(Examples: bacteria that live on Mars, or a software project) </em></p><p class="" id="b90f7eec-d6bc-4382-992b-6c128afe63d3">
+</p><p class="" id="30cc918f-c637-4468-8795-f8daaf366b50">
+</p><p class="" id="d1f930e6-8cc5-4c8c-a753-1ebfffb2b2b2"><strong>14. What safety, security or ethical risks would be involved with such a use?</strong><em><strong>Virtually all modern life science and biotechnology carries with it some risks. These can be identified and managed helping to ensure your work makes a positive impact on the world. Basic risks are managed for you in many institutions. As you think about how your project might enter the real world, being a responsible biological engineer will require you to think about and manage these risks yourselves. You can find some great resources on the </strong></em><a href="https://2020.igem.org/Safety"><em><strong>Safety and Security</strong></em></a><em><strong> and </strong></em><a href="https://2020.igem.org/Human_Practices"><em><strong>Human Practices</strong></em></a><em><strong> hubs on our wiki. It is even possible that software projects could also pose relevant risks.</strong></em></p><p class="" id="d43f6069-8682-42ef-a7c2-fe1f1fe2fc81">
+</p><p class="" id="d1f6f275-8053-43a2-89bd-44443e886fdd">
+</p><p class="" id="c1401b63-f9b8-40c1-9cf8-605de5760c81">
+</p><h1 class="" id="764fbabd-f0ef-48f1-8288-75a5d821b76e"><strong>Part 3: Managing the risks you have identified</strong></h1><p class="" id="4b455d2f-0df6-4607-b097-f18ad254034c">It is impossible to remove all risk from any biological activity. Instead, we attempt to manage these risks - to reduce them to an acceptable level. In this section, you should outline what steps have been taken (or you are planning to take) to reduce any risks you identified in Part 2 of the form, in particular Question 11.</p><p class="" id="741c46cc-bf25-4322-8ee2-038e6d1c1e77"><strong>15. How will experts overseeing your project help to manage any of the risks you identified in this form?</strong><em><strong>For example, who is responsible for the safety and security of biology labs at your institution? What role has any institutional biosafety officer played in reviewing your work? What skills do these experts have that might help? For example, do they have a long history of working with an organism or part that might pose a risk? How familiar are they with the experimental procedures and practices you will be, or are, using?</strong></em></p><ul class="bulleted-list" id="68ed42cd-6f46-4dd6-b4ca-3e3ea597dd66"><li>Hussain Mir Nawaz (<a href="mailto:hussain@nyu.edu">hussain@nyu.edu</a>) is the Biosafety Officer working for the EHS department overseeing the biosafety program at NYUAD. The guidelines include Laboratory Biosafety Manual, Bloodborne Pathogen Exposure Control Plan, Institutional Biosafety Committee (IBC), Institutional Animal Care &amp; Use Committee (IACUC). These guidelines are listed on the university Intranet page which is not accessible by persons outside of the institution. </li></ul><p class="" id="07083a87-01ab-48c4-8501-6ccb464183b6">
+</p><p class="" id="57aad784-0af0-4104-a770-b0cb35da0343">
+</p><p class="" id="b3f52bd5-ca3e-4d27-962e-c2dda405d755"><strong>16. What rules or guidance cover your work which could help to manage any of the risks you identified in Part 2 of this form (in particular Question 11)?</strong><em><strong>For example: In your country / region, what are the laws and regulations that govern biosafety or biosecurity in research laboratories? Please give a link to these regulations, or briefly describe them if you cannot give a link.What are the guidelines for laboratory biosafety and biosecurity? Please give a link to these guidelines, or briefly describe them if you cannot give a link.</strong></em></p><ul class="bulleted-list" id="d4238ff3-27e9-4b46-b634-19161cc5759e"><li>Rules and guidelines include wearing appropriate PPE in the laboratory, and ensuring appropriate supervision is present from PIs or instructors when working in the laboratory. Other measures that will be taken include appropriate waste disposal of biohazardous materials to ensure the safety of all laboratory individuals and the environment in accordance with NYUAD Environmental Health and Safety Policy.</li></ul><p class="" id="45e0bbbd-12c5-449b-a35c-cfb8b257f835">
+</p><p class="" id="f16f2745-29f7-4fe8-9415-162e0ff63713"><strong>17. Have your team members received any safety training?</strong><em><strong>For the purposes of iGEM, biosafety and biosecurity training covers the procedures and practices used to manage risks from accidents or deliberate misuse of your projects to your team, colleagues, communities and the environment. All team members are expected to be aware of these risks and to work to manage them.</strong></em> Yes, we have already received safety training.  Yes, we have already received security training.  We plan to receive safety and security training in the future. Please specify approximately when:  We will not have safety and security training. <em>Please explain in detail how team members will be aware of and manage risks to the team, colleagues, communities, and the environment in the absence of training. If it is not relevant because there is no lab component to your project, please note this: </em></p><p class="" id="a2337a71-1b26-43b3-aef7-2d260aedc1d4">
+</p><p class="" id="e668e965-6bef-44e0-bd23-170403742f5b">
+</p><p class="" id="13d5acf9-50e2-406f-ae92-90ea22b7401c">
+</p><p class="" id="59476ff5-93c8-4daf-aa69-aa55c2f4a87d"><strong>18. Please select the topics that you learned about (or will learn about) in your safety training.</strong> Lab access and rules <em>(including appropriate clothing, eating and drinking, etc.</em> Responsible individuals <em>(such as lab or departmental specialist or institutional biosafety officer) </em> Differences between biosafety levelsBiosafety equipment <em>(such as biosafety cabinets)</em> Good microbial technique <em>(such as lab practices)</em> Disinfection and sterilization Emergency procedures Transport rules Physical biosecurity Personnel biosecurity Dual-use and experiments of concern Data biosecurity Chemicals, fire and electrical safety  We will not have safety training</p><p class="" id="c430934a-d7b0-4057-868c-ed343f29aa38">
+</p><p class="" id="3c517811-13b9-4d8c-baa9-e0e8477efa20">
+</p><p class="" id="3ddba182-5e81-439a-b6e6-5bff05d2f926"><strong>19. Which work areas do you use / are you using to handle biological materials? </strong><em><strong>Please check all the containment provisions you are using. If you are using more than one space please check all that apply and note this in the other work area box.</strong></em> No lab work <em>(e.g. software project)</em> Open bench  Biosafety cabinet <em>(please note there are important differences between biosafety cabinets and laminar flow hoods / clean benches. iGEM encourages the use of biosafety cabinets but discourages the use of laminar flow hoods or clean benches. This </em><a href="https://ehs.umass.edu/sites/default/files/Fact%20Sheet%207%20BSC%20vs%20LFH_0.pdf"><em><strong>Factsheet</strong></em></a><em> from the University of Massachusetts Amherst helps explain the differences.)</em> Specialist greenhouse  Specialist animal house  Specialist insect facility  Chemical fume hood <em>(Please note – this is designed to manage risks from hazardous chemicals. It is different from a biological safety cabinet designed to manage risks from hazardous biological agents and a clean bench or laminar flow hood designed to prevent contamination of your experiment.) </em> Other work area. <em>Please describe:</em> Unknown. <em>Please comment: </em></p><p class="" id="f5e5da1f-8e6f-4eef-a266-0909d729f551">
+</p><p class="" id="ce8c5376-e224-4233-bf6e-90dc41903c80">
+</p><p class="" id="e8fc95a0-ac8f-4b9d-99c4-eddf84d21f7f"><strong>20. What is the biosafety Level of your work space? </strong><em><strong>Help about </strong></em><a href="https://2020.igem.org/Safety/Risk_Groups"><em><strong>Risk Groups and Safety Levels</strong></em></a><em><strong>If you are working in a biosafety cabinet it may be a biosafety level 2 space (then select Level 2), but biosafety cabinets are sometimes also used in a biosafety level 1 laboratory to provide a sterile work space (then select Level 1). If in any doubt, please discuss this with a biosafety professional or your instructors, supervisors or lab techs to make sure you understand how the equipment you use helps to manage risks.</strong></em> Not applicable as we have no lab component  We have several different lab spaces with different biosafety Levels. Please describe:  Level 1 <em>(low risk)</em><strong> </strong>Level 2 <em>(moderate risk)</em> Level 3 <em>(high risk)</em> Level 4 <em>(extreme risk)</em> Other biosafety level. <em>Please describe:</em>AlertiGEM teams should not use Risk Group 3 or 4 organisms, and they should not work in Safety Level 3 or 4 labs. If you are planning to work at Safety Level 3 or 4, contact safety (AT) igem (DOT) org right away!!</p><p class="" id="ebcf2813-5963-4370-a84a-69135cb6f9f8">
+</p><p class="" id="ffad7b54-6cf0-42ea-9ac6-3fc9be89c86a">
+</p><p class="" id="7c752724-516b-4f92-b19e-bf723e6f49d2"><strong>21. What other risk management tools will cover you work? </strong><em><strong>Please select as many as are relevant, including those that happen automatically at your institution and are not specifically connected to your project. If in any doubt, please discuss this with a biosafety professional or your instructors, supervisors or lab techs to make sure you understand how the equipment you use helps to manage risks.</strong></em> Accident reporting <em>(measures to record any accidents)</em> Personal Protective Equipment <em>(including lab coats, gloves, eye protection, etc)</em> An inventory control system <em>(measures to track who has what materials and where they are) </em> Access controls <em>(measures to control who can access your work spaces, or where materials are kept) </em> Medical surveillance <em>(measures to find out if you get sick because of something you were using) </em> Waste management system <em>(measures to make sure waste is not hazardous before it leaves your institution) </em> Special procedures or protocols that address safety or security  Others <em>Please describe: </em></p><p class="" id="632af7bf-739c-409c-9199-8246589af1df">
+</p><p class="" id="10b033b1-9af3-4a2a-9644-a013fe7202db">
+</p><p class="" id="c9c7f697-f08c-4c1e-aff2-7ce6dd97cb8e"><strong>22. How will the rules, training, containment and other procedures and practices help to manage any of the risks you identified in Part 2 of this form (in particular Question 10)?</strong><em><strong>Please give details of any steps you have taken to manage any risks identified. This might include how any of the following have helped manage risks: the rules you identified, the training you have had, the equipment you have used, the spaces you have worked in, and the procedures and protocols you have followed. It might also include things you deliberately didn't do. For example, if you are not conducting any experiments, especially on grounds of safety, security or as a responsible scientist / engineer, please note this. Examples might include, making sure you only use non-pathogenic strains of an organism, deciding that animal use experiments are not yet warranted, or avoiding plant infection experiments because the affected plant is found in your country. Please also consider waste treatment – how will you know that any waste produced in your project will be successfully inactivated?</strong></em></p><p class="" id="12325ff4-d624-4837-8488-75bac154a52d">
+</p><p class="" id="502c0acd-d860-4030-8b4e-b0bc39e42396">
+</p><p class="" id="d35e65bc-3460-4070-b9a8-8dc3a946aced">
+</p><h1 class="" id="69504a08-7be8-464f-b670-d9e6d0f72e57"><strong>Part 4: Compliance with iGEM’s rules and policies</strong></h1><p class="" id="6da87260-0a54-44f5-ba3a-2f1ec58b9a28"><strong>23. Are you planning to/ have released any organism or product derived from your project? </strong><em><strong>For the purposes of iGEM, release includes putting any engineered organism or product from one into the environment, yourselves or volunteers (including by eating or drinking), or into a device that will be placed in the environment.</strong></em> No  Yes <strong>STOP: </strong><em>Release is not allowed in iGEM. For more information see the </em><a href="https://2020.igem.org/Safety/Policies"><em><strong>policy page</strong></em></a><em>. Please contact the Safety and Security Committee by emailing safety AT igem DOT org</em></p><p class="" id="183dedc1-d592-4544-b900-8ca4f8037189">
+</p><p class="" id="144a4575-c061-4137-9380-fff08e489726">
+</p><p class="" id="597f1122-8ad9-4953-8e28-0d8768e894ef"><strong>24. Are you planning to use, or using any animals (including insects and invertebrates) not on the </strong><a href="https://2020.igem.org/Safety/White_List"><strong>Whitelist?</strong></a> No  Yes <strong>STOP: </strong><em>Before you acquire or use any animal NOT on the </em><a href="https://2020.igem.org/Safety/White_List"><em><strong>Whitelist</strong></em></a><em>, you must - submit a </em><a href="https://2020.igem.org/Safety/Check_In"><em><strong>Check-In form</strong></em></a><em>. Check-Ins allow the iGEM Safety and Security Committee to help you ensure that you will work safely and responsibly with these organisms. The Safety and Security Committee will base its review on the information you provide – please provide as much information as possible and use references as appropriate.</em></p><p class="" id="0b776730-cc5f-429f-b6dc-55010f5d03e9">
+</p><p class="" id="ec10d5bc-42cb-43b4-b427-d60b75c30d6f">
+</p><p class="" id="dac9dc0a-fbef-4ade-83a9-8bd5d2254f05"><strong>25. Are you planning to use / have used any vertebrates (e.g. rats, mice, guinea pigs, hamsters) or higher order invertebrates (e.g. cuttlefish, octopus, squid, lobster)?</strong> No  Yes <strong>STOP: </strong><em>Before you acquire or use any vertebrate you must submit an </em><a href="https://2020.igem.org/Safety/Animal_Use_Check_In"><em><strong>Animal Use form</strong></em></a><em>. The use of animals is not allowed in iGEM projects without a special exception from the Safety and Security Committee. For more information see the </em><a href="https://2020.igem.org/Safety/Policies"><em><strong>policy page</strong></em></a><em> and the </em><a href="https://2020.igem.org/Safety/White_List"><em><strong>White List</strong></em></a><em>. Please contact the Safety and Security Committee by emailing safety AT igem DOT org </em></p><p class="" id="97de5dde-e759-417c-b2c7-b21c931fab64">
+</p><p class="" id="4b373900-ffd6-4509-8f69-9952ad01865c">
+</p><p class="" id="b4316cab-9ff6-4419-9759-151f1841583a"><strong>26. Are you planning to use, or using any parts not on the </strong><a href="https://2020.igem.org/Safety/White_List"><strong>Whitelist?</strong></a> No  Yes <strong>STOP: </strong><em>Before you acquire or use any part that is NOT on the Whitelist, you must - submit a </em><a href="https://2020.igem.org/Safety/Check_In"><em><strong>Check-In form</strong></em></a><em>. Check-Ins allow the iGEM Safety and Security Committee to help you ensure that you will work safely with these riskier parts. The Safety and Security Committee will base its review on the information you provide – please provide as much information as possible and use references as appropriate. </em></p><p class="" id="389b0174-1cb7-47fc-9219-1529197b39bf">
+</p><p class="" id="7cae5433-fbd3-400a-8d7b-cbd61bce909b">
+</p><p class="" id="28f771c4-34a9-4930-a565-87b67f2efe12"><strong>27. Are you planning to carry out any of the activities not on the Whitelist?</strong><em><strong>These include experiments likely to bias the inheritance frequency of a genetic marker in an organism’s progeny, such as through the creation of a gene drive, experiments likely to confer resistance to the World Health Organization's list of Critically Important Antimicrobials, and experiments likely to increase the hazard posed by your project.</strong></em> No  Yes <strong>STOP: </strong><em>Before you carry out any of the activities NOT on the </em><a href="https://2020.igem.org/Safety/White_List"><em><strong>White List</strong></em></a><em>, you must - submit a </em><a href="https://2020.igem.org/Safety/Check_In"><em><strong>Check-In form</strong></em></a><em>. Check-Ins allow the iGEM Safety and Security Committee to help you ensure that you will work safely with these riskier organisms/parts. The Safety and Security Committee will base its review on the information you provide – please provide as much information as possible and use references as appropriate. </em></p><p class="" id="c2bd439e-2cbf-452c-aec8-889e32c49ec4">
+</p><p class="" id="41d72873-0352-4a65-a67a-3e54a170ed3d">
+</p><p class="" id="e8f8ac6c-7edd-4de6-bb07-56d6810ad12a"><strong>28. Are you planning to use, or using any parts or organisms obtained from outside the lab or regular suppliers?</strong> No  Yes <strong>STOP: </strong><em>Before you acquire or use any organism/part that has come from outside the lab or regular suppliers, you must - submit a </em><a href="https://2020.igem.org/Safety/Check_In"><em><strong>Check-In form</strong></em></a><em>. Check-Ins allow the iGEM Safety and Security Committee to help you ensure that you will work safely with these riskier organisms/parts. The Safety and Security Committee will base its review on the information you provide – please provide as much information as possible and use references as appropriate.</em></p><p class="" id="902a7b8a-3d47-47d2-a63d-ae3a40b8c497">
+</p><p class="" id="1e6ee4e1-1c6b-463b-b44a-e7d4519330fd">
+</p><p class="" id="53a6ec48-d20c-4076-8bf3-84286b5ddc9f">
+</p><p class="" id="c1e31379-d9f7-42df-be09-d0f77f110cda"><strong>29. What else can you tell us about any risks associated with your project, how you are managing them, or your compliance with iGEM’s safety and security </strong><a href="https://2020.igem.org/Safety/Rules"><strong>rules</strong></a><strong> and </strong><a href="https://2020.igem.org/Safety/Policies"><strong>policies?</strong></a><strong> </strong><em><strong>This can include any improvements you would like to see to our safety and security efforts, or anything that has not been sufficiently clear, or where additional guidance would be useful, or where you see important uncertainties.</strong></em>NoteThe information above will save automatically. Please fill as much information as possible by <strong>June 26, 2020</strong></p><p class="" id="c3c47505-2391-4586-9406-79b24ca1cc46">
+</p><p class="" id="25701bc4-9015-482d-8b9a-185ae01e627e">
+</p><p class="" id="a7760d6c-1e78-4a4a-adf2-116b0d1628af"><strong>Sign off </strong><strong>Due September 11, 2020</strong><strong>Only a team Instructor or PI may submit the Safety and Security Form. Instructors/PIs, please read the form you are submitting, and confirm that all its information is correct. By checking the "I Agree" box and clicking the "Submit" button, you are agreeing that the Safety and Security Form accurately describes the activities of your team and that they have complied with all relevant institutional, national or regional laws, rules and regulations. </strong><strong>We are using the "I Agree" box in lieu of a signature with paper and pen.</strong> I Agree <strong>Ready to submit Form? </strong><strong>Need to make changes?</strong></p></div></article></div></body></html>

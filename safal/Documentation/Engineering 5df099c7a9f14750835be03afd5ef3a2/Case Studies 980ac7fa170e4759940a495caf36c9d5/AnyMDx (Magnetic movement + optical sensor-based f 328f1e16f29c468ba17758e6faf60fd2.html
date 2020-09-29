@@ -1,0 +1,1341 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>AnyMDx (Magnetic movement + optical sensor-based fluoroscence detection + Electrical heating)</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrum {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrum li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrum li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrum li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrum li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrum"><li><a href="../../Engineering 5df099c7a9f14750835be03afd5ef3a2.html">Engineering</a></li><li><a href="../Case Studies 980ac7fa170e4759940a495caf36c9d5.html">Case Studies</a></li><li>AnyMDx (Magnetic movement + optical sensor-based fluoroscence detection + Electrical heating)</li></ul><div id="page"><article class="page sans" id="328f1e16-f29c-468b-a177-58e6faf60fd2"><header><h1 class="page-title">AnyMDx (Magnetic movement + optical sensor-based fluoroscence detection + Electrical heating)</h1></header><div class="page-body"><figure id="acbed4b3-e9e8-42bc-9dc8-d8aaef15b1b8"><a class="bookmark source" href="https://pubs.rsc.org/en/content/articlelanding/2016/LC/C6LC01078D"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A field-deployable mobile molecular diagnostic system for malaria at the point of need</div><div class="bookmark-description">In response to the urgent need of a field-deployable and highly sensitive malaria diagnosis, we developed a standalone, "sample-in-answer-out" molecular diagnostic system (AnyMDx) to enable quantitative molecular analysis of blood-borne malaria in low resource areas. The system consists of a durable battery-</div></div><div class="bookmark-href"><img class="icon bookmark-icon" src="https://pubs.rsc.org/favicon-16x16.png"/>https://pubs.rsc.org/en/content/articlelanding/2016/LC/C6LC01078D</div></div><img class="bookmark-image" src="https://pubs.rsc.org/en/Content/Image/GA/C6LC01078D"/></a></figure><figure id="00598fe6-e840-48fa-9c94-a1d6ed99d611"><a class="bookmark source" href="https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Sample-to-answer palm-sized nucleic acid testing device towards low-cost malaria mass screening</div><div class="bookmark-description">Palm-sized real-time fluorescence LAMP device suitable for malaria screening test with automated sample preparation. * Quadruplex parallel reactions from sample to answer on a single closed microfluidic disc. * Highly sensitivity with whole blood for detecting asymptomatic parasite carriers. * The NAT device is capable of processing four samples simultaneously with less than 50 min turnaround time.</div></div><div class="bookmark-href"><img class="icon bookmark-icon" src="https://sdfestaticassets-us-east-1.sciencedirectassets.com/shared-assets/13/images/favSD.ico"/>https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub</div></div><img class="bookmark-image" src="https://ars.els-cdn.com/content/image/1-s2.0-S0956566318X00128-cov150h.gif"/></a></figure><p class="" id="8814f381-6717-4e59-9d9a-86a41cce0274">This device uses similar principles as <a href="mobiNAAT%20(Magnetic%20movement%20+%20Smartphone%20based%20flu%203c2da2ed19a6442aaa33bd5a32c43b9a.html">mobiNAAT (Magnetic movement + Smartphone based fluoroscence + electrical heating)</a> </p><h3 class="" id="c14b9b19-fb14-4372-8933-0af0285f1dde">Device Setup:</h3><p class="" id="d0e662f4-c20f-4839-950b-00be58645f42">Processor:</p><figure class="image" id="47eeab09-cfb6-4150-ab56-a8e94f81eb69"><a href="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled.png"><img src="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled.png" style="width:2043px"/></a><figcaption>Fig. 1 Overview of the standalone and mobile nucleic acid testing system (AnyMDx). (A) Schematic diagram of the assembled AnyMDx with the reagent compact disc. The whole platform is of a small footprint (12 × 13 × 13 cm). The reagent compact disc was secured on the rotatable spindle platter. (B) Schematic diagram of functional parts in an exploded view</figcaption></figure><p class="" id="c7704fbd-534e-4f22-93a1-d4c4fb4ef4be">
+</p><figure class="image" id="6e28f42a-3ae9-4210-b9c3-332349590f38"><a href="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%201.png"><img src="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%201.png" style="width:1418px"/></a><figcaption>Fig. 2 Block diagram of the AnyMDx modules. The platform consists of four main functional modules: mechanical modules (servo motor/spindle platter/compact disc), optical modules (LED/optical sensor), thermal modules (Peltier heater/thermal sensor), and data connectivity modules (Bluetooth). Each module was controlled by a microprocessor on a customized PCB board. The diagnostic results can be optionally reported to a smartphone user interface.</figcaption></figure><p class="" id="1c2ef6b2-0bb0-4d01-ae1b-dc27c97e8197">
+</p><figure class="image" id="220ffe36-f55e-4de1-b2b1-82aa8638aac8"><a href="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%202.png"><img src="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%202.png" style="width:3167px"/></a><figcaption>Fig 3. Exploded view of the analyzer</figcaption></figure><p class="" id="37b161e2-2b98-409c-9498-588d2941a89d">
+</p><p class="" id="719e50ec-58c6-40f3-8657-296b56a02354">Microfluidic Disk:</p><figure class="image" id="93b841d3-04b2-46db-ae1c-dd250aa38d66"><a href="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%203.png"><img src="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%203.png" style="width:2043px"/></a><figcaption>Fig. 3 Illustration of reagent compact disc and integrated sample preparation on the compact disc. (A) Exploded view of the reagent compact disc showing three patterned PMMA layers. (B) Assembled view of the reagent compact disc showing three independent testing units. Each test unit consists of five chambers: a DNA binding chamber (binding buffer, pH 5.0), a washing chamber (washing buffer, pH 7.0), a LAMP reaction chamber (master mix, pH 8.8), and two valving chambers. All reagents are preloaded on the compact disc in a ready-to-use format. The lysate was prepared by collecting 10 μL of malaria-infected blood into 1 mL of lysis buffer in a microcentrifuge tube. (C) Illustration of integrated sample preparation and amplification steps on the compact disc. By rotating the compact disc against a stationary magnet in a specifically designed control sequence (steps 1–4), the pH charge switchable magnetic beads were directed from chamber to chamber, which allows for seamlessly integrated DNA binding, purification, elution and amplification on the compact disc.</figcaption></figure><h3 class="" id="6e638268-0b51-432a-becc-f65173f38636">Equipment Used + Procedure:</h3><p class="" id="dba859d3-2d88-42be-86b5-ce504d537ec7">Equipment:</p><ul class="bulleted-list" id="e48e776f-b4ba-40a3-bc19-e0d23221129b"><li>Analyzer consists of: Microcontroller, Peltier electrical heater + aluminium heating plate + micro-thermistor, servo motor for disk actuation, magnet, LED + Optical fiber for fluoroscence excitation, optical sensor (TCS34725, Digi-Key) + optical fiber for detection, touch screen LCD display, connectivity to smartphone.</li></ul><ul class="bulleted-list" id="a10ad3af-f1ad-4da5-830d-4db1b63cd81a"><li>The custom made disk consists of a lysate inlet and multiple chambers for washing and reaction steps. Magnetic beads are used to bind to DNA and propagate it</li></ul><p class="" id="0f1e21ab-eb5a-419f-8238-ffabf51a962c">Procedure:</p><figure class="image" id="90d7a4ba-2052-42b9-a745-00dd1f559235"><a href="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%204.png"><img src="AnyMDx%20(Magnetic%20movement%20+%20optical%20sensor-based%20f%20328f1e16f29c468ba17758e6faf60fd2/Untitled%204.png" style="width:3000px"/></a></figure><p class="" id="08b2f7b9-5369-454e-b57b-02557b0efd9d">Please see the videos linked here: </p><figure id="0d1c74fc-3b40-4d79-a4ae-73082ffc5717"><a class="bookmark source" href="http://www.rsc.org/suppdata/c6/lc/c6lc01078d/c6lc01078d2.mp4"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">http://www.rsc.org/suppdata/c6/lc/c6lc01078d/c6lc01078d2.mp4</div></div></a></figure><figure id="04f18fcf-bdb2-41de-b926-f605195d0860"><a class="bookmark source" href="https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub#ec0005"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Sample-to-answer palm-sized nucleic acid testing device towards low-cost malaria mass screening</div><div class="bookmark-description">Palm-sized real-time fluorescence LAMP device suitable for malaria screening test with automated sample preparation. * Quadruplex parallel reactions from sample to answer on a single closed microfluidic disc. * Highly sensitivity with whole blood for detecting asymptomatic parasite carriers. * The NAT device is capable of processing four samples simultaneously with less than 50 min turnaround time.</div></div><div class="bookmark-href"><img class="icon bookmark-icon" src="https://sdfestaticassets-us-east-1.sciencedirectassets.com/shared-assets/13/images/favSD.ico"/>https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub#ec0005</div></div><img class="bookmark-image" src="https://ars.els-cdn.com/content/image/1-s2.0-S0956566318X00128-cov150h.gif"/></a></figure><figure id="9b728fa0-c477-4b48-9ce7-98d5d00f0f05"><a class="bookmark source" href="https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub#ec0010"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Sample-to-answer palm-sized nucleic acid testing device towards low-cost malaria mass screening</div><div class="bookmark-description">Palm-sized real-time fluorescence LAMP device suitable for malaria screening test with automated sample preparation. * Quadruplex parallel reactions from sample to answer on a single closed microfluidic disc. * Highly sensitivity with whole blood for detecting asymptomatic parasite carriers. * The NAT device is capable of processing four samples simultaneously with less than 50 min turnaround time.</div></div><div class="bookmark-href"><img class="icon bookmark-icon" src="https://sdfestaticassets-us-east-1.sciencedirectassets.com/shared-assets/13/images/favSD.ico"/>https://www.sciencedirect.com/science/article/pii/S0956566318303580?via%3Dihub#ec0010</div></div><img class="bookmark-image" src="https://ars.els-cdn.com/content/image/1-s2.0-S0956566318X00128-cov150h.gif"/></a></figure><p class="" id="6018c8a5-3fbe-4d6f-8a35-84b91441e925">
+</p><h3 class="" id="14bce24a-33e6-4877-a44c-2ff67dc26881">Key Findings:</h3><ul class="bulleted-list" id="64a4fde9-2f97-49ee-b4a1-27c61687ba8e"><li>Effective use of magnetic propagation</li></ul><ul class="bulleted-list" id="4507f283-4613-483f-8b40-837463fb5bbc"><li>Multiplexing is possible and easy </li></ul><ul class="bulleted-list" id="3b6a2c32-9eca-4efe-b347-b69a0281485e"><li>Easy to use method, requires minimal user input</li></ul><ul class="bulleted-list" id="8a5d1945-038a-475e-aeb9-597aea5d8425"><li>Cons: Needs lysed sample, The disk needs cold-chain for storage</li></ul><p class="" id="13a526b8-21e2-4ff9-82b1-f027795cca25">
+</p></div></article></div></body></html>

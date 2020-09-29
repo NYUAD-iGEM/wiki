@@ -1,0 +1,1339 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Data Usage</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrum {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrum li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrum li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrum li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrum li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrum"><li><a href="../Data 90766625956a463fb6f0f5359e446691.html">Data</a></li><li>Data Usage</li></ul><div id="page"><article class="page sans" id="8e283755-4723-4ad9-a5f0-02bc6399d51e"><header><h1 class="page-title">Data Usage</h1></header><div class="page-body"><p class="" id="c269fe91-d36b-483c-8fa8-0ea11aef1d5e"><span class="user">@Prajjwal Bhattarai</span> </p><h2 class="" id="636d8082-84e0-4a67-ae64-2ce6afef684e">Objective</h2><ul class="bulleted-list" id="ac583ed1-229b-4466-a46c-6f9cd3d9d278"><li>Stage 1: Develop a Database and API that takes in input from the hardware device</li></ul><ul class="bulleted-list" id="5b4fa8f2-cf6f-4bb8-978c-edc670ebcc76"><li>Stage 2: Use data for prediction, analysis and modeling to contribute to the field </li></ul><h2 class="" id="38da2dba-e380-44bb-9d37-bd2f69421560">Questions</h2><ul class="bulleted-list" id="391e6c98-6365-457d-b345-e521085ef144"><li>What type of variables would you want to log from the field (weather/climatic conditions, attitude, habitat, amphibian characteristics, etc) given no hardware constraints?<ul class="block-color-red bulleted-list" id="76b498b6-0986-467a-8ea6-0ec5e729c366"><li>Use variables from the genome upload</li></ul><ul class="block-color-red bulleted-list" id="54f350ef-fb6a-4387-ac96-28312f6190e6"><li>Linking data like temperature from other databases is an option</li></ul><ul class="bulleted-list" id="9e5590d9-bc03-4821-adb0-55527684b012"><li>How is this data collected from the engineering team?</li></ul><p class="" id="149c9ea4-d038-4742-8bc8-954bcca2538f">
+</p></li></ul><ul class="bulleted-list" id="1428f5c4-cd55-49f6-ab48-78dccb1dcd1e"><li>What type of genetic data would you want logged in the database?<ul class="bulleted-list" id="1b4b2c9e-74a9-46d6-a1e9-b16ff6ae466c"><li>How is this data collected from the bio team?</li></ul></li></ul><p class="" id="6065b992-d9b8-4c8b-853d-cd7f8c3b2feb">
+</p><p class="" id="1a6a411b-19b5-459b-8510-410e8b8c22c4"><strong>Amphibian Disease Portal Current Usage</strong></p><div class="indented"><ul class="bulleted-list" id="4978d7f0-de18-4873-94c1-a3ba47e8ef36"><li>Submitting collected samples to the portal. <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Vredenburg,%202019%2042710960b3f04e9ead5079e6fb6adff8.html">Vredenburg, 2019</a>, <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Jongsma,2016%20d571dd0575d8432da62827926f6767ec.html">Jongsma,2016</a>,, <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Parrott,%202017%202430aaa6bfdc40f1a74efe51372c7f8d.html">Parrott, 2017</a>, <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Catenazzi,2017%203daf66e4a17f4813b7e0ea335d476a9f.html">Catenazzi,2017</a> <ul class="bulleted-list" id="6a229de4-50ad-49db-b077-6305e57d9a23"><li>Genus</li></ul><ul class="bulleted-list" id="0e41c66c-6cf8-427c-93bf-ef186247fcfd"><li>Species</li></ul><ul class="bulleted-list" id="3a5f04cb-a1d0-40ef-9207-ceedfee3ede5"><li>Location</li></ul><ul class="bulleted-list" id="4a3d3764-2fff-4af2-8ac7-260e4ebfb308"><li>Type of test performed<ul class="bulleted-list" id="1aea0ada-28dd-4526-b12d-eb99e3b30f9d"><li></li></ul></li></ul><ul class="bulleted-list" id="76b8089b-eaa8-40a2-973e-0d6cc120024d"><li>Test result</li></ul><ul class="bulleted-list" id="538f92b0-395e-4e40-ad7c-116c62a2e513"><li>Mortality</li></ul><ul class="bulleted-list" id="a048dd0e-4846-4daa-b810-8f9b8c385320"><li>Sampling type<ul class="bulleted-list" id="b1c36a15-eeff-4b0e-9bfb-57a4d0f392df"><li>External swab</li></ul><ul class="bulleted-list" id="893e477d-9633-481c-b87f-21a631586684"><li>Isolate</li></ul><ul class="bulleted-list" id="b11384c6-e419-4eb4-8b4a-9e236a46af48"><li>Swabbing</li></ul><ul class="bulleted-list" id="4007144f-d67e-4ac3-b99d-2f3807de90a9"><li>Whole-genome data</li></ul></li></ul><ul class="bulleted-list" id="00bceb7c-5642-4704-9881-845f999fb445"><li>Testing method </li></ul></li></ul><h2 class="" id="a4ab48a2-677f-421a-8715-4b27fa3921a0">Upload sheet to geome</h2><figure id="2a801890-267e-4671-a0d8-d6a15f2aee46"><a class="bookmark source" href="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fa460b4-3afc-4dd6-9fba-a691e345453b/AmphibiaWeb_Disease_Portal_(1).xlsx"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fa460b4-3afc-4dd6-9fba-a691e345453b/AmphibiaWeb_Disease_Portal_(1).xlsx</div></div></a></figure><p class="" id="e5b7b3eb-3a55-4306-be15-e13ec3ef6b05">
+</p><ul class="bulleted-list" id="b879ac89-af1a-4b88-aa3d-4b25df1aa1fb"><li>General reviews, either of the current state of research in the amphibian world (the portal gets mentioned as a collaborative tool but no data is submitted to or retrieved)  <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Olson,%202019%20e1db0cf9eb49469a99607c57cb455947.html">Olson, 2019</a>, <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Adams,%202018%20a09586e42d674af38c652f787ead0ca8.html">Adams, 2018</a>, <a href="../User%20Mapping%20e56c2ac7a73448859633452081da82d7/Amphibian%20Decline%206dafb16d51284897b02968017a2630b2/References%20fd9e79c5ec9d4e65815a246aab865db3/(Allain%20et%20al%20,%202019)%20127aae698c8c468fa5dc490a13d2a686.html">(Allain et al., 2019)</a> </li></ul><ul class="bulleted-list" id="1be3b45d-be21-468a-9efc-8e07ba529d80"><li>Elementary data (total number of cases, no. of species affected, etc) <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/De%20la%20Riva,%202011%20a1bb839bf1d14079ab467670ca61f391.html">De la Riva, 2011</a>, <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Montori,%202019%2012519a0f98374da89299f6f57835bb5f.html">Montori, 2019</a>, </li></ul><ul class="bulleted-list" id="3266bdba-3aa5-4e70-b58d-ba18348b1e85"><li>Basic mapping; just taking the latitude-longitude data from the portal and plotting it in a simple map. <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Watts,%202019%208c6754d745b542c29c2ab13f61df9269.html">Watts, 2019</a></li></ul><ul class="bulleted-list" id="b1d819ad-cbb0-4e52-8c4f-c598a41e5783"><li>Meta-analysis for the prevalence of bd, comparing the results from in-site testing to previous tests from the portal. Compares presence of bd across amphibian genus, species and sex.  <a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Courtois,%202015%20a83673c00be7475eb5aad83abc8009b3.html">Courtois, 2015</a> </li></ul><ul class="bulleted-list" id="a2e57095-0e93-4360-b69f-3992721ef8f7"><li><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Xie,%202016%2047f376b784dc4b03b12f5026c4a08e24.html">Xie, 2016</a> creates a binary classification model for predicting the presence of bd in a region based on climate and precipitation data. Uses the portal diagnostic data as a label for whether or not bd is present in a region. <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Olson,%202013%20b1bbe1cdf2794e34a911f742aaf8e5e1.html">Olson, 2013</a> has a similar, simpler approach that includes creating correlative charts with climate, precipitation, and habitat (tundra, tropical, subtropical, etc)</li></ul></div><div class="collection-content" id="7af62753-3de0-4e8d-9c20-d655d7bba74c"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="42710960-b3f0-4e9e-ad50-79e6fb6adff8"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Vredenburg,%202019%2042710960b3f04e9ead5079e6fb6adff8.html">Vredenburg, 2019</a></td><td class="cell-VU*J"><a class="url-value" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0208969">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0208969</a></td></tr><tr id="12519a0f-9837-4da8-9299-f6f57835bb5f"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Montori,%202019%2012519a0f98374da89299f6f57835bb5f.html">Montori, 2019</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.researchgate.net/profile/Marc_Franch/publication/334274835_Observations_on_the_intensity_and_prevalence_of_Batrachochytridium_dendrobatidis_in_sympatric_and_allopatric_Epidalea_calamita_native_and_Discoglossus_pictus_invasive_populations/links/5da59e0c299bf116fea8e6b7/Observations-on-the-intensity-and-prevalence-of-Batrachochytridium-dendrobatidis-in-sympatric-and-allopatric-Epidalea-calamita-native-and-Discoglossus-pictus-invasive-populations.pdf">https://www.researchgate.net/profile/Marc_Franch/publication/334274835_Observations_on_the_intensity_and_prevalence_of_Batrachochytridium_dendrobatidis_in_sympatric_and_allopatric_Epidalea_calamita_native_and_Discoglossus_pictus_invasive_populations/links/5da59e0c299bf116fea8e6b7/Observations-on-the-intensity-and-prevalence-of-Batrachochytridium-dendrobatidis-in-sympatric-and-allopatric-Epidalea-calamita-native-and-Discoglossus-pictus-invasive-populations.pdf</a></td></tr><tr id="d571dd05-75d8-432d-a628-27926f6767ec"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Jongsma,2016%20d571dd0575d8432da62827926f6767ec.html">Jongsma,2016</a></td><td class="cell-VU*J"><a class="url-value" href="http://www.academia.edu/download/47442726/2016_Jongsma_et_al_HerpRev.pdf">http://www.academia.edu/download/47442726/2016_Jongsma_et_al_HerpRev.pdf</a></td></tr><tr id="2430aaa6-bfdc-40f1-a74e-fe51372c7f8d"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Parrott,%202017%202430aaa6bfdc40f1a74efe51372c7f8d.html">Parrott, 2017</a></td><td class="cell-VU*J"><a class="url-value" href="https://link.springer.com/article/10.1007/s10393-016-1188-7">https://link.springer.com/article/10.1007/s10393-016-1188-7</a></td></tr><tr id="3daf66e4-a17f-4813-b7e0-ea335d476a9f"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Catenazzi,2017%203daf66e4a17f4813b7e0ea335d476a9f.html">Catenazzi,2017</a></td><td class="cell-VU*J"><a class="url-value" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0186478">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0186478</a></td></tr><tr id="a1bb839b-f1d1-4079-ab46-7670ca61f391"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/De%20la%20Riva,%202011%20a1bb839bf1d14079ab467670ca61f391.html">De la Riva, 2011</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.researchgate.net/publication/288094391_Rapid_assessment_of_the_presence_of_batrachochytrium_dendrobatidis_in_bolivian_Andean_frogs">https://www.researchgate.net/publication/288094391_Rapid_assessment_of_the_presence_of_batrachochytrium_dendrobatidis_in_bolivian_Andean_frogs</a></td></tr><tr id="e1db0cf9-eb49-469a-9960-7c57cb455947"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Olson,%202019%20e1db0cf9eb49469a99607c57cb455947.html">Olson, 2019</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.fs.fed.us/pnw/pubs/journals/pnw_2019_olson001.pdf">https://www.fs.fed.us/pnw/pubs/journals/pnw_2019_olson001.pdf</a></td></tr><tr id="a09586e4-2d67-4af3-8c65-2f787ead0ca8"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Adams,%202018%20a09586e42d674af38c652f787ead0ca8.html">Adams, 2018</a></td><td class="cell-VU*J"><a class="url-value" href="https://link.springer.com/article/10.1007/s10393-018-1352-3">https://link.springer.com/article/10.1007/s10393-018-1352-3</a></td></tr><tr id="8c6754d7-45b5-42c2-9c2a-b13f61df9269"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Watts,%202019%208c6754d745b542c29c2ab13f61df9269.html">Watts, 2019</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.fs.fed.us/pnw/sciencef/scifi214.pdf">https://www.fs.fed.us/pnw/sciencef/scifi214.pdf</a></td></tr><tr id="47f376b7-84dc-4b03-b12f-5026c4a08e24"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Xie,%202016%2047f376b784dc4b03b12f5026c4a08e24.html">Xie, 2016</a></td><td class="cell-VU*J"><a class="url-value" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0160746#abstract0">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0160746#abstract0</a></td></tr><tr id="a83673c0-0be7-475e-b5aa-d83abc8009b3"><td class="cell-title"><a href="Data%20Usage%208e28375547234ad9a5f002bc6399d51e/References%207af627533de04e8d9c20d655d7bba74c/Courtois,%202015%20a83673c00be7475eb5aad83abc8009b3.html">Courtois, 2015</a></td><td class="cell-VU*J"><a class="url-value" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0125128">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0125128</a></td></tr></tbody></table></div></div></article></div></body></html>

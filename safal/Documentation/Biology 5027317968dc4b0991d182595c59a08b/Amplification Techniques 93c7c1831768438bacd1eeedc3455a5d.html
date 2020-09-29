@@ -1,0 +1,1424 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Amplification Techniques</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrumb"><li><a href="../Biology 5027317968dc4b0991d182595c59a08b.html">Biology</a></li><li>Amplification Techniques</li></ul><div id="page"><article class="page sans" id="93c7c183-1768-438b-acd1-eeedc3455a5d"><header><div class="page-header-icon undefined"><span class="icon">🧬</span></div><h1 class="page-title">Amplification Techniques</h1></header><div class="page-body"><p class="" id="98721a64-4830-4864-85ed-d90276177fb7"><span class="user">@Yujeong Oh</span> </p><p class="" id="d35bbf3a-a08d-4549-bd40-0d4bd5445c00">
+</p><h1 class="" id="4d12850f-118c-4aef-981a-89b524304d76">Amplification Techniques</h1><ul class="toggle" id="7dba5095-16fa-461a-bbee-9f34266c6805"><li><details open=""><summary>PCR</summary><ul class="toggle" id="2134b722-1527-4b88-8ed0-a78dd0df36a9"><li><details open=""><summary>Theories</summary><p class="" id="76148a70-18e1-4b67-9441-5819b842664d"><a href="https://www.sciencedirect.com/topics/neuroscience/polymerase-chain-reaction">https://www.sciencedirect.com/topics/neuroscience/polymerase-chain-reaction</a></p><p class="" id="93e523a0-aff4-41a1-bd84-a5b98a8e4239">PCR stands for Polymerase Chain Reaction. It is a golden-standard technique that is used to amplify a small amount of a target DNA region using thermal cycles. It uses heat-stable DNA polymerase enzyme (Taq polymerase) to make new strands of DNA using existing strands as templates. First step is to initialize DNA polymerase using heat. Then, heat the reaction to denature the double-stranded DNA template by breaking the hydrogen bonds between complementary bases. Cool the reaction so the primers can bind to their complementary sequences on the single-stranded template DNA. Raise the reaction temperature, which enables Taq polymerase to extend the primers, producing new strands of DNA. This denature-anneal-elongation process is repeated 20-40 times to generate multiple copies of target DNA.</p><p class="" id="88f8bb49-e045-465f-98eb-d14735f5d520">Real-time/ quantitative PCR (qPCR) allows the quantification and detection of the specific DNA sequence in real time. It measures the concentration of probes or fluorescent dyes while the synthesis process is taking place.</p><figure class="image" id="20280dc6-c089-47bf-9706-98604901d2d4"><a href="https://lh6.googleusercontent.com/Qvg1_lbJyQeQ3UR3nL2JBe-CjngCH1NCoo4gyruMdt9e72S25mNCzsG_yPptjzggQD82bdLOddhsytMImgNiqSYxC9rjOlL0EmrVbwCQ1Y4jJxLRrE7YQViOTh1XJHYWjVWnYXS1"><img src="https://lh6.googleusercontent.com/Qvg1_lbJyQeQ3UR3nL2JBe-CjngCH1NCoo4gyruMdt9e72S25mNCzsG_yPptjzggQD82bdLOddhsytMImgNiqSYxC9rjOlL0EmrVbwCQ1Y4jJxLRrE7YQViOTh1XJHYWjVWnYXS1"/></a></figure></details></li></ul><ul class="toggle" id="f437673b-56e3-43ce-9f0f-bfe2e5b26f5b"><li><details open=""><summary>Protocol</summary><ul class="toggle" id="98834220-ab5b-4825-9130-f976e9c8150d"><li><details open=""><summary>BioRad</summary><p class="" id="be0faa19-199c-4d40-9b6e-246e8db6c242">
+</p><p class="" id="004dfddd-abc9-48c1-b55a-259361190bdc">Materials needed: BioRad Mastermix (BioRad: #1665009EDU), DNA sample, forward and reverse PCR primers for target gene, nuclease-free water</p><ol class="numbered-list" id="69d55f99-edfb-4ded-809e-e0b19fc94037" start="1"><li>Prepare 10 μM working stock of each primer by extracting 5 μl of 100 μM stock and adding 45 μl of distilled water to a total of 50 μl.</li></ol><ol class="numbered-list" id="6d28891d-b9b1-48dd-a031-892deb7eb0df" start="2"><li>Labelled each PCR tube with name of gBlock</li></ol><ol class="numbered-list" id="185cc7d3-1d51-4c4e-92d8-c8386e705f30" start="3"><li>Add 20 μll PCR Master Mix (BioRad: <strong> #1665009EDU</strong>) to each tube</li></ol><ol class="numbered-list" id="e9a9b29c-811c-4c84-a3cb-6e7780e997ee" start="4"><li>Add 1 μll of 10 μM of the forward primer to each appropriate tube. This is done for all the gBlocks..</li></ol><ol class="numbered-list" id="57b34cf5-1ec6-49b8-b4c5-b9d176b23801" start="5"><li>Add 1 μl of 10 μM of the reverse primers to each appropriate tube. This is done for all genes.</li></ol><ol class="numbered-list" id="61fbcf8e-52eb-49c4-873c-db7351c9abf7" start="6"><li>Add 2μl of the gBlock template DNA.</li></ol><ol class="numbered-list" id="af12183d-1853-4941-8ef7-26b978b0e995" start="7"><li>Add 16 μl of nuclease-free water to reach a total volume to 40 μl</li></ol><ol class="numbered-list" id="5714284c-5d27-4a5a-828e-0bcea7f4a46e" start="8"><li>Set the temperature of each part of the cycle according to the BioRad (35 cycles):</li></ol><ol class="numbered-list" id="d35ac4df-c778-4b83-aec7-8ae740a584e0" start="9"><li>Cycle 1: 94 °C for 2 min</li></ol><ol class="numbered-list" id="90634036-0fb7-4333-8279-29baf52a1d71" start="10"><li>Cycle 2 (35 repeats): 94 °C for 1 min</li></ol><p class="" id="6e53ed08-72d7-42c3-a219-8746010a9dbb">60 °C for 1 min</p><p class="" id="7c8e4f10-89f7-4faa-a9f7-c35839df1631">72 °C for 2 min</p><ol class="numbered-list" id="1f0d44c1-87e1-4871-b63e-2646886ab0ec" start="1"><li>Cycle 3: 72 °C for 10 min</li></ol><ol class="numbered-list" id="40571ecb-33b1-429f-8c1b-eece8276edda" start="2"><li>Hold: 4°C overnight</li></ol></details></li></ul><ul class="toggle" id="85f3b6ce-e773-41e3-9ac4-5f4e87080912"><li><details open=""><summary>NEB</summary><p class="" id="5ed2796e-8abf-43cc-a915-d02add0e51a8">
+</p><p class="" id="726655b5-57c4-41e7-a071-be91a462fdcc">Materials needed: NEB Q5 High-Fidelity 2x Master Mix, primers, DNA template, nuclease-free water, PCR machine, pipette</p><p class="" id="0cb60dc4-fbe0-4dd4-93c8-0d5673272f95">Method:</p><p class="" id="c9584603-15b3-4e1c-b4fc-87c045077ab0">The following mix is prepared:</p><ol class="numbered-list" id="fa75385e-8a14-4fd0-bbfe-a950fc1b6e58" start="1"><li>12.5 μl of NEB Q5 High-Fidelity 2X Master Mix</li></ol><ol class="numbered-list" id="9f339b4c-e2f2-4051-924d-b9fbd46b177f" start="2"><li>1.25 μl of forward primer (10 μM)</li></ol><ol class="numbered-list" id="7c8b9074-e903-4df6-ba02-740760083dcb" start="3"><li>1.25 μl of reverse primer (10 μM)</li></ol><ol class="numbered-list" id="c35d1546-ef81-4bf3-92d7-2dbddded7af5" start="4"><li>2 μl of DNA template</li></ol><ol class="numbered-list" id="e46d8f37-630d-4f07-bebd-72f89fff41be" start="5"><li>8 μl of nuclease-free water</li></ol><p class="" id="8a5d1961-15f8-4da8-8ec8-3c4cfdc3f9d8">The following settings were inputted to the machine:</p><ol class="numbered-list" id="70eda08e-4779-48bf-8bd9-d3965e3451b0" start="1"><li>Denaturation: 98 C for 30 sec</li></ol><ol class="numbered-list" id="c6f9f13f-604c-4164-86dd-770016b0efe2" start="2"><li>Cycles (35):</li></ol><ol class="numbered-list" id="a947f465-bde4-43ea-b29b-fb91eea0abc1" start="3"><li>98 C for 10 seconds</li></ol><ol class="numbered-list" id="975c62ae-347e-4564-a64f-68fdb869c414" start="4"><li>annealing temperature specific to the gene for 30 seconds</li></ol><ol class="numbered-list" id="5f4a7c0f-11d8-4a09-851a-d3e81896ef03" start="5"><li>72 C for 15 seconds</li></ol><ol class="numbered-list" id="2ee3ebb3-23bc-4277-b8e1-1d5e089e75b3" start="6"><li>Final Extension: 72 C for 2 min</li></ol><ol class="numbered-list" id="92e4c885-0b67-48ed-bde3-948304bbb00d" start="7"><li>Hold: 4 C</li></ol><p class="" id="7b2936ce-6a22-4f38-bb80-682507dd57be"><strong>Optimized NEB PCR Protocol (Taq 2x Master Mix)</strong></p><ol class="numbered-list" id="7bbc9f80-b848-437f-a673-4de923b4a749" start="1"><li>Add the following components in each pcr tube<ol class="numbered-list" id="1b682304-49b7-47d2-89d6-e349c1c72ea3" start="1"><li>Taq 2X Master Mix: 8ul</li></ol></li></ol><ol class="numbered-list" id="0fd8d9f8-25ed-4d9d-97e6-5d987831acba" start="2"><li>Forward Primer (10uM): 0.32ul</li></ol><ol class="numbered-list" id="4458182c-63fe-471d-86b9-46fe2c8f28de" start="3"><li>Reverse Primer (10uM): 0.32ul</li></ol><ol class="numbered-list" id="eb62720d-577d-4481-94b9-926ca966bc80" start="4"><li>Template DNA: 5ul</li></ol><ol class="numbered-list" id="13a049d6-977b-483c-aba0-51c02e9140e6" start="5"><li>Nuclease-free water: 2.36ul (up to 16ul)</li></ol><ol class="numbered-list" id="2aec68fe-f67d-484c-969a-eee88a8c2f9c" start="6"><li>Set the temperature of each part of the cycle according to the BioRad (30 cycles):</li></ol><ol class="numbered-list" id="b6058120-f7e8-47e3-98c4-8be464ee361a" start="7"><li>Cycle 1: 94 °C for 2 min</li></ol><ol class="numbered-list" id="0a8d0eae-9106-46a4-88b1-e7402d2e63ad" start="8"><li>Cycle 2 (35 repeats): 94 °C for 1 min</li></ol><p class="" id="2ea7256a-39fa-4a0b-8a55-77e5adaa163b">60 °C for 1 min (annealing temperature of primer)</p><p class="" id="c0d8e1f2-787c-4e54-aba2-4ae2492652fa">72 °C for 2 min</p><p class="" id="90a48c25-2b7c-436c-9eb4-c030030311ce">Cycle 3: 72 °C for 10 min</p><ol class="numbered-list" id="ba94ab37-a438-4efd-9f65-219332ec310e" start="1"><li>Hold: 4°C</li></ol></details></li></ul><ul class="toggle" id="ba562b7d-0e28-4972-9cda-9cd4f57addaa"><li><details open=""><summary>qPCR</summary><p class="" id="580e5339-bd63-41f6-8d36-4d76a6e4899e">
+</p><p class="" id="6ae43951-bd20-4822-851c-ae0767e30d69">Materials needed: Luna® Universal Probe qPCR Master Mix, PCR primers, Nuclease-free water, SYBR Green, DNA template</p><p class="" id="ad9cebc8-54f1-4795-ae20-f518b790b0d8">Method</p><ol class="numbered-list" id="50eebaf6-3e61-429d-b985-49e8dd2d1732" start="1"><li>Thaw Luna Universal Probe qPCR Master Mix and other reaction components at room temperature, then place on ice. After thawing completely, briefly mix each component by inversion, pipetting or gentle vortexing.</li></ol><figure class="image" id="4c61c91c-b703-49f2-8ca7-dad3187b30a9"><a href="https://lh3.googleusercontent.com/IrX_mV5K9-GBIQCWM9qy7sJJ6NoPGcYEOlLpGCsZ3WdFrsFLisHskc1i_7-aHqlsODHL4q3lpQB_V2jDhUnAndcNNXe_06wz1spyxwP3iz4H48eUUYdd2j-TWlHblllMFjrsNH6b"><img src="https://lh3.googleusercontent.com/IrX_mV5K9-GBIQCWM9qy7sJJ6NoPGcYEOlLpGCsZ3WdFrsFLisHskc1i_7-aHqlsODHL4q3lpQB_V2jDhUnAndcNNXe_06wz1spyxwP3iz4H48eUUYdd2j-TWlHblllMFjrsNH6b"/></a></figure><ol class="numbered-list" id="57610449-f9da-4332-b6dc-9ec0917c33d7" start="1"><li>Determine the total volume for the appropriate number of reactions, plus 10% overage and prepare assay mix of all components except DNA template accordingly. Mix thoroughly but gently by pipetting or vortexing. Collect liquid to the bottom of the tube by brief centrifugation.</li></ol><ol class="numbered-list" id="3bd50e81-2f80-46e0-a210-32d76a921feb" start="2"><li>Aliquot assay mix into qPCR tubes or plate. For best results, ensure accurate and consistent pipetting volumes and minimize bubbles.</li></ol><ol class="numbered-list" id="e4916c11-5c12-4600-92df-f784f6339fe4" start="3"><li>Add DNA templates to qPCR tubes or plate. Seal tubes with flat, optically transparent caps; seal plates with optically transparent film. Care should be taken to properly seal plate edges and corners to prevent artifacts caused by evaporation.</li></ol><ol class="numbered-list" id="2de5c282-3c3c-4649-b31e-7dba80247292" start="4"><li>Spin tubes or plates briefly to remove bubbles and collect liquid (1 minute at 2,500–3,000 rpm).</li></ol><ol class="numbered-list" id="628fb259-af8d-4c04-8707-68c4c0d418bf" start="5"><li>Program real-time instrument with indicated thermocycling protocol (see table below). Ensure a plate read is included at the end of the extension step.</li></ol><p class="" id="2759cb73-4a09-4ae5-918e-82474a12f136">Use the SYBR® or SYBR/FAM scan mode setting on the real-time instrument.</p><figure class="image" id="a29de6f4-8f64-49ff-afdd-c9daae36e5de"><a href="https://lh6.googleusercontent.com/VTyWutFL6qcN7UQCBUzTvlg-LIdiiGHBS6gtzHJrAUPFUlGuJhQc2gAsLLbVyVDlAXmnLiAzFkmWqbdODtKHpI7WNUO9viMgl-EfXL7IADf2kj7uSn_V7dr_cnmRmOiKXOISj6Nw"><img src="https://lh6.googleusercontent.com/VTyWutFL6qcN7UQCBUzTvlg-LIdiiGHBS6gtzHJrAUPFUlGuJhQc2gAsLLbVyVDlAXmnLiAzFkmWqbdODtKHpI7WNUO9viMgl-EfXL7IADf2kj7uSn_V7dr_cnmRmOiKXOISj6Nw"/></a></figure></details></li></ul><ul class="toggle" id="a78a6b30-8bfb-46ac-831b-f19a911be26c"><li><details open=""><summary>RT-PCR</summary><p class="" id="f21fd5ef-1210-419d-b830-e3eee0f6236c">
+</p><p class="" id="b9ad9766-f628-45eb-a68a-deef0f4c063a">Materials needed: OneTaq One-Step RT-PCR kit, RNA sample, forward and reverse PCR primers for target gene, nuclease-free water</p><p class="" id="5ab95754-58a1-49b8-b463-27b11c873e92">Method (provided by NEB)</p><ol class="numbered-list" id="10a692e8-23a6-4e97-8352-40ac262a9368" start="1"><li>Thaw system components and mix by inverting several times.</li></ol><ol class="numbered-list" id="b1e5e3b5-3ddd-4da2-b33d-89e682f2afd0" start="2"><li>Mix the following components, except RNA, in sterile RNase-free microfuge tubes.One<em>Taq</em> One-Step Reaction Mix (2X) 25 μlOne<em>Taq</em> One-Step Enzyme Mix (25X) 2 μlGene-specific Forward Primer (10 μM) 2 μlGene-specific Reverse Primer (10 μM) 2 μlNuclease-free H2O 19–x μlTotal RNA (up to 1 μg) x μl------------------------------------------------------------------------------------------ Total volume 50 μl</li></ol><ol class="numbered-list" id="29a47823-4261-46f8-9a21-05be75ddd45d" start="3"><li>Add RNA template last, and start reactions immediately, as follows:</li></ol><figure class="image" id="49397ba4-f7c1-4d3e-b52c-f12190ff951e"><a href="https://lh3.googleusercontent.com/3_qc2-VmBpSw-neYWLTw8zjy1UCUgX3J3d5wC-VcD6lKHtV5Z77y-HxZxQTDisqR_2qBZ3IhNdQz9NICv1T6HDBlfXPhr31__qnHluauyZvCi4aBRxJK8WDLQAwsGLk-pKzlqGbW"><img src="https://lh3.googleusercontent.com/3_qc2-VmBpSw-neYWLTw8zjy1UCUgX3J3d5wC-VcD6lKHtV5Z77y-HxZxQTDisqR_2qBZ3IhNdQz9NICv1T6HDBlfXPhr31__qnHluauyZvCi4aBRxJK8WDLQAwsGLk-pKzlqGbW"/></a></figure></details></li></ul></details></li></ul><ul class="toggle" id="a76b27d0-c746-4647-bf96-dd5220372a2d"><li><details open=""><summary>Primer Design</summary><p class="" id="7ef3e900-b079-4d9a-84a2-83cefb8aee1b">
+</p><p class="" id="f90025d1-0360-4e28-b122-50a87848564e">1.NCBI provides P<strong>rimer-BLAST </strong>for automatically designing primers based on a query sequence.</p><p class="" id="8f45cbb3-df43-418c-b76a-023764738a67">To start designing primers, go to the BLAST homepage and scroll down to the P<strong>rimer-BLAST </strong>option under S<strong>pecialized BLAST.</strong></p><p class="" id="b625260b-32c6-42ea-b616-85d665d3c650">2. Enter your target sequence either by cut-and-paste or, if it’s listed in NCBI’s databases, as an accession number.</p><p class="" id="22c9878d-4565-41c5-a71c-81876f49f592">3. The target sequence is normally found earlier on by searching the particular gene sequence and downloading the fasta file or copying directly the sequence.</p><p class="" id="4d54fc10-3133-4c48-8b9a-d4fbf2266df2">4. The ‘Descriptions’ section of the report now includes a download menu that provides direct access to FASTA data, either of the complete subject sequence or only the aligned portion, as well as to other formats including GenBank flat files, hit tables and XML. Checkboxes to the left of each subject sequence allow users to download an arbitrary subset of the matching sequences. Clicking the title of a subject now links to the alignment display, which also contains similar download functions for that alignment along with controls to navigate between alignments and back to the ‘Descriptions’ table.</p><p class="" id="9fa8842f-c7ec-4fe1-a17a-5b49fa034358">5. In the "search for primers dialogue box", gene sequences from the fasta file was pasted and blasted against all genomes. The length of the primers sequence was unspecified neither was the genomes of the organism specified.</p><p class="" id="60a28a66-4152-40b4-8cd9-a40505fb5c93">6. The primers were designed according to the preset and optimum conditions for Tm.</p><p class="" id="6d60cc9a-d804-4b12-94e0-f7e532f3c9e7">7. The selection of the right primers for our experiments were done accordingly to the following parameters : GC content = 50% , self 3'  complimentarity &lt; 3.00 and self complimentarity &lt; 7.00</p><p class="" id="8ea723eb-fe24-4aaf-b7b7-a3226ea4a516">Preferred primers had the G-C clamp</p><p class="" id="24816d32-edd7-4498-ad7e-50b9aa431340">8. The complementarity tests were performed using tools from Oligocalc tools.</p><p class="" id="6e178789-19b1-460b-9659-cb29e5b63f7d">
+</p></details></li></ul></details></li></ul><ul class="toggle" id="36d5ba7f-aaf0-4d3d-8c24-e6f0c61e26d9"><li><details open=""><summary>LAMP</summary><ul class="toggle" id="7505edfb-eefb-4a04-9771-22ec5309ca0d"><li><details open=""><summary>Theories</summary><p class="" id="b7e87817-1e6e-4eff-a3fd-966526671107"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC102748/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC102748/</a></p><p class="" id="56af87b3-7fd9-4f3e-a7d3-21f57f21a676">LAMP stands for Loop-mediated AMPlification and it is a technique that amplifies DNA at a constant temperature lower than for PCR. It accomplishes this by having a different kind of DNA Polymerase, a strand-displacing polymerase, that is capable of separating the strands at a lower temperature and elongating the primers. However, LAMP requires a bit more complex set of primers, because the goal is to form terminal loops on the synthesized DNA. The use of 4 primers that specifically recognize 6 distinct regions on the target gene increases the specificity. When designing the primers, one has to make sure two of them match an exact sequence on the DNA, so that when they are extended, they can form a loop between the primer and the inverse sequence on the new DNA. This process is repeated until both ends have the loops. The new DNA now has 6 possible starting sequences for DNA replication versus 2 in PCR. The loop structure allows us to make complex hierarchical structures capable of amplifying these starting sites, leading to even faster DNA replication.</p></details></li></ul><ul class="toggle" id="a1dae093-c4e7-4915-aa5c-cdacc8f11d20"><li><details open=""><summary>Protocol</summary><ul class="toggle" id="07336ef8-e6d6-441f-9401-4bf3c97a508c"><li><details open=""><summary>LAMP</summary><p class="" id="dcdfdad6-43d2-4607-8f8d-409cc51a53b9">
+</p><p class="" id="03b8574a-f52a-4e26-a92b-c19dbb346b53">Materials needed: isothermal master mix (optigene), nuclease-free water, LAMP primers, Thermocycler, DNA sample</p><p class="" id="b35f0210-f440-47b8-8b98-ab8eaa92bd6c">Method (optimized by iGEM NYUAD 2018):</p><ol class="numbered-list" id="090b9462-bad4-4952-84d6-ffe1554171e3" start="1"><li>Prepare the primer mix in an eppendorf tube. Each primer mix consists of:</li></ol><ol class="numbered-list" id="de6c8e69-4e11-4adc-8f9e-cfe060b06ae6" start="2"><li>4μl of FIP (100μM)</li></ol><ol class="numbered-list" id="d74c9578-796f-4369-8c6d-f134774e214f" start="3"><li>4μl of BIP (100μM)</li></ol><ol class="numbered-list" id="f518062a-f1ee-4103-8a64-0e9bb5c2c03f" start="4"><li>1μl of F3 (100μM)</li></ol><ol class="numbered-list" id="e9a0801b-fd3e-483a-aaaf-0f9a508da576" start="5"><li>1μl of B3 (100μM)</li></ol><ol class="numbered-list" id="7b15f4f1-6068-439a-a3b3-039419c79b74" start="6"><li>45μl of dH2O in the eppendorf tube.</li></ol><ol class="numbered-list" id="55e6c04f-cedb-4e62-bf00-d41f747353c2" start="7"><li>Add 15μl of isothermal master mix to each tube.</li></ol><ol class="numbered-list" id="8a71c252-e01f-43c4-91a5-44b07c21a6c3" start="8"><li>Add 5μl of the primer mix to each tube.</li></ol><ol class="numbered-list" id="ab3ff95e-cbe4-479d-b2ed-453a72629a98" start="9"><li>Add 5μl of the dilution sample to each tube.</li></ol><ol class="numbered-list" id="fde0c643-0881-4704-af5e-816f4c9d629f" start="10"><li>Incubate at 65C for 20 minutes.</li></ol></details></li></ul><ul class="toggle" id="428defb2-d69b-4d0f-a744-745663aba151"><li><details open=""><summary>RT-LAMP</summary></details></li></ul></details></li></ul><ul class="toggle" id="e28e228b-d0e3-438f-8e42-8acc2a1beae8"><li><details open=""><summary>Primer Design</summary><p class="" id="20193819-9a06-4031-a98f-5aadbc685137">
+</p><p class="" id="c213a2d0-a25c-470f-9bc6-5c0884eeb32f"><strong>A) Select target sequence:</strong></p><p class="" id="d21dae76-3749-4201-9687-ef05ae07301f">1. Select a highly conserved region of target gene.</p><p class="" id="1d82b6c7-5f2b-46d4-bc62-dc994191989a">2. Target region should be 200 - 2000 bp long.</p><p class="" id="6b465c2f-94eb-4870-a8b9-bfee408ff2bc">3. Save the target sequence file in FASTA or text (.txt) format.</p><p class="" id="d4c634d3-145a-4ec3-9507-5d5cf871d604"><strong>B) LAMP Primer design:</strong></p><p class="" id="2ace77f8-9ab9-4615-b53c-fb81d57c57d9">1. Launch LAMP primer design software: http://primerexplorer.jp/lampv5e/index.html</p><p class="" id="7e285fc1-a4a9-4944-ae91-f7d7894c88c8">2. Upload the sequence file, set the parameter set as "automatic judgement", and click “Primer Design”.</p><p class="" id="0bfb8e84-7612-445d-a181-e25372b2fe43">3. (Optional) On the next screen, click on “Detail Settings”. If necessary, select AT-rich or GC-rich option. The Tm of primers may also be varied, but changing the length of primers is not recommended.</p><p class="" id="9e490089-c5c8-4ccd-9d9f-cfed3e992f38">4. Click “Generate” to display number of primers designed.</p><p class="" id="cfb365ff-7f48-413d-928e-38d47227b159">5. Click on “Display” to display the list of primers in new window. This page lists 1-100 primer sets.</p><p class="" id="f2dfdbc9-0b5d-4585-8760-02a96a0a5776">6. To look at additional primers, change the page number, and it will open a new window with list of primer sets. Each page lists maximum of 100 primers.</p><p class="" id="32fdae6d-f5a7-4361-9692-41db56e74e78"><strong>C) Selecting the primers:</strong></p><p class="" id="3397e6ae-01b1-4d73-910d-98810019e6ce">1. Select the desired primer set by checking the box on the left. Multiple primer sets can be chosen at the same time. Lower dG values are usually preferred. Click “Confirm” to select the primer set.</p><figure class="image" id="f85b7d73-dbc6-45a2-9bcf-a15d9878ab1e"><a href="https://lh6.googleusercontent.com/c-MPJ21H5P_NztSypdXB17bu_fURxJknjYyA7KnismhGpcRhlwiu4u0j4iD-mMCQK7xGniJA5pg6EobC_nnVacVSQAUwd3092WrArwG--4Ch8nv-xKTZFpxTezpYHoYHzptpNYRl"><img src="https://lh6.googleusercontent.com/c-MPJ21H5P_NztSypdXB17bu_fURxJknjYyA7KnismhGpcRhlwiu4u0j4iD-mMCQK7xGniJA5pg6EobC_nnVacVSQAUwd3092WrArwG--4Ch8nv-xKTZFpxTezpYHoYHzptpNYRl"/></a></figure><p class="" id="550bc571-30cc-4c0b-bb1c-5887bd791c8d">2. A new window will open to show the details of the selected primer set.</p><figure class="image" id="ca24aa8d-a99d-4ec0-a545-f6b27c550325"><a href="https://lh5.googleusercontent.com/OU8dL5adzRb8dEEEc_7r17jqvWDR7Mex2BffrQJTmBOm3LzHaojJGsiQIK0WRSHYVh-3iUqxo_ngHsfYc6DGBHK87NWYMrdzzhOSEWoeHDtlwM4S3JrFkpZO8tGytyVRWTyY6Qb_"><img src="https://lh5.googleusercontent.com/OU8dL5adzRb8dEEEc_7r17jqvWDR7Mex2BffrQJTmBOm3LzHaojJGsiQIK0WRSHYVh-3iUqxo_ngHsfYc6DGBHK87NWYMrdzzhOSEWoeHDtlwM4S3JrFkpZO8tGytyVRWTyY6Qb_"/></a></figure><p class="" id="890e1055-a17b-4d60-810f-e253f5808be9">Check the stability of the following regions to confirm that the dG is &lt; -4.0 kcal/mol:</p><p class="" id="58698943-f193-497c-b174-d9c68f25cae7">* the 3’ end at the region F2</p><p class="" id="443b7802-f6d9-4d40-a972-96638b1fb99b">* the 5’ end at the region F1c</p><p class="" id="a404e675-a5d2-4794-9ba7-1282904cf60f">* the 3’end at the region B2</p><p class="" id="c8153811-a8bc-41a8-b064-1fa4f057da24">* the 5’ end at the region B1c</p><p class="" id="3b8b8b0f-deba-43c7-af9a-fc53967f5552">In the above example, the 3’ end of Primer B1C (dG = -6.26kcal/mol) has the highest stability. The dG of 5’ end of Primer F1c (-3.92 kcal/mol) is above -4.0, indicating it is unstable. Therefore, this entire primer set should not be used. Another primer set should be selected from the list.</p><p class="" id="0c8b1c11-fad4-4865-b36a-35bbd942c0ac">3. Once primer sets with required stability are found, check whether F3 and B3 of the set fits into the guide RNA range.</p><p class="" id="17ca93d2-7a01-42b1-a363-56218ac7e7c2"><strong>Troubleshooting: </strong>If no primers are designed or too few primer pairs are generated, try changing parameters:</p><p class="" id="fa510342-9246-4bcf-89b9-ec146e823118">1. Use a broader range of Tm for primers, but make sure to keep the Tm of F1c/B1c about 3-4 degrees higher than that of F2/B2 and F3/B3 primers.</p><p class="" id="71cc8258-ed59-4f50-a13e-059ce5dd6ea6">2. Change the minimum length of F2/B2 and F3/B3 primers to 15 rather than 18.</p><p class="" id="4867870a-867e-445e-af35-713ad134da63">3. Change the GC rate to 20 or 25 rather than 40.</p></details></li></ul></details></li></ul><ul class="toggle" id="3a44738a-f24f-483f-84c4-a8d0d498848d"><li><details open=""><summary>RPA</summary><ul class="toggle" id="7a66c911-87fa-4119-919e-bafc887bd642"><li><details open=""><summary>Theories</summary><p class="" id="8f0b63da-a2ed-43c2-ab08-30e3bb4c55d9"><a href="https://www.sciencedirect.com/science/article/pii/S0165993617302583">https://www.sciencedirect.com/science/article/pii/S0165993617302583</a></p><p class="" id="c261e2b7-7024-4b98-8475-381ec577ee4c">RPA stands for Recombinase Polymerase Amplification. It is a technique that amplifies a small amount of DNA at a fast rate and lower constant temperature compared to other techniques such as PCR. It uses a special set of enzymes called Recombinases to insert the primers into homologous or similar sequences on the DNA, which helps start the separation of the strands. A special strand-displacing DNA polymerase then makes sure the primer is extended along the DNA to be amplified requiring no higher temperatures than 37℃. Because the temperature is so low, the separated strands of the DNA can easily rehybridize or re-bind, which will interfere with the DNA replication process. To make sure this does not happen, a family of proteins called single-strand-binding proteins, or SSB proteins, bind to the separated strands to prevent them from reforming hydrogen bonds. As the DNA polymerases extend the primers on both strands, the original DNA strands fully separate, eventually producing 2 new molecules of the same DNA. The steps are repeated for each new DNA molecule and the exponential amplification of just a small amount of starting DNA is achieved.</p></details></li></ul><ul class="toggle" id="a60c5726-4a7f-459f-a3ed-35106a3a7877"><li><details open=""><summary>Protocol</summary><ul class="toggle" id="d1b5c6c6-f891-472b-99ed-50c0fd0c221e"><li><details open=""><summary>RPA</summary><p class="" id="421d7457-8dba-42fd-8b6d-ff0b3f842737">
+</p><p class="" id="c3214adf-fa89-4727-9508-ddeb174850de">Materials needed: TwistDx Basic Kit, nuclease-free water, RPA primers, Thermocycler, DNA sample</p><p class="" id="f037b5a1-e2ed-4168-9ac8-13328f047969">Method (optimized by iGEM NYUAD 2019):</p><ol class="numbered-list" id="471e26ab-dd5f-4504-adfd-8025b963e8a9" start="1"><li>Prepare the reaction mix in an eppendorf tube:</li></ol><ol class="numbered-list" id="cf7350fa-5e48-4d34-a1bb-2f98bdde6804" start="2"><li>Add the following reagents to the reaction mix:</li></ol><ol class="numbered-list" id="2ec6872c-fb74-4f55-972a-8ecde0047c75" start="3"><li>Primer A (5µM) - 9.6µL</li></ol><ol class="numbered-list" id="2f3367b9-f19a-4cb4-b5ce-88ed156b4748" start="4"><li>Primer B (5µM) - 9.6µL</li></ol><ol class="numbered-list" id="fb293aea-a5f2-4230-bfe5-4047ae2bc3d5" start="5"><li>Rehydration Buffer - 119µL</li></ol><ol class="numbered-list" id="132d9f18-0bb1-42f6-bbe4-3f0f83b580dd" start="6"><li>dH2O - 32.8µL</li></ol><p class="" id="7885c6bb-959f-41b8-9061-b5ea7772102d">3. Pipette up and down to ensure proper mixing.</p><p class="" id="e89b3acc-fb3e-4045-a0c8-2f606c86d0e9">4. Add the reaction mix in each tube to four freeze-dried reaction tube (provided by TwistDX Basic Kit).</p><p class="" id="dcff30c8-dbdf-4b6f-95f0-4c13908e4e52">5. Add 16 μl of the reaction mix to 9 eppendorf tubes.</p><p class="" id="8b6481b8-3b98-4512-9d41-6a8610ab81ed">6. Add 5µL of template from the serial dilutions (from the highest concentration to the lowest concentration) to the corresponding tubes. Leave one as a negative control.</p><p class="" id="38276d32-44ba-4e87-aa6b-db681bdd8864">7. Add 1µL of 280mM magnesium acetate to each eppendorf tube and vortex to start the reaction.</p><p class="" id="633a335e-bcee-453c-ab98-7c4e42a0f080">8. Incubate the reaction at 38 °C for 20 min using the Eppendorf Thermocycler.</p></details></li></ul><ul class="toggle" id="d7e6f49f-d580-47ea-ae8b-eac9f52c4c54"><li><details open=""><summary>RT-RPA</summary><p class="" id="5c43c2d3-339a-40a5-b617-d2e2cb8e0bfb">
+</p><p class="" id="8db00dea-0d58-4d5e-b7cc-e20e6a21a08c">Reagents/materials needed: TwistDx Basic Kit, nuclease-free water, RPA primers, M-MulV Reverse Transcriptase, RNase inhibitor, RNA sample</p><p class="" id="ffc90dff-41bd-4cec-9f07-385ad14c6db9">Method (protocol provided by Lucia et al. (2020)):</p><ol class="numbered-list" id="1e679db6-e572-4b94-93bc-68b3f7abd034" start="1"><li>Mix the following components:<ol class="numbered-list" id="4609dd43-cd74-4633-b222-38fa8a4a697a" start="1"><li>Primer A (10µM) - 2.4µL</li></ol><ol class="numbered-list" id="ddfecf39-c783-439f-9a89-0da32fa69113" start="2"><li>Primer B (10µM) - 2.4µL</li></ol><ol class="numbered-list" id="89b964ce-beb5-4310-9382-0053fd22fc7b" start="3"><li>Rehydration Buffer - 29.5µL</li></ol><ol class="numbered-list" id="e3f39a10-3f19-444c-8002-357ffe29a162" start="4"><li>dH2O - 4.7µL</li></ol></li></ol><ol class="numbered-list" id="fa7cef45-8890-47f6-8aa5-678aa6d0697c" start="2"><li>Pipette up and down to ensure proper mixing.</li></ol><ol class="numbered-list" id="3a03c790-a240-4483-b02b-dd99f2c336e3" start="3"><li>Add the reaction mix to a freeze-dried reaction tube (provided by TwistDX Basic Kit).</li></ol><ol class="numbered-list" id="41d93bfc-4a3b-4933-a7ee-572127d5c21b" start="4"><li>Add the following components to the mix:<ol class="numbered-list" id="2357da0f-259a-4d5d-9d86-69954a3c20dc" start="1"><li>280mM Magnesium acetate - 2.5µL</li></ol><ol class="numbered-list" id="cd98944d-328f-4b78-b262-6b809936f8c3" start="2"><li>M-MulV reverse transcriptase - 2.5µL</li></ol><ol class="numbered-list" id="6a51e074-836b-43f5-8781-f040ec9fda62" start="3"><li>(Murine) RNase inhibitor - 1µL</li></ol><ol class="numbered-list" id="f60078cd-3696-47ac-bdce-8d11f8320d37" start="4"><li>Template RNA - 5µL</li></ol></li></ol><p class="" id="cb0480c7-f1e1-4fec-a069-a1d5d6ce4266">------------------------------------------------------------------------------------------ Total volume 50 μl</p><ol class="numbered-list" id="a473db70-183d-4412-a989-be2837246cc6" start="1"><li>Incubate 30 minutes at 42°C</li></ol></details></li></ul></details></li></ul><ul class="toggle" id="9cbd22fc-aeb1-4efe-abf5-e5a500db22c0"><li><details open=""><summary>Primer Design</summary><p class="" id="985503cb-ea82-435d-8a03-2982cbe8b4ab">
+</p><ol class="numbered-list" id="66db42cb-b113-43fc-ab87-c095aa97e068" start="1"><li>Genes were located in .fasta format on NCBI and sequenced were created in Benchling</li></ol><p class="" id="d4e2a928-b0ce-4521-b312-c34fb7bcadc1">2. For RPAprimers generated from Primer BLAST, the following values were used in settings according to TwistDx recommendations:</p><div class="collection-content" id="cc3cf907-32e5-4937-bdcd-19b402dbdb1b"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Parameter</th><th><span class="icon property-icon"><svg class="typesDate" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Product Size</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Primer Melting Temperature</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Primer Size Range</th><th><span class="icon property-icon"><svg class="typesNumber" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Primer Size Optimal</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Primer GC Content</th></tr></thead><tbody><tr id="a13194c0-a8fc-4dc0-911f-504c9009118e"><td class="cell-title"><a href="Amplification%20Techniques%2093c7c1831768438bacd1eeedc3455a5d/Untitled%20Database%20cc3cf90732e54937bdcd19b402dbdb1b/Value(s)%20a13194c0a8fc4dc0911f504c9009118e.html">Value(s)</a></td><td class="cell-*%Xu"><time>@Jun 11, 2020 1:00 AM (KST) → Jun 12, 2020 2:00 AM (KST)</time></td><td class="cell-r(aM">50-100</td><td class="cell-):OE">30-36</td><td class="cell-rZ52">32</td><td class="cell-D}'w">30%-70%</td></tr></tbody></table></div><p class="" id="bd4fa965-45cc-4fae-8579-481ea0c8a8da">3. In addition, a Python package called primedRPA (detailed in the paper titled PrimedRPA: primer design for recombinase polymerase amplification assays, available at https://www.ncbi.nlm.nih.gov/pubmed/30101342) was used with the following parameters:</p><div class="indented"><p class="" id="b8783344-3d99-400f-baff-6ebb51151697">
+</p><p class="" id="140c749a-eec1-4080-9e51-8bd13c84bb93">Please define the reference name for this PrimedRPA run:
+&gt;run_name
+
+Please indicate if you would like to use a previously generated Alignment File: [NO or File path]
+&gt;NO
+
+Please indicate if you would like to use the previously generated Binding Sites: [NO or File path]
+&gt;NO
+
+Please enter the path, from your current working directory, to the input fasta file:
+&gt;path/to/input_sequence.fasta
+
+Please classify the contents of the input fasta file as one of the following options: [SS, MS, AMS]. Whereby:
+ SS = Single sequence
+ MS = Multiple unaligned sequences
+ MAS = Multiple aligned sequences
+
+&gt;SS
+
+If multiple sequences are present in the input fasta file (Classification of MS or MAS), please indicate below the
+percentage identity required for the primers and probes target binding sites:
+&gt;99
+
+Please indicate if a primer identity anchor is required. [NO or length of anchor]
+&gt;NO
+
+Desired primer length (This can be a range: 28-32 or fixed value: 32):
+&gt;32
+
+Please state if you require a probe to be designed and if so what type [NO,EXO,NFO]
+&gt;NO
+
+Desired probe length (This can be a range: 45-50 or fixed value: 50):
+&gt;10
+
+Below please define your max amplicon length.
+&gt;300
+
+Below please state the repeat nucleotide cut-off in bp (e.g. 5bp will exclude sequences containing GGGGG).
+
+&gt;5
+
+Below please insert the minimum percentage GC content for primer/probe:
+&gt;30
+
+Below please insert the maximum percentage GC content for primer/probe:
+&gt;70
+
+Below please indicate the percentage match tolerance for primer-probe dimerisation and secondary structure formation:
+&gt;60
+
+Please enter [No or Path to Background file] below to identify if you want to perform a background DNA binding check:
+&gt;NO
+
+Below please insert the percentage background cross reactivity threshold:
+&gt;65
+
+Below please indicate if you would like to implement a Background Hard Fail Filter [NO,YES]:
+&gt;NO
+
+Please define the maximum number of sets you would like to identify:
+&gt;5
+
+Please define the number of threads available:
+&gt;1
+
+Blastn Cross Reactivity Search Settings [Basic or Advanced or Fast]
+&gt;Advanced
+
+Blastn Evalue
+&gt;1000</p></div><p class="" id="98a8625b-3e86-4daa-94ad-5389340f7642">
+</p><p class="" id="6aefeb76-8061-473b-9200-f94bbba38201">4. The primers generated were annoated in Benchling and optimal primers (preferably 1 pair from primer BLAST and 1 from primedRPA) were selected based on location, GC content, fitness with PCR amplicon, and quality of available gRNAs within the amplified region.</p></details></li></ul><p class="" id="ccaf85c0-bc46-463c-ba7c-9d76af8025ef">
+</p></details></li></ul><p class="" id="c1859023-ad7e-4952-be8a-021d7c765434">
+</p><p class="" id="e976c7c2-0787-47e8-bb72-a38d16725dfa">
+</p><p class="" id="e9494339-da0e-4dce-8bde-2632f91e835e">
+</p><div class="collection-content" id="655c56a6-e378-4420-a41d-84f27619b8f9"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="c9d7395d-f873-483a-bfee-b210d41f5467"><td class="cell-title"><a href="Amplification%20Techniques%2093c7c1831768438bacd1eeedc3455a5d/References%20655c56a6e3784420a41d84f27619b8f9/(WagesJr,%202005)%20c9d7395df873483abfeeb210d41f5467.html">(WagesJr, 2005)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/topics/neuroscience/polymerase-chain-reaction">https://www.sciencedirect.com/topics/neuroscience/polymerase-chain-reaction</a></td></tr><tr id="08960e1d-1382-4323-88ee-8562b18a99a3"><td class="cell-title"><a href="Amplification%20Techniques%2093c7c1831768438bacd1eeedc3455a5d/References%20655c56a6e3784420a41d84f27619b8f9/(Lobato,%202017)%2008960e1d1382432388ee8562b18a99a3.html">(Lobato, 2017)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/science/article/pii/S0165993617302583">https://www.sciencedirect.com/science/article/pii/S0165993617302583</a></td></tr><tr id="9fece748-0b46-44f3-b6bb-d2913b69fcc9"><td class="cell-title"><a href="Amplification%20Techniques%2093c7c1831768438bacd1eeedc3455a5d/References%20655c56a6e3784420a41d84f27619b8f9/(Notomi,%202000)%209fece7480b4644f3b6bbd2913b69fcc9.html">(Notomi, 2000)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC102748/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC102748/</a></td></tr></tbody></table></div></div></article></div></body></html>

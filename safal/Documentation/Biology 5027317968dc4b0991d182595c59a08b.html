@@ -1,0 +1,803 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Biology</title>
+
+        <link href="../css/materialize.css" rel="stylesheet"/> 
+
+<style>
+
+
+.sidenav {
+    background-color: teal;
+    z-index: 998;
+    left: 4%;
+}
+
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body>
+
+<div id="side" class="side-btn btn-flat"> 
+    <div class="side-section center">Hello</div>     
+    <button class="menu sidenav-close" aria-label="Main Menu" id="butt"> 
+        <svg viewbox="0 0 100 100"> 
+            <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"/> 
+            <path class="line line2" d="M 20,50 H 80"/> 
+            <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"/> 
+        </svg>         
+    </button>     
+</div>
+
+<div id="page"><ul class="breadcrumb"><li>Biology</li></ul><article class="page sans" id="50273179-68dc-4b09-91d1-82595c59a08b"><header><img class="page-cover-image" src="Biology%205027317968dc4b0991d182595c59a08b/0d56ece97d01d741bb806049fb2d43ca.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Biology%205027317968dc4b0991d182595c59a08b/9233a900b8824694e6a9422129cad7c8.jpg"/></div><h1 class="page-title">Biology</h1></header><div class="page-body"><p class="" id="92239d26-6500-4964-b9c4-5efdddd853bd">
+</p><figure class="block-color-gray_background callout" id="76449594-f69d-41f1-b8cd-c94d01a96bd6" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">🖇️</span></div><div style="width:100%">The biology team works to develop the synthetic biology components that would run on the hardware developed by the engineering team, and protocols for containment and disposal.</div></figure><p class="" id="d89c2d48-656f-4eac-b3fe-285d3555e273">
+</p><div class="collection-content" id="32495dd8-97a9-402e-8bc1-26ad432c314d"><h4 class="collection-title">Topic Assignments</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg class="typesPerson" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Assigned People</th><th><span class="icon property-icon"><svg class="typesCheckbox" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M0,3 C0,1.34314 1.34326,0 3,0 L11,0 C12.6567,0 14,1.34314 14,3 L14,11 C14,12.6569 12.6567,14 11,14 L3,14 C1.34326,14 0,12.6569 0,11 L0,3 Z M3,1.5 C2.17139,1.5 1.5,2.17157 1.5,3 L1.5,11 C1.5,11.8284 2.17139,12.5 3,12.5 L11,12.5 C11.8286,12.5 12.5,11.8284 12.5,11 L12.5,3 C12.5,2.17157 11.8286,1.5 11,1.5 L3,1.5 Z M2.83252,6.8161 L3.39893,6.27399 L3.57617,6.10425 L3.92334,5.77216 L4.26904,6.10559 L4.44531,6.27582 L5.58398,7.37402 L9.28271,3.81073 L9.45996,3.64008 L9.80664,3.3056 L10.1538,3.63989 L10.3311,3.81067 L10.8936,4.35303 L11.0708,4.52399 L11.4434,4.88379 L11.0708,5.24353 L10.8936,5.41437 L6.1084,10.0291 L5.93115,10.2 L5.58398,10.5344 L5.23682,10.2 L5.05957,10.0292 L2.83057,7.87946 L2.65283,7.70801 L2.27832,7.34674 L2.6543,6.98694 L2.83252,6.8161 Z"></path></svg></span>Completed</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Property</th></tr></thead><tbody><tr id="8af7ad17-c4ba-43bd-a860-20daeb4887b6"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Sample%20Collection%208af7ad17c4ba43bda86020daeb4887b6.html">@Sample Collection </a></td><td class="cell-Ey_W"><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">M</span></span>Marko Susic</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="7bfc559e-a88d-4c12-9f22-51afb1231196"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Nucleic%20Acid%20Extraction%207bfc559ea88d4c129f2251afb1231196.html">@Nucleic Acid Extraction </a></td><td class="cell-Ey_W"><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Adrian Villanueva</span><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Antonina Bar</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="f4a99b49-accd-4f50-8c91-a2106d51d1e3"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Reporting%20Mechanism%20f4a99b49accd4f508c91a2106d51d1e3.html">@Reporting Mechanism </a></td><td class="cell-Ey_W"><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Adrian Villanueva</span><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">M</span></span>Marko Susic</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="b576a651-8db2-4c21-bfe6-157a398e9f7e"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Computational%20Analysis%20b576a6518db24c21bfe6157a398e9f7e.html">@Computational Analysis </a></td><td class="cell-Ey_W"><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Adrian Villanueva</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="fcc80571-cb90-4b77-b6b3-c763f0e1586a"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Amplification%20Techniques%20fcc80571cb904b77b6b3c763f0e1586a.html">@Amplification Techniques </a></td><td class="cell-Ey_W"><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="11ca6414-bbad-410a-b1e0-21a64939f29f"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@CRISPR%20Cas%20Systems%2011ca6414bbad410ab1e021a64939f29f.html">@CRISPR/Cas Systems </a></td><td class="cell-Ey_W"><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="75c27eb0-5a30-42dc-9f56-6fa138ec1523"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Storage%2075c27eb05a3042dc9f566fa138ec1523.html">@Storage </a></td><td class="cell-Ey_W"><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="df61206c-8c07-4332-90e4-efa1c2d998bb"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Safety%20form%20df61206c8c07433290e4efa1c2d998bb.html">@Safety form </a></td><td class="cell-Ey_W"><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="76a2a22e-bbd3-4841-8934-de3d5a42ce67"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Order%2076a2a22ebbd348418934de3d5a42ce67.html">@Order </a></td><td class="cell-Ey_W"></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="b88d21ed-5b99-4c97-ba85-7ab1e551c8c4"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/DNA%20RNA%20Extraction%20b88d21ed5b994c97ba857ab1e551c8c4.html">DNA/RNA Extraction</a></td><td class="cell-Ey_W"><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Antonina Bar</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="733ec391-1edb-4c18-bfe7-6e7b427957c1"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/@Parts%20733ec3911edb4c18bfe76e7b427957c1.html">@Parts </a></td><td class="cell-Ey_W"><span class="user"><img class="icon user-icon" src="https://lh5.googleusercontent.com/-SW-Rvk1TFGY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn21DfrJ3OENXVnnJ0bfjdjHVdT0Q/photo.jpg"/>Yujeong Oh</span><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Antonina Bar</span><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">M</span></span>Marko Susic</span><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span>Adrian Villanueva</span></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr><tr id="af41196d-b049-496e-965e-02975c21262a"><td class="cell-title"><a href="Biology%205027317968dc4b0991d182595c59a08b/Topic%20Assignments%2032495dd897a9402e8bc126ad432c314d/Future%20References%20af41196db049496e965e02975c21262a.html"><span class="icon">📡</span>Future References</a></td><td class="cell-Ey_W"></td><td class="cell-K.YW"><div class="checkbox checkbox-off"></div></td><td class="cell-XE&gt;X"></td></tr></tbody></table></div><h1 class="" id="7275e791-3328-4f27-852a-91164e4df715">Pages</h1><figure class="link-to-page" id="c8651a17-3e03-4c8c-b3aa-0484aed2b28c"><a href="Biology%205027317968dc4b0991d182595c59a08b/Order%20c8651a173e034c8cb3aa0484aed2b28c.html">Order</a></figure><figure class="link-to-page" id="008d03b9-7b36-4e20-a3ec-3ee34be8f9c0"><a href="Biology%205027317968dc4b0991d182595c59a08b/Parts%20008d03b97b364e20a3ec3ee34be8f9c0.html"><span class="icon">🏅</span>Parts</a></figure><figure class="link-to-page" id="16bd87f4-b73a-4428-a538-bf2b30edcaba"><a href="Biology%205027317968dc4b0991d182595c59a08b/Meeting%20Notes%2016bd87f4b73a4428a538bf2b30edcaba.html">Meeting Notes</a></figure><figure class="link-to-page" id="64f14761-80da-41e9-bc1e-77b55a4e78f2"><a href="Biology%205027317968dc4b0991d182595c59a08b/DNA%20RNA%20extraction%2064f1476180da41e9bc1e77b55a4e78f2.html">DNA/RNA extraction</a></figure><figure class="link-to-page" id="16339e30-480e-4700-9bc1-031a3386dbc4"><a href="Biology%205027317968dc4b0991d182595c59a08b/Storage%2016339e30480e47009bc1031a3386dbc4.html"><span class="icon">💧</span>Storage</a></figure><figure class="link-to-page" id="93c7c183-1768-438b-acd1-eeedc3455a5d"><a href="Biology%205027317968dc4b0991d182595c59a08b/Amplification%20Techniques%2093c7c1831768438bacd1eeedc3455a5d.html"><span class="icon">🧬</span>Amplification Techniques</a></figure><figure class="link-to-page" id="2164e5bd-76f1-42da-bdae-1d4b89289477"><a href="Biology%205027317968dc4b0991d182595c59a08b/Sample%20Collection%202164e5bd76f142dabdae1d4b89289477.html"><span class="icon">🐸</span>Sample Collection</a></figure><figure class="link-to-page" id="31cd1254-9eb1-4fc3-8d3b-15c2acbeea9d"><a href="Biology%205027317968dc4b0991d182595c59a08b/Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d.html"><span class="icon">🧫</span>Nucleic Acid Extraction</a></figure><figure class="link-to-page" id="fa41c625-c8e4-4aea-af19-b4d1c85ab44f"><a href="Biology%205027317968dc4b0991d182595c59a08b/Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f.html"><span class="icon">📝</span>Reporting Mechanism</a></figure><figure class="link-to-page" id="e241d45f-7116-43d2-945b-b9bd53ef2b08"><a href="Biology%205027317968dc4b0991d182595c59a08b/CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08.html"><span class="icon">✂️</span>CRISPR/Cas Systems</a></figure><figure class="link-to-page" id="8b3c89ae-7bd2-483a-a5d7-9f3ce10f6c07"><a href="Biology%205027317968dc4b0991d182595c59a08b/Computational%20Analysis%208b3c89ae7bd2483aa5d79f3ce10f6c07.html"><span class="icon">🤖</span>Computational Analysis</a></figure><figure class="link-to-page" id="5ec88f05-2918-40e9-a774-4ae1a0043dba"><a href="Biology%205027317968dc4b0991d182595c59a08b/BioNumbers%205ec88f05291840e9a7744ae1a0043dba.html"><span class="icon">🔢</span>BioNumbers</a></figure><figure class="link-to-page" id="ab9067a2-4ccb-4085-b06b-22b8551b85ad"><a href="Biology%205027317968dc4b0991d182595c59a08b/Safety%20form%20ab9067a24ccb4085b06b22b8551b85ad.html"><span class="icon">✅</span>Safety form</a></figure><p class="" id="07ee9c83-c14f-4220-87ec-e984aaf7555c">
+</p><p class="" id="0e1748c5-cb8d-4618-b882-b8b4baee0765">
+</p><figure id="b8ab1e45-7154-44fa-97ce-3a6c14ad9d33"><div class="source"><a href="https://miro.com/app/board/o9J_kr8_820=/">https://miro.com/app/board/o9J_kr8_820=/</a></div></figure></div></article></div>
+<ul class="sidenav" id="sidenav-9"> 
+    <li> 
+        <a href="sass.html">Sass</a> 
+    </li>     
+    <li> 
+        <a href="badges.html">Components</a> 
+    </li>     
+    <li> 
+        <a href="collapsible.html">JavaScript</a> 
+    </li>     
+    <li class="no-padding"> 
+        <ul class="collapsible collapsible-popout"> 
+            <li> 
+                <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a> 
+                <div class="collapsible-body"> 
+                    <ul> 
+                        <li> 
+                            <a href="#!">First</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Second</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Third</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Fourth</a> 
+                        </li>                         
+                    </ul>                     
+                </div>                 
+            </li>             
+        </ul>         
+    </li>     
+    <li class="no-padding"> 
+        <ul class="collapsible collapsible-popout"> 
+            <li> 
+                <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a> 
+                <div class="collapsible-body"> 
+                    <ul> 
+                        <li> 
+                            <a href="#!">First</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Second</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Third</a> 
+                        </li>                         
+                        <li> 
+                            <a href="#!">Fourth</a> 
+                        </li>                         
+                    </ul>                     
+                </div>                 
+            </li>             
+        </ul>         
+    </li>     
+</ul>
+
+</body>
+
+        <script src="../js/jquery.min.js"></script>         
+        <script src="../js/materialize.js"></script>         
+		<script src="../js/index.js"></script>
+</html>

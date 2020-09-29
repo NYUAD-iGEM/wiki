@@ -1,0 +1,1450 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>CRISPR/Cas Systems</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrumb"><li><a href="../Biology 5027317968dc4b0991d182595c59a08b.html">Biology</a></li><li>CRISPR/Cas Systems</li></ul><div id="page"><article class="page sans" id="e241d45f-7116-43d2-945b-b9bd53ef2b08"><header><img class="page-cover-image" src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/crispr-cartoon.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">✂️</span></div><h1 class="page-title">CRISPR/Cas Systems</h1></header><div class="page-body"><figure class="image" id="ea4ac935-00e0-40db-9f55-3cbac82e46f3"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled.png" style="width:2326px"/></a></figure><p class="" id="3bcd6f91-cd16-4e3d-a2dc-de559750a336">Figure 1. A timeline that illustrates the development of CRISPR/Cas systems</p><p class="" id="54ff1bf5-8241-4736-84ae-a74a2d1a1c04"><span class="user">@Yujeong Oh</span> </p><p class="" id="5ea1ce19-abde-4b75-b438-18cd2df62ce3">
+</p><figure class="link-to-page" id="4aee23d9-90da-4237-8de3-f11bf511a60e"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Formatted%20Page%204aee23d990da42378de3f11bf511a60e.html">Formatted Page</a></figure><h1 class="" id="1cd1f798-d0bc-443d-8b9c-621ba3c3bae2">Systems</h1><ul class="toggle" id="2e9033d3-7784-424a-9193-1e185039ccfd"><li><details open=""><summary>CRISPR-Cas9</summary><ul class="toggle" id="dbcf24aa-31fe-4de7-b218-cdaa30793213"><li><details open=""><summary>Theories</summary><p class="" id="5bd9a88d-ef01-4f80-915a-6f617c523c00">CRISPR-Cas9 </p><p class="" id="cda4c700-12d3-45a8-930a-cb40558da358"><a href="https://www.nature.com/articles/nprot.2013.143">https://www.nature.com/articles/nprot.2013.143</a></p><p class="" id="d3b9bda7-dfd9-4592-84b1-c94159766e95">CRISPR-Cas system uses RNA-guided nucleases to cleave foreign genetic elements. Following the cleavage initiated by Cas9, the target locus undergoes one of two DNA damage repair pathway: the error prone non-homologous end joining (NHEJ) or high-fidelity homology-directed repair (HDR) pathway. In the absence of a repair template, the double-strand breaks are re-ligated through NHEJ process, generating scars in the form of indel mutations. In contrast, in the presence of a repair template with homology to the sequences flanking the DBS location, HDR seals the DSB in an error-free manner. HDR efficiency depends on the cell type and state, genome locus, and repair template.</p><p class="" id="6b5d17f9-d80e-4481-8b14-5816efa92cbd">
+</p><p class="" id="4152c92c-58c9-485a-b640-25a47beebf49">Compared to other genome editing technologies like Transcription activator-like effector nucleases (TALENs) and Zinc-finger nucleases (ZFNs), CRISPR-Cas9 system has higher targeting/ editing efficiency, the ability for multiplex genome editing, and the ease of customization. </p></details></li></ul></details></li></ul><div class="column-list" id="cfdc7101-5bf5-45af-9636-e061d7a67df2"><div class="column" id="6f114345-2167-4277-a07b-c2099af54029" style="width:93.75%"><ul class="toggle" id="a53a21b9-6877-4e64-8302-3698a9b30345"><li><details open=""><summary>CRISPR-Cas12</summary><ul class="toggle" id="e2bb4275-2038-4c3c-9406-f478f29718c8"><li><details open=""><summary>Theories</summary><h3 class="" id="b8e92818-e9a4-4e75-b71d-2c0e9dbdee0b">CRISPR-Cas12a</h3><p class="" id="81aeee2a-e8a7-4381-a3c4-d75eaa16bf1f">The Cas12 protein is a DNA targeting enzyme that programmatically binds and cleaves DNA. The guide RNA is a complementary sequence to the target DNA. The Cas12a enzymes recognize T-rich protospacer-adjacent motif (PAM) that catalyzes the maturation of its guide RNA and dsDNA break with staggered 5’ and 3’ ends. The guide RNA helps the Cas enzyme to recognize the target sequence and activates the Cas enzyme. The activated Cas12a enzyme unleashes cis (for bound DNA) and trans (for other ssDNA in the solution) cleavage activity. This non-specific trans-cleavage activity cleaves the signalling molecules/ (i.e. fluorophore quencher reporter).</p><h3 class="" id="2d8137a8-aa41-4801-8686-4b40892b35d9">DETECTR</h3><p class="" id="f19ea866-e9f4-4554-aa83-76722101ff44">DETECTR (DNA Endonuclease-Targeted CRISPR Trans Reporter) is a novel technique that combines isothermal amplification by RPA and detection of target DNA sequence with CRISPR-Cas12a systems.</p></details></li></ul><ul class="toggle" id="14cee621-f719-464e-9f0e-b8b9e56a847a"><li><details open=""><summary>Protocol</summary><p class="" id="5dddf504-464f-4e6a-a905-d042e5ee66be">
+</p><p class="" id="9ee069b6-da91-42d3-96fb-bdf22ca619b6"><strong>Optimized NEB CRISPR-LbCas12a Protocol (from NYUAD iGEM 2019)</strong></p><p class="" id="0b8fdd54-4ce5-49e7-baf6-28d07e07cab4">Reagents/ materials needed: NEBuffer 2.1 Reaction Buffer (10x), gRNA, EnGen Lba Cas12a (Cpf1), custom Fluorescence-Quencher(FQ) reporter (50μM)</p><p class="" id="5e47465c-17c6-4542-adf2-6e72d37f2f0c"><strong>Method</strong>:</p><ol class="numbered-list" id="fb5cdecf-6c5b-4687-9a02-42b8d929beb4" start="1"><li>Add the following reagents in this order at the room temperature:</li></ol><ul class="bulleted-list" id="137babad-fdee-44e4-a6d1-5717d4f26522"><li>2µl NEBuffer 2.1 Reaction Buffer (10x)</li></ul><ul class="bulleted-list" id="ae749554-e87d-4f12-97ef-77ff213d0af2"><li>0.5µl 5uM gRNA</li></ul><ul class="bulleted-list" id="bc08fa79-8626-46ff-a7d2-a6efa39dd795"><li>1.5µl 1 µM EnGen Lba Cas12a (Cpf1)</li></ul><p class="" id="f4f19e33-42d0-47f7-9203-1753ca08c009">2. Add the RPA reactions (optimized version, 16µl of RPA mix + 5µl of DNA)</p><p class="" id="417d52f3-41f6-4cd1-a5a1-34b3b712e0d0">3. Incubate for 10 minutes at 37°C.</p><p class="" id="b46d9ad2-4964-4e61-8030-757c583bf3c0">4. Add 1ul of 0.5X FQ quencher to the CRISPR mix</p><p class="" id="96dc49a7-b55a-4160-a866-df36258b89b1">5. Add CRISPR reagents mix with quencher to RPA reaction mix</p><p class="" id="4479ee0a-1925-4a23-ae7b-c7ae576c0f2b">6. Incubate 20 minutes at 37°C.</p><p class="" id="ef676478-7aa6-4a28-8003-dad9e28cef29">7. Check under the blue light based E-gel imager.</p></details></li></ul><ul class="toggle" id="dea05743-1758-4319-a90c-b8e600c74b08"><li><details open=""><summary>gRNA Design</summary><p class="" id="d4896eaf-8552-4e48-8978-2b58173e7e48">
+</p><ol class="numbered-list" id="0a683c6d-29ef-4a26-aa90-ef92d49afa27" start="1"><li>Go to the Benchling website. For each DNA sequence, the amplification primers (PCR, LAMP, AND RPA) are attached to the DNA strands in order to be able to visualize them on the software's linear map. Making sure that the RPA and LAMP primers fall within the range of our PCR primers, we then select as our target an appropriate region that falls within our RPA/LAMP primers in order to create our guide RNAs. When multiple gRNA options were provided, the ones with the highest off-target score were selected. The selected gRNA were then NCBI blasted to make sure that they are specific to the chosen bacterial strain.</li></ol><ol class="numbered-list" id="65639ff0-6f73-48af-aeb3-3c2afcd45533" start="2"><li>Click the + on the left side panel from the gene sequence page, and then <em>CRISPR</em> and then <em>CRISPR Guides</em><figure class="image" id="7b3f811a-4b76-450a-a184-2d5469e432db"><a href="https://lh4.googleusercontent.com/MrpJw5LvItR5p9EJlIm2zmgW4jkfJoF_FonV4CmCh5hloFkj5RyW1P7gklM_4AkJPWxoYLsxWpnJaEA0P9Geylleu2RA3msfuYxY0VOWo3AM9WUwELKGx0Z9reNxbI2vdNrS8jwe"><img src="https://lh4.googleusercontent.com/MrpJw5LvItR5p9EJlIm2zmgW4jkfJoF_FonV4CmCh5hloFkj5RyW1P7gklM_4AkJPWxoYLsxWpnJaEA0P9Geylleu2RA3msfuYxY0VOWo3AM9WUwELKGx0Z9reNxbI2vdNrS8jwe"/></a></figure></li></ol><ol class="numbered-list" id="32b76338-76fb-4e77-890b-4007ea7547e1" start="3"><li>Select <em>Single guide,</em> and ensure that the guide length is set to 20, the genome is correct, and that the PAM is <em>TTTN</em>, and click <em>Finish</em>.</li></ol><figure class="image" id="849303db-e203-40b9-a272-4b48fd9678c7"><a href="https://lh5.googleusercontent.com/SINyARuRPJk5PwjeLyATMEW6MXR6Vrj_a64CvIvD_yT1ONFiW27jE1gJgqFXCmU5yRE-OudTHh8Uk4NPaldV1iPNPgr9dwK1pz5wptKum5gy667ZO7TN_qDSCP-Vd54sO_tUFwsQ"><img src="https://lh5.googleusercontent.com/SINyARuRPJk5PwjeLyATMEW6MXR6Vrj_a64CvIvD_yT1ONFiW27jE1gJgqFXCmU5yRE-OudTHh8Uk4NPaldV1iPNPgr9dwK1pz5wptKum5gy667ZO7TN_qDSCP-Vd54sO_tUFwsQ"/></a></figure><p class="" id="cd671e28-ae89-44b5-bc1e-57bd750c53db">4. On the <em>Design CRISPR</em> tab, click on the + to set the target region</p><div class="indented"><p class="" id="842f6d77-556c-47fa-b4d2-45560bf15e27">5. Sort all sequences using the off-target score by clicking on the off-target-score column. Select the guides shown in the following image.<em>When choosing guide RNAs, look at both the on-target and off-target scores. Off-target scores above 50 are considered to be good guides (see http://crispr.mit.edu/about#score). On-target scores above 60 are considered to be good guides. Use these scores to rank guides relative to each other.</em></p><figure class="image" id="8a3b6715-54e3-4308-88c7-165d238a9c0a"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_2.55.33_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_2.55.33_AM.png" style="width:904px"/></a></figure></div><figure class="image" id="9a8aaceb-dc53-40c3-af75-40d226dec1eb"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_2.51.11_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_2.51.11_AM.png" style="width:1350px"/></a></figure><p class="" id="9900be89-406e-40fa-82bb-884873238073">6. Go to <em>Save</em> above your list of guides and select oligos on Benchling. Save the guides in the project.</p><div class="indented"><figure class="image" id="15b89f7d-7efd-42de-bc13-1b7fe9345e28"><a href="https://lh5.googleusercontent.com/wu36O_KUgvT6KUgNBHIPvs-FbybxOgLqorSfVa6Eg0BcMmICye4HVAAsU36y-Tp-h4kS5npZHI56HLgEfbojDHgXGlcfv2O9HyydeS7ArvNKSAOkc-i1B-NdcwkvOsLRbnx-bZu0"><img src="https://lh5.googleusercontent.com/wu36O_KUgvT6KUgNBHIPvs-FbybxOgLqorSfVa6Eg0BcMmICye4HVAAsU36y-Tp-h4kS5npZHI56HLgEfbojDHgXGlcfv2O9HyydeS7ArvNKSAOkc-i1B-NdcwkvOsLRbnx-bZu0"/></a></figure><p class="" id="4b0fce8c-4de6-4580-bb96-514d2239d385">7.  The scaffold of LbCas12a is UAAUUUCUACUAAGUGUAGAU. </p></div></details></li></ul></details></li></ul></div><div class="column" id="7714a1bb-33cf-4f0a-9298-f9118ceff00f" style="width:6.25%"><p class="" id="c60a56a4-63fa-4c86-8e45-70688a6d3a1f">
+</p></div></div><ul class="toggle" id="23fac110-5f28-419c-93fe-86b4c63485c5"><li><details open=""><summary>CRISPR-Cas13</summary><ul class="toggle" id="f03e3d66-7456-48d4-b3e0-8d79f6f3e1ea"><li><details open=""><summary>Theories</summary><h3 class="" id="098defb5-c051-4362-8dc3-7ac44eb32f56">CRISPR-Cas13 </h3><p class="" id="dabc0585-1688-4773-9cba-59a07381eb73">The Cas13 protein is a RNA targeting enzyme that programmatically binds and cleaves RNA. A guide RNA is a nucleotide sequence that is complementary to the targeted area in the RNA strand. With the help of this guide RNA, Cas13 enzyme recognizes RNA target in solution and initiates promiscuous and rapid cleavage. The activated Cas13 enzyme cleaves the reporter (RNA sequence) that gives off a signal, indicating the presence of the targeted nucleic acid sequence in the sample.</p><h3 class="" id="e3f53302-3f4a-4d46-8005-27f76459b294">SHERLOCK</h3><p class="" id="95cb18a9-3bdd-454d-beca-269a4a294d58">To increase sensitivity of this assay, Cas13 detection can be coupled with RPA, an isothermal amplification method. This termed SHERLOCK (Specific High-Sensitivity Enzymatic Reporter unLOCKing). SHERLOCK can be used on DNA samples if RPA reaction is coupled with T7 transcription to convert the amplified DNA to RNA.</p><p class="" id="ac4fb195-01f4-4130-9063-ee926ce5765b">
+</p><p class="" id="3a0c6c42-ada8-4706-a60b-d034f07c9ab9"><a href="https://zlab.bio/cas13">https://zlab.bio/cas13</a></p><p class="" id="124e2ba1-e9f4-43a0-a450-437e99ce1115"><a href="https://blog.addgene.org/finding-nucleic-acids-with-sherlock-and-detectr">https://blog.addgene.org/finding-nucleic-acids-with-sherlock-and-detect</a>r</p></details></li></ul><ul class="toggle" id="794e8700-e6fc-4609-8088-735a37d39c42"><li><details open=""><summary>Protocol</summary><ul class="toggle" id="4543eade-84ba-424d-bdca-6e0b8ed0514f"><li><details open=""><summary>Expression and Purification of LwaCas13 protein</summary><p class="" id="5718eada-09e1-4c04-85f0-809b91bcabda">LwaCas13a protein vector is used for expression. <a href="https://www.addgene.org/90097/">https://www.addgene.org/90097/</a></p><ul class="toggle" id="92bf68d1-955d-4d4b-8929-803a0001bef9"><li><details open=""><summary>Method 1</summary><p class="" id="beec845c-2fc2-4417-ab64-9a54ff4232c1"><a href="https://www.nature.com/articles/nature19802.pdf?fbclid=IwAR3Y0JWvr72Gr6A63zxu4J5Bs0S0yQy9WJcN3tJt5TWapyOnsJ1HHdasL_Y">https://www.nature.com/articles/nature19802.pdf?fbclid=IwAR3Y0JWvr72Gr6A63zxu4J5Bs0S0yQy9WJcN3tJt5TWapyOnsJ1HHdasL_Y</a></p><p class="" id="c868229d-0c65-497c-bd6d-38159042e159">
+</p><ol class="numbered-list" id="48806441-e5ed-4c64-b520-f0346bf5aa21" start="1"><li>Expression vectors for protein purification were assembled using synthenic gBlocks ordered from Integrated DNA Technologies.</li></ol><ol class="numbered-list" id="9e085926-1a58-459d-b5df-edd626d1a113" start="2"><li>The codon-optimized C2c2 genomic sequence was <em>N</em>-terminally tagged with a His6-MBP-TEV cleavage site, with expression driven by a T7 promoter.</li></ol><ol class="numbered-list" id="9b2c4fa1-eda4-4ea8-8e42-73d77628cfef" start="3"><li>Mutant proteins were cloned via site-directed mutagenesis of wild-type C2c2 constructs.</li></ol><ol class="numbered-list" id="3ed2a7b5-a3b7-4188-bb7e-2de80bbc2ab3" start="4"><li>Expression vectors were transformed into Rosetta2 <em>E. coli</em> cells grown in 2×YT broth at 37 °C.</li></ol><ol class="numbered-list" id="cdd5e293-57bc-4e23-a53d-a1c8f0351038" start="5"><li><em>E. coli</em> cells were induced during log phase with 0.5 mM ITPG, and the temperature was reduced to 16 °C for overnight expression of His-MBP-C2c2.</li></ol><ol class="numbered-list" id="67f25853-9ebe-42da-8c68-659051d5c352" start="6"><li>Cells were subsequently harvested, resuspended in lysis buffer (50 mM Tris-HCl pH 7.0, 500 mM NaCl, 5% glycerol, 1 mM TCEP, 0.5 mM PMSF, and EDTA-free protease inhibitor (Roche)) and lysed by sonication, and the lysates were clarified by centrifugation.</li></ol><ol class="numbered-list" id="629d6884-5d08-4754-a9e8-973af14ac696" start="7"><li>Soluble His-MBP-C2c2 was isolated over metal ion affinity chromatography, and protein-containing eluate was incubated with TEV protease at 4 °C overnight while dialyzing into ion exchange buffer (50 mM Tris-HCl pH 7.0, 250 mM KCl, 5% glycerol, 1 mM TCEP) in order to cleave off the His6-MBP tag.</li></ol><ol class="numbered-list" id="04600feb-9086-449e-9964-e3f7c0998f28" start="8"><li>Cleaved protein was loaded onto a HiTrap SP column and eluted over a linear KCl (0.25–1.5 M) gradient.</li></ol><ol class="numbered-list" id="5fa96c46-7739-49a7-ac83-dcd8f2dd48b7" start="9"><li>Cation exchange chromatography fractions were pooled and concentrated with 30 kDa cutoff concentrators (Thermo Fisher).</li></ol><ol class="numbered-list" id="ca0e95c3-4306-4be9-a6a9-32d18dec062e" start="10"><li>The C2c2 protein was further purified via size-exclusion chromatography on an S200 column and stored in gel filtration buffer (20 mM Tris-HCl pH 7.0, 200 mM KCl, 5% glycerol, 1 mM TCEP) for subsequent enzymatic assays.</li></ol><ol class="numbered-list" id="2362bf7c-805c-49d2-a8d7-6f8a8c0c5f7b" start="11"><li>Expression plasmids are deposited with Addgene.</li></ol></details></li></ul><ul class="toggle" id="c4c4da2d-7715-4f70-a504-03f6bc9649de"><li><details open=""><summary>Method 2</summary><p class="" id="0b7e374e-d534-4881-acf0-387827351dd8"><a href="https://www.nature.com/articles/s41596-019-0210-2?proof=true1">https://www.nature.com/articles/s41596-019-0210-2?proof=true1</a></p><p class="" id="6f1162a0-f141-4f71-862a-6e369bcc89cf"><strong>Reagent setup</strong></p><p class="" id="9f687e89-0a21-4f1e-8725-a20f0da00e54">LB agar plates</p><p class="" id="823b73b3-9391-462f-8422-66d8507bd6a3">Reconstitute the LB with agar at a concentration of 35 g/L in deionized water and swirl to mix. Autoclave to sterilize at 121.0 °C for 20 min. Allow the LB agar to cool to 55 °C before adding ampicillin to a final concentration of 100 μg/mL and swirling to mix. On a sterile bench area, pour ~20 mL of LB agar per 100-mm Petri dish. Place the lids on the plates and allow them to cool at room temperature (22 °C) for 30–60 min until solidified. Invert the plates and let them sit for several more hours or overnight. Agar plates can be stored in plastic bags or sealed with Parafilm at 4 °C for up to 3 months.</p><p class="" id="e41e04ef-1344-42b2-863e-47ba013ebeb3">TB medium (1 L, ampicillin)</p><p class="" id="be65e80f-f6a0-4e01-9aa4-1bc579cbf6ef">Reconstitute TB medium by adding 50.8 g of TB powder to a 2-L flask, adding 4 mL of 100% (wt/vol) glycerol, and filling up with deionized water to a 1-L final volume. Heat at 50 °C with repeated stirring to dissolve completely; then autoclave at 121.0 °C for 15 min. Let cool for several hours, then add ampicillin to a 100 μg/mL final concentration. TB medium is stable at 4 °C for 6 months or for 1 month at room temperature.</p><p class="" id="140f792d-7075-4840-9ce1-271ffe55c7a7">IPTG</p><p class="" id="1b4f9cc8-786a-4dd7-ac7b-847f3136e725">Dissolve 1.19 g of IPTG by adding it to 8 mL of deionized water and then vortexing. Add deionized water to bring the volume to 10 mL and filter-sterilize with a 0.22-μm syringe filter. Store at −20 °C for up to 6 months.</p><p class="" id="f26f4cc1-4d47-4136-9af2-cc4937fa871e">Lysis buffer</p><p class="" id="69ca4f9d-f974-4329-bb7f-b2b09f0ae1c4">Combine 40 mL of Tris-HCl (pH 8.0, 1 M), 200 mL of NaCl (5 M), and 2 mL of DTT (1 M), and bring the final volume to 2 L with UltraPure water. Use within 48 h of preparation. For longer storage, prepare the buffer without the reducing agent (DTT) and keep at 4 °C for up to 2 weeks.</p><p class="" id="72ae4c5e-0e1a-424f-b530-0d3be1ec339a">Supplemented lysis buffer</p><p class="" id="05379d6a-cff7-4559-9f77-c60d481b5d77">Add 12 cOmplete Ultra EDTA-free tablets, 600 mg of lysozyme, and 6 μL of benzonase to 600 mL of lysis buffer. Prepare fresh and use within 24 h following preparation. Keep at 4 °C when not in use !CAUTION Follow the handling instructions in the material safety data sheet to minimize risk when using hazardous reducing agents CRITICAL The lysis buffer contains the reducing agent DTT, which can be replaced with TCEP or BME. DTT and BME are less stable in solution, so the lysis buffer should be freshly prepared for optimal results.</p><p class="" id="0f6b1832-6764-4c8c-9f58-67511f91e381">SUMO protease cleavage solution</p><p class="" id="5071bc1a-ffaa-4c5c-a00d-a4acb3da80f3">Supplement 15 mL of lysis buffer with 250 μL of SUMO protease and 22.5 μL of NP-40. This should be prepared fresh.</p><p class="" id="a6b53ef8-06fa-492c-b710-f70073f0101b">Buffer A</p><p class="" id="819d240a-1666-415c-aa08-87b1411b4ed3">Combine 40 mL of Tris-HCl (pH 7.5, 1 M), 200 mL of glycerol (50% (wt/vol)), and 2 mL of DTT (1 M), and bring the final volume to 2 L with UltraPure water. Filter through a 0.22-μm vacuum filter and store at 4 °C for up to 48 h. For storage of up to 2 weeks, prepare the buffer without the reducing agent (DTT) and add this fresh when performing FPLC.</p><p class="" id="e53215f3-79a5-4ebe-be6d-1dce59e4b218">Buffer B</p><p class="" id="89d9ab81-a09c-483d-bd8e-d4fbf6e21a0b">Combine 20 mL of Tris-HCl (pH 7.5, 1 M), 100 mL of glycerol (50% (wt/vol)), 400 mL of NaCl (5 M), and 1 mL of DTT (1 M), and bring the final volume to 1 L with UltraPure water. Filter through a 0.22-μm vacuum filter and store at 4 °C for up to 48 h. For storage of up to 2 weeks, prepare the buffer without the reducing agent (DTT) and add this fresh when performing FPLC.</p><p class="" id="9e2815e3-9cbf-4a8d-a90f-424fae0daccf">S200 size-exclusion buffer</p><p class="" id="18b85011-85a6-4b43-a44f-0f2e23cf4981">Combine10mLofHEPES(pH7,1M),5mLofMgCl2 (1M),200mLofNaCl(5M),and2mLof DTT (1 M), and bring the volume to 1 L with UltraPure water. Filter through a 0.22-μm vacuum filter and store at 4 °C for up to 48 h. For storage of up to 2 weeks, prepare the buffer without the reducing agent (DTT) and add this fresh when performing FPLC.</p><p class="" id="91e5d942-f1a5-4761-86f9-854b0f6f83d0">LwaCas13a protein storage buffer</p><p class="" id="5f0bbb51-da83-4740-b665-a9cce018bc3c">Combine 2.5 mL of Tris-HCl (pH 7.5, 1 M), 6 mL of NaCl (5 M), 2.5 mL of glycerol, and 100 μL of DTT (1 M), and bring the final volume to 50 mL with UltraPure water. Filter through a 0.22-μm, 50-mL vacuum filter and store at 4 °C for up to 48 h. For storage of up to 1 year, make aliquots of the buffer and store at −20 °C. Avoid repeated freeze–thaw cycles of the buffer CRITICAL Prepare the buffer under nuclease-free conditions.</p><p class="" id="fe93642e-970b-4586-a38a-73539e96e49a">SDS-PAGE sample buffer</p><p class="" id="38c8cc9c-0815-4784-9b34-20bfbb09f81b">Add 4 μL of 10× Bolt sample-reducing agent and 10 μL of 4× Bolt LDS sample buffer to 16 μL of UltraPure water. The buffer mixture can be stored for up to 2 weeks at 4 °C. When running SDS- PAGE, 10 μL of sample is added to the above mixture and heated to 95 °C for 5 min. If the sample volume needs to be changed, adjust the sample buffer component volumes accordingly to obtain a final volume of 40 μL, including the sample.</p><p class="" id="d3d3c23c-f9e3-4602-bd2d-97ad234294e3">(Optional) Plant extraction buffer</p><p class="" id="12e9e711-6254-46cd-a6ce-a6b346e3ea0f">Prepare 10 mL of alkaline plant extraction buffer by adding 0.5 mL of 10 M NaOH and 0.2 mL of 0.5 M EDTA to 9.3 mL of nuclease-free water. Prepare 1-mL aliquots of the buffer in 1.5-mL plastic Eppendorf tubes and store at −20 °C for up to 6 months.</p><p class="" id="cfe3f56b-5fca-4f8a-8c62-56f275d12b78">Recombinant expression and purification of LwaCas13a ● Timing 5 d</p><p class="" id="7ec990fe-d134-4191-b72f-63848a684f75">CRITICAL The workflow for transforming bacteria with the appropriate expression constructs for</p><p class="" id="d87e7c16-d464-4df8-8289-5306d985c34e">large-scale expression and protein purification is shown in Fig. 4a. Large-scale expression of LwaCas13a</p><p class="" id="013b5178-08f4-4802-85a3-e8e96a3e79d1"><strong>Procedure</strong></p><ol class="numbered-list" id="272c6ec8-f751-46bc-8be6-b3af8df42ba0" start="1"><li>Thaw one vial of Rosetta 2(DE3)pLysS competent cells on ice for 30 min, and then add 1 μL of 50 ng/μL of LwaCas13a expression plasmid. Incubate on ice for 5 min.</li></ol><ol class="numbered-list" id="7b73120c-596d-40de-a3a8-f6818a592c82" start="2"><li>Heat-shock the cells by placing the vial into a 42 °C pre-heated water bath for 45 s, and then cold- shock the cells on ice for 2 min.</li></ol><ol class="numbered-list" id="1cdd0db7-7952-4c3f-af63-4c039f3f7713" start="3"><li>Add 200 μL of SOC medium to the cells and plate 100 μL of cell suspension on a pre-warmed LB agar plate containing 100 μg/mL ampicillin. Incubate the plate overnight in a 37 °C incubator.</li></ol><p class="" id="a3ae3dde-1110-4525-9bb9-d90b201e07a9">? TROUBLESHOOTING</p><ol class="numbered-list" id="017c6986-c963-4f5b-a8ef-df84fc871b00" start="1"><li>The next day, inoculate 25 mL of TB medium containing 100 μg/mL ampicillin with a single colony and incubate the culture overnight at 37 °C in a biological shaker at 300 r.p.m.</li></ol><ol class="numbered-list" id="49062d46-262d-49e4-817c-33f8f7e53ad0" start="2"><li>Inoculate 4–12 L of TB medium, containing 100 μg/mL ampicillin, with a 5 mL/L starter culture and determine the optical density (OD, 600 nm). The amount of starter culture depends on the downstream expression scale. We recommend starting with 5 mL of starter culture for every 1 L of large-scale culture. Shake cultures at 37 °C, 300 r.p.m.</li></ol><ol class="numbered-list" id="9a8bb1e8-a556-4e82-b64b-bf925e03479e" start="3"><li>Monitor the OD every hour until the cells reach an OD of 0.4–0.6, and then transfer the flasks to 4 °C for 30 min to allow them to cool before induction. Take an aliquot of uninduced culture for SDS-PAGE analysis.</li></ol><p class="" id="5f453da1-365c-477a-b010-d4c7f3d6dd83">CRITICAL STEP For optimal expression, it is important to strictly adhere to the indicated OD value of 0.4–0.6 at the time point of induction.</p><ol class="numbered-list" id="01cf2087-0aa9-40a8-8738-caaaef202b84" start="1"><li>Induce expression by adding 1 mL/L 0.5 M IPTG and shake the cultures for 16 h at 300 r.p.m. in a pre-chilled 21 °C biological shaker.</li></ol><ol class="numbered-list" id="c0491565-fca0-4e81-9faf-6631e7ee7002" start="2"><li>Harvest the cells by spinning the culture down at (5,200g) for 15 min at 4 °C. Take a small aliquot and resuspend it in 500 μL of P1 buffer. Run together with the uninduced culture aliquot on a Bolt 4–12% Bis-Tris Plus SDS-PAGE gel in 1× Bolt MES SDS running buffer for 20 min at 200 V. Stain gel with the eStain L1 protein staining system and visualize the gel on the BioRad Digital gel imaging system. ? TROUBLESHOOTING</li></ol><p class="" id="26afbb97-7bad-4e49-9a81-24a5c754035d">PAUSEPOINT Theremainingcellscanbedirectlyusedforpurificationorstoredat−80°Cforup to 1 year. Cells are routinely stored as spread paste in clear reclosable bags, which enables future expression testing and preparation of aliquots by breaking the frozen paste.</p><p class="" id="9e3d024c-592e-4e37-a3d3-7f86a9582a50">Purification of LwaCas13a ● Timing 1.5 d</p><p class="" id="4d9198aa-ac64-4b7c-a965-243d59262add">CRITICAL Perform all steps at 4 °C and do not let the Strep-Tactin Superflow Plus resin run dry. In</p><p class="" id="72d51c1a-e933-4a4a-b86a-b721aec774f7">steps where a working environment of 4 °C cannot be achieved, try to keep the sample near 4 °C by cooling on ice.</p><ol class="numbered-list" id="2c7a8cdc-589a-441f-a0ae-47af03421c40" start="1"><li>Crush and resuspend the frozen pellet in 4× (wt/vol) supplemented lysis buffer (e.g., 20 g of pellet in 80 mL of buffer) by stirring the mixture at 4 °C for 30 min on a magnetic stir table. CRITICAL STEP To ensure optimal lysis downstream, monitor resuspension progress until a homogeneous mixture is obtained</li></ol><ol class="numbered-list" id="8182ddf1-79ee-4463-87f6-46eaa522af4d" start="2"><li>Lyse the cells by passing the cell suspension once through a pre-chilled LM20 Microfluidizer system at 27,000 p.s.i. Alternatively, cells can be ruptured on ice using sonication with an amplitude setting of 100% for 1 s on and 2 s off; a total of 10 min of sonication time is recommended to avoid heat- induced denaturation of the lysed protein. Collect a 100-μL fraction for SDS-PAGE analysis.</li></ol><ol class="numbered-list" id="f52db514-2c80-41f1-986e-fd22bbd6a6eb" start="3"><li>Clear the lysate by centrifugation for 1 h at 10,000 r.p.m. at 4 °C.</li></ol><ol class="numbered-list" id="bb3aa5a2-f161-4534-9412-aa49861a1784" start="4"><li>Decant the cleared supernatant into a conical 250-mL tube and collect a 100-μL fraction for SDS-PAGE analysis. With a 1,000-μL pipette tip, streak an aliquot of the insoluble fraction andresuspend it in 100 μL of lysis buffer for SDS-PAGE.</li></ol><ol class="numbered-list" id="61d8f050-5a7a-49a0-bb83-b38ab353a443" start="5"><li>Add 5 mL of Strep-Tactin Superflow Plus resin to the supernatant. Batch-bind the recombinantprotein to the resin for 2 h by gentle shaking at 4 °C.</li></ol><ol class="numbered-list" id="f2227c2d-74bf-4fe2-8287-086ccd77e324" start="6"><li>Meanwhile, prepare a 50-mL Bio-Rad glass Econo-Column by washing the column with 2× 50 mLof cold lysis buffer; then add 20 mL of cold lysis buffer to equilibrate the column bed. Drain the column immediately before sample application.CRITICALSTEP Donotusesupplementedlysisbuffer,becausethepresenceofproteaseinhibitor will affect downstream cleavage of the Strep-Tactin−SUMO tag.</li></ol><ol class="numbered-list" id="121c6dd2-6fa7-4be7-9859-068e596466f9" start="7"><li>Pour the resin–sample suspension over the prepared column and collect the flow-through. Collect a 100-μL fraction for SDS-PAGE analysis. Then wash the collected resin three times with 25 mL of cold lysis buffer. With a 200-μL pipette tip, take a small aliquot of the resin and resuspend it in 100 μL of lysis buffer for SDS-PAGE analysis.</li></ol><ol class="numbered-list" id="02b6b2fe-6557-46c8-b975-cb181188df2b" start="8"><li>Add 15 mL of SUMO protease cleavage solution to the resin, close the glass column with the provided cap, and allow SUMO protease cleavage to proceed overnight at 4 °C under gentle shaking. CRITICAL STEP Avoid vigorous shaking to prevent foam formation and extensive coating of thecolumn glass surface with protein-bound resin.</li></ol><ol class="numbered-list" id="a20e0852-b989-40eb-9b9d-9441de808ad9" start="9"><li>The next day, drain the column and collect the cleavage solution into a separate 50-mL Falcon tube.Then wash the remaining sample three times with 5 mL of lysis buffer to ensure complete transfer of the cleaved protein. Collect a 100-μL aliquot of the cleaved fraction for SDS-PAGE analysis.CRITICAL STEP The resin bound with the Twin-Strep−SUMO tag will remain in the column, whereas the collected fraction should contain untagged, native LwaCas13a. To ensure cleavage is complete, take a small aliquot of the resin with a 200-μL pipette and resuspend it in 100 μL of lysis buffer for SDS-PAGE analysis.</li></ol><ol class="numbered-list" id="01add04f-2cc1-4cf3-a3bf-6f4043844333" start="10"><li>Perform SDS-PAGE analysis of all collected protein fractions (listed in the table below) to confirm successful cleavage by SUMO protease. To do so, add 10 μL of sample to 30 μL of SDS-PAGE sample buffer, heat to 95 °C for 5 min and run SDS-PAGE on a Bolt 4–12% Bis-Tris Plus SDS-PAGE gel in 1× Bolt MES SDS running buffer for 20 min at 200 V. Stain gel on the eStain L1 protein staining system, and visualize the gel on the BioRad Digital gel imaging system.</li></ol></details></li></ul></details></li></ul><ul class="toggle" id="9e8684b7-3782-4f40-a378-31a3732eb589"><li><details open=""><summary>SHERLOCK Nucleic acid detection</summary><ul class="toggle" id="f579b009-b4a1-4821-9ab5-347bf0fa17bb"><li><details open=""><summary>Method 1</summary><p class="" id="18552045-bedb-47cd-8e95-6e9e9f4daa02"><a href="https://www.nature.com/articles/s41596-019-0210-2.pdf?proof=true1">https://www.nature.com/articles/s41596-019-0210-2.pdf?proof=true1</a></p><ol class="numbered-list" id="5c1662fd-2037-4d31-9d27-9f304442a687" start="1"><li>Thaw sufficient amounts of normalized crRNA (300 ng/μL), RNaseAlert Reporter (2 μM, from RNaseAlert Lab Test Kit v2), and a Cas13 protein aliquot (2 mg/mL, 14.44 μM) on ice, covered with aluminum foil to protect from light exposure. Sufficient amounts are calculated on the basis of the number of desired reactions, with a minimum 25% excess.</li></ol><ol class="numbered-list" id="533a5564-f4e4-4c28-9d2a-84b9016618ac" start="2"><li>Dilute LwaCas13a to a 10× concentration (63.3 μg/mL) by adding 153 μL of protein SB to 5 μL of LwaCas13a at 2 mg/mL. Reactions are performed in 60 mM NaCl by adding 2 μL of diluted protein per 20 μL of SHERLOCK reaction mixture. If multiplexed SHERLOCK is performed, dilute the proteins in SB accordingly. For example, for dual-target multiplexing, dilute each CRISPR enzyme to 20× and add 1 μL of each per 20 μL of SHERLOCK reaction. For triplex detection, dilute to 30× and add 0.67 μL of each enzyme. For quadruplex detection, dilute to 40× and add 0.5 μL of each enzyme to the reaction.</li></ol><p class="" id="d7e42066-8c7c-4f4f-8908-93b0d25d637e">CRITICAL STEP It is critical that the volume of Cas13 enzyme used per reaction is the same for single-plex and multiplex experiments. When doing multiplex detections, the sum of the individual Cas13 enzyme volumes must equal the volume used for a single Cas13 enzyme in a single-plex reaction.</p><ol class="numbered-list" id="5731b37f-4e90-4fd4-8e25-2439b5083864" start="1"><li>Dilute the crRNA to 10 ng/μL by adding 145 μL of UltraPure water to 5 μL of crRNA (300 ng/μL). Add 1 μL of crRNA for each Cas12/Cas13 ortholog to the reaction at 10 ng/μL. Then add 1.25 μL of each ortholog’s sequence-specific reporter to the reaction at a 2 μM concentration. See below for information regarding which reporters to use for single-plexing and multiplexing applications.</li></ol><p class="" id="1bb0dae3-76b6-4631-a3db-16b9d408c3cb">CRITICALSTEP Formultiplexingapplications,thereportersarespecifictoeachorthologandare as follows: LwaCas13a (/5TEX615/T*A*rArUG*C*/3IAbRQSp/), CcaCas13b (/5Cy5/T*A*rUr- AG*C*/3IAbRQSp/), PsmCas13b (/56-FAM/rArArArArA/3IABkFQ/), and AsCas12a (DNaseAlert Kit). In cases of single-plexing, RNase Alert can be used for LwaCas13a, CcaCas13b, and PsmCas13b. For single-plexing with AsCas12a, DNase alert can be used.</p><ol class="numbered-list" id="19aa9b6d-c47a-4165-84fd-3ab50505d4c5" start="1"><li>Perform a fluorescence-based detection assay using a fluorescence plate reader (option A) or a colorimetric lateral flow detection assay (option B).</li></ol><p class="" id="10bac216-dce3-4d90-b46b-933578938c47">(A) Fluorescence-based detection assay</p><p class="" id="57e33dee-5b21-407b-9c25-eccbe4b93bf7">(i) Pre-heat the fluorescence plate reader to 37 °C.</p><p class="" id="5fbf1ebe-8103-4705-8585-ca747b865d97">(ii) Prepare the Cas13-SHERLOCK master mix by adding the following components to an Eppendorf tube in the order they are listed, starting with water. This master mix is for a single-plex reaction. Modifications for multiplexing are described above.</p><figure class="image" id="2a50fdb0-bee6-4218-a5a2-eee074c6b99a"><a href="https://lh6.googleusercontent.com/jTmN835-cXm5FMW7rew-gHxAzjltjTSEA8eqnOt64ebndOBn8D5NRGt4MwGLFPsHRVq-o-KNQfvIN5GFe4g8KS7Wrn2296vg6q6UgWKT2UaPrZnqRd2z7tgQtfO1J9tM_odit220"><img src="https://lh6.googleusercontent.com/jTmN835-cXm5FMW7rew-gHxAzjltjTSEA8eqnOt64ebndOBn8D5NRGt4MwGLFPsHRVq-o-KNQfvIN5GFe4g8KS7Wrn2296vg6q6UgWKT2UaPrZnqRd2z7tgQtfO1J9tM_odit220"/></a></figure><p class="" id="300b2dfe-235b-4647-8363-26d855cb7482">CRITICAL STEP We recommend routinely performing four technical replicates per SHERLOCK condition. When working with multiple conditions (e.g., if adding positive and negative controls or additional samples), scale up the reaction accordingly and adjust for pipetting errors by adding a 15% excess volume. For example, the following calculation would be required for an experiment with one sample, a positive control, and a negative control: amount per four technical replicates × 3 × 1.15.</p><ul class="bulleted-list" id="325f6fab-5e9a-4e47-a04d-0090ad9df6eb"><li>(iii) For one condition and four technical replicates, transfer 87.4 μL of master mix to a PCR- strip tube or 96-well PCR plate. Scale up according to total number of conditions and replicates.</li></ul><ul class="bulleted-list" id="ee142bdc-42a5-48a3-a5ff-a54f742ec94f"><li>(iv) Spin down the RPA pre-amplification reaction sample (using a minifuge or plate spinner for 5 s at room temperature), carefully open the Eppendorf tube, and transfer 4.6 μL of RPA reaction mix to 87.4 μL of aliquoted master mix on ice. Briefly vortex and spin down (using a minifuge or plate spinner for 5 s at room temperature) in a 96-well plate to collect the entire reaction mix in the well.</li></ul><ul class="bulleted-list" id="56f31520-faf1-4199-b03d-34c611ff5839"><li>(v) Carefully open each Eppendorf tube and transfer 20 μL per technical replicate and condition to a 384-well, round black-well, clear-bottom plate on ice. To group technical replicates, we recommend to routinely pipette the remaining technical replicates beside and below, to form a square of 2 × 2 grouped reactions. When transferring the reaction from a 96-well plate to a 384-well plate, we recommend using an 8-well or 12-well multichannel pipette for quicker setup, which will also load every second well of a 384-well plate. We therefore recommend a 2 × 2 setup to avoid pipetting mistakes and provide better grouping of replicates.</li></ul><ul class="bulleted-list" id="348830b8-4e0c-4a49-bbd9-a3109c802721"><li>(vi) Briefly spin down the plate (500g, 22 °C, 15 s) to remove potential bubbles and place it into a pre-heated BioTek plate reader, or equivalent.CRITICAL STEP After plate preparation, the samples should be placed into the fluorescence plate reader quickly because SHERLOCK Cas13 reactions may begin as soon as they are removed from ice.</li></ul><ul class="bulleted-list" id="d87bfe7b-5f0b-454c-9d6f-f22e140aa0a5"><li>(vii) Start data acquisition by monitoring fluorescence over 3 h at 37 °C with a 5-min interval between well-data acquisitions. See Anticipated results and Fig. 5a,b for representative results. ? TROUBLESHOOTING</li></ul><p class="" id="011cc115-7028-4639-937f-d3b590e2e017">(B) Colorimetric-based lateral-flow detection assay</p><p class="" id="d16d847f-a797-413d-885a-f2d676ea4cbf">(i) Prepare the Cas13-SHERLOCK master mix by adding the following components to an Eppendorf tube in	the order they are listed, starting with water.OLS</p><ul class="bulleted-list" id="c872b710-2283-4a75-b9aa-a468f1452d0c"><li>(ii) For one condition and four technical replicates, transfer 87.4 μL of master mix to a PCR- strip tube or 96-well PCR plate. Scale up according to total number of conditions and replicates.</li></ul><ul class="bulleted-list" id="2c58d263-3b65-4bc1-981a-31199d0a8293"><li>(iii) Spin down (in a minifuge or plate spinner for 5 s at room temperature) the RPA pre- amplification reaction mix, carefully open the Eppendorf tube, and transfer 4.6 μL of RPA reaction mix to 87.4 μL of master mix on ice. Briefly vortex and spin down for 15 s (in a minifuge or plate spinner for 5 s at room temperature) in a 96-well plate to collect the entire reaction mix in the well.</li></ul><ul class="bulleted-list" id="b465629a-51c8-4224-9e40-9ce48bcb6dd7"><li>(iv) Carefully open the Eppendorf tube for each reaction mix and transfer 20 μL per technical replicate and condition to a 96-well plate. Incubate the plate for 1 h at 37 °C in a PCR thermocycler or incubator.</li></ul><ul class="bulleted-list" id="3e045780-96b7-4ec8-af86-c1203a540215"><li>(v) Transfer the 20 μL of reaction mix to a 2-mL Eppendorf tube and add 100 μL of HybriDetect 1 assay buffer (from the Milenia HybriDetect 1 kit). A nuclease-free 2-mL 96- well block can be used instead of Eppendorf tubes.</li></ul><ul class="bulleted-list" id="1fd8e446-c8d1-4295-8bd5-f00c2a05836a"><li>(vi) Perform lateral flow detection by placing a HybriDetect 1 lateral flow strip (from the Milenia HybriDetect 1 kit) into diluted reactions and waiting for 1–2 min for the development of the colored readout.</li></ul><p class="" id="1ae27e62-6c2e-4e50-b190-ad7e5279a590">(vii) After completion, remove the lateral flow strip and place it on a white background for visual inspection. See Anticipated results and Fig. 5c for positive and negative reactions. Alternatively, for quantitative assessment, remove the lateral flow strip and place it on a white background for image acquisition with conventional smart-phone cameras or a gel imaging system. Use a gel image or image-processing software to measure band intensity and determine positive detection against a positive-control dilution series.</p><p class="" id="f489c3cd-723d-4c97-8e4a-7f5a5b8ee3c2">CRITICAL STEP It is important to perform positive and negative controls alongside tested sample</p></details></li></ul><ul class="toggle" id="d5c7e027-e1ca-4804-b1f4-de5b1ea71fe8"><li><details open=""><summary>Method 2 (one-pot)</summary><p class="" id="2c823609-1701-4139-9111-c862cb866c9d"><a href="https://www.nature.com/articles/s41596-019-0210-2?proof=true1">https://www.nature.com/articles/s41596-019-0210-2?proof=true1</a></p><ul class="bulleted-list" id="88d978a2-1493-4d6d-afcd-8ed02206b278"><li>15-30 min experimental time</li></ul><h3 class="" id="01e3e564-2be7-4f18-bab7-76a8ec8da29c"><strong>CRITICAL</strong></h3><p class="" id="106a89d6-fa54-4e83-a772-37cf84552e04">The recommended procedures for RNA and DNA pre-amplification are nearly identical. However, important distinctions are summarized in the ‘Experimental design’ section. If multiplexed nucleic acid detection or quantification is desired, the reader should follow the guidance provided in the ‘Experimental design’ section.</p><ul class="bulleted-list" id="73a4511e-cd91-4b34-a054-8da528b73cc8"><li>1Pre-heat the fluorescence plate reader to 37 °C.</li></ul><ul class="bulleted-list" id="8ed7ef6e-f098-49e6-86e6-bf98cc6a92b9"><li>2Prepare the pre-amplification area by wiping down the work surface and pipettors with RNase Away.</li></ul><ul class="bulleted-list" id="94620439-9384-41f1-bdc8-24c5680d3ca5"><li>3Thaw normalized crRNA (at 300 ng/µL), SHERLOCK RNaseAlert reporter (2 µM), and an aliquot of Cas13 protein (2 mg/mL, 14.44 µM) on ice, covered with aluminum foil to protect from light exposure.</li></ul><ul class="bulleted-list" id="689bee89-e478-476f-8b7b-4c21039f83a5"><li>4Dilute LwaCas13a to 50× (348 ng/mL) by adding 19 µL of protein SB to 4 µL of LwaCas13a (2 mg/mL).</li></ul><ul class="bulleted-list" id="ecc130d5-cad5-45b1-85cf-dbeb35b80fd0"><li>5Dilute the crRNA to 25 ng/µL by adding 11 µL of UltraPure water to 1 µL of crRNA (300 ng/µL).</li></ul><ul class="bulleted-list" id="8db521b7-4b8b-4cb4-9448-391731ea7ff9"><li>6Prepare the following Cas13-SHERLOCK master mix by adding the following components to an Eppendorf tube in top–down order. The master mix given below is enough for one sample with three to four technical replicates. Scale up proportionally for the number of samples.</li></ul><div class="collection-content" id="39657ec4-2081-4c3a-a606-397f6a14d5ea"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Component</th><th><span class="icon property-icon"><svg class="typesNumber" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Volume per reaction (µL)</th></tr></thead><tbody><tr id="9ea0113e-8ddf-4bff-8724-814e93da9941"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Forward%20primer%20(100%20%C2%B5M)%209ea0113e8ddf4bff8724814e93da9941.html">Forward primer (100 µM)</a></td><td class="cell-Zjzq">0.48</td></tr><tr id="ef632b20-feef-4c9f-a6bf-e6fbb60190c3"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Reverse%20primer%20(100%20%C2%B5M)%20ef632b20feef4c9fa6bfe6fbb60190c3.html">Reverse primer (100 µM)</a></td><td class="cell-Zjzq">0.48</td></tr><tr id="c22612aa-982d-4b43-bc80-e764397b4c9a"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Rehydration%20Buffer,%20from%20TwistAmp%20Basic%20kit%20c22612aa982d4b43bc80e764397b4c9a.html">Rehydration Buffer, from TwistAmp Basic kit</a></td><td class="cell-Zjzq">59</td></tr><tr id="107fec7c-a9e4-4801-b1e5-8a990943dd55"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/LwaCas13a%20in%20SB%20(348%20ng%20mL)%20107fec7ca9e44801b1e58a990943dd55.html">LwaCas13a in SB (348 ng/mL)</a></td><td class="cell-Zjzq">2</td></tr><tr id="3b67bfda-ab8c-457e-808c-cc79f59e7eb5"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/crRNA%20(25%20ng%20mL)%203b67bfdaab8c457e808ccc79f59e7eb5.html">crRNA (25 ng/mL)</a></td><td class="cell-Zjzq">0.17</td></tr><tr id="b2e00165-f206-48d6-97a1-e2e996a04e0c"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/RNaseAlert%20v2%20(2%20%C2%B5M)%20b2e00165f20648d697a1e2e996a04e0c.html">RNaseAlert v2 (2 µM)</a></td><td class="cell-Zjzq">6.83</td></tr><tr id="ee83a927-ba4a-4785-9c71-405501029ff0"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Murine%20RNase%20inhibitor,%2040%20U%20%C2%B5L%20ee83a927ba4a47859c71405501029ff0.html">Murine RNase inhibitor, 40 U/µL</a></td><td class="cell-Zjzq">2.73</td></tr><tr id="3949e206-4f8e-4fc4-bb0a-4999eb4a4bbe"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/rNTP%20solution%20mix%203949e2064f8e4fc4bb0a4999eb4a4bbe.html">rNTP solution mix</a></td><td class="cell-Zjzq">8</td></tr><tr id="3cb8ebfd-0c27-473c-be48-5d24571ff45e"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/T7%20RNA%20polymerase,%205%20U%20%C2%B5L%203cb8ebfd0c27473cbe485d24571ff45e.html">T7 RNA polymerase, 5 U/µL</a></td><td class="cell-Zjzq">2</td></tr><tr id="020c3a9f-18c4-4589-bf4c-d2bdca7809e4"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/MgCl2,%201%20M%20020c3a9f18c44589bf4cd2bdca7809e4.html">MgCl2, 1 M</a></td><td class="cell-Zjzq">0.5</td></tr><tr id="d297f3e9-9328-48f7-b64a-d4d3b6d5e2c8"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Magnesium%20acetate,%20from%20TwistAmp%20Basic%20kit%20d297f3e9932848f7b64ad4d3b6d5e2c8.html">Magnesium acetate, from TwistAmp Basic kit</a></td><td class="cell-Zjzq">5</td></tr><tr id="869c1c42-4a41-49ee-90dd-0cb9b8eea045"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/UltraPure%20water%20869c1c424a4149ee90dd0cb9b8eea045.html">UltraPure water</a></td><td class="cell-Zjzq">7.81</td></tr><tr id="fd11304b-fc9b-4478-a877-865b8969229c"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Untitled%20Database%2039657ec420814c3aa606397f6a14d5ea/Total%20fd11304bfc9b4478a877865b8969229c.html">Total</a></td><td class="cell-Zjzq">95</td></tr></tbody></table></div><ul class="bulleted-list" id="14524c1a-a96c-4a73-8f3f-9ceaf6ecc9be"><li>7Add 95 µL of master mix without sample to a single pellet aliquot and carefully resuspend the mixture on ice. Then transfer the entire reconstituted reaction back to the initial Eppendorf or PCR master mix tube.<strong>CRITICAL</strong>One pellet yields approximately three individual 20-µL one-pot reactions. If a larger number of reactions is needed, scale up the master mix volume and pellets accordingly. When doing so, it is critical not to change the pipette between transfers of resuspended pellets, as the stickiness of RPA reaction components could result in a substantial loss of reaction enzymes.</li></ul><ul class="bulleted-list" id="60c76ddd-0810-495c-bea1-66040edc0f15"><li>8Transfer 71.25 µL of master mix to a PCR-strip tube or 96-well PCR plate. This is the amount for one condition and three technical replicates.</li></ul><ul class="bulleted-list" id="efa0879b-9dfe-4174-9432-acabc54ed371"><li>9Spin down the samples (in a minifuge at room temperature for 5 s), carefully open the tubes, and transfer 3.75 µL of each sample to 71.25 µL of master mix on ice. Briefly vortex and spin down (in a plate spinner or for 500<em>g</em>, 22 °C, 15 s) in a plate to collect the entire reaction mix in the well.</li></ul><ul class="bulleted-list" id="0dbb9d82-386e-4a09-a4de-c49996b18295"><li>10Carefully open the reaction tubes and transfer 20 µL per technical replicate and condition to a 384-well, round black-well, clear-bottom plate. To group technical replicates, pipette the remaining technical replicates beside and below, to form a square of 2 × 2 grouped reactions. Note the lower right quadrant of this grid will be empty because the one-pot reactions yield only three technical replicates.</li></ul><ul class="bulleted-list" id="e2178459-49ac-4743-a3b1-63ecfb1ec437"><li>11Briefly spin down (500<em>g</em>, 22 °C, 15 s) the plate to remove potential bubbles and place it into a 37 °C pre-heated BioTek plate reader, or equivalent.<strong>CRITICAL</strong>Following plate preparation, quickly place it into the fluorescence plate reader because SHERLOCK Cas13 reactions may begin as soon as they are removed from ice.</li></ul><ul class="bulleted-list" id="e21083c8-2605-4a63-92b5-c46ee59ac863"><li>12Start data acquisition by monitoring fluorescence over 3 h at 37 °C with a 5-min interval between well-data acquisitions.</li></ul></details></li></ul><ul class="toggle" id="ea5a3207-d179-4b33-9e9b-002dfc0a45b8"><li><details open=""><summary>Method 3</summary><p class="" id="ba5ed925-1f94-485a-966e-1de70c79602b"><a href="https://www.nature.com/articles/s41596-019-0210-2?proof=true1">https://www.nature.com/articles/s41596-019-0210-2?proof=true1</a></p><p class="" id="a98a3692-fd5c-4e50-b4f2-d1f98c9a11c8">
+</p><p class="" id="e9256532-26f0-4ff3-b8af-3f5c0476ef40"><em>Step (1) – Isothermal Amplification, to be performed in the pre-amplification work area:
+</em>For testing each sample, set up two RPA reactions, for detection of the S gene target and
+Orf1ab target respectively. In addition, positive controls for S gene and Orf1ab can be set
+up using a synthetic virus fragment. A negative control without test samples added should
+also be set up.
+Resuspend each lyophilized RPA pellet using 29.5ul of the Rehydration Buffer supplied
+in the RPA kit.</p><p class="" id="2f8d2311-dce6-454b-b556-c68cc392e87c">
+</p><p class="" id="6eb1d4fc-15bd-4a8a-b6a2-88d5c8b03076">For the S gene target, each reaction can be set up as follows:</p><p class="" id="fbcc4b42-179b-4fd9-8efd-846b33c17ca4">1. Resuspended RPA solution
+2. S-RPA-Forward_v1 (10 uM)
+3. S-RPA-Reverse_v1 (10 uM)
+4. ProtoScript RT (100,000U/mL)
+5. ddH2O</p><p class="" id="9208a5ec-61e6-4118-a929-fad8dba595db">5.9 ul
+0.5 ul
+0.5 ul
+0.2 ul
+1.4 ul</p><p class="" id="ede1e986-8085-41d8-874d-84606b901046">(v.20200321)</p><p class="" id="5be99c5e-4f84-4196-a652-1709177df134">Page 5 of 8</p><p class="" id="2fcad5eb-2388-496b-945e-454e83343b2e">6. Sample
+7. MgAc (supplied in RPA kit)
+<strong>Total</strong></p><p class="" id="b1310f10-aed9-4499-aa13-704d7b180c0e">1 ul
+0.5 ul
+<strong>10 ul</strong></p><p class="" id="8a90d263-947e-45b2-96f1-360fe82a4295">For the Orf1ab gene target, each reaction can be set up as follows:</p><p class="" id="9e955207-9ae7-46f0-b128-b0a12b66211a">1. Resuspended RPA solution
+2. Orf1ab-RPA-Forward_v1 (10 uM)
+3. Orf1ab-RPA-Reverse_v1 (10 uM)
+4. ProtoScript RT (100,000U/mL)
+5. ddH2O
+6. Sample
+7. MgAc (supplied in RPA kit)
+<strong>Total</strong></p><p class="" id="8b3922aa-3707-441e-ad85-3a9c90869118">5.9 ul
+0.5 ul
+0.5 ul
+0.2 ul
+1.4 ul</p><p class="" id="ee93f0b5-0fbf-405b-a1ad-5ac8221d50b4">1 ul
+0.5 ul
+<strong>10 ul</strong></p><p class="" id="83608ecd-162b-4762-a248-dd6620b71431">Mix thoroughly and incubate each reaction at 42°C for 25 minutes in the pre-warmed
+water bath. After incubation, place the reaction back on ice immediately until ready to
+add to the reaction in Step (2).</p><p class="" id="fb787289-9946-4333-8c07-fdcb3282bb2e"><em>Step (2) – Detection of viral RNA sequence using Cas13</em></p><p class="" id="a673290b-f953-417a-82e1-f84ce35ae6ee">Take one aliquot of the stock LwaCas13a protein (2 mg/mL, 4 ul), resuspend using 122.5
+uL of Storage Buffer.</p><p class="" id="5212f380-473d-4833-a758-55d27c4f4a24">For each S gene RPA reaction, set up a Cas13 detection reaction as follows:</p><p class="" id="33433adc-4006-4ea2-8020-f501db85365f">1. Cleavage Buffer (400mM Tris pH 7.4)
+2. ddH2O
+3. LwaCas13a protein (resuspended)</p><p class="" id="26b940ab-09b4-492e-8b85-784e9c2f0ce9">2 ul
+9.6 ul
+2 ul</p><p class="" id="ed9fbbfc-e229-4e38-9257-0797b4d3ea19">(v.20200321)</p><p class="" id="5983b9ea-8a33-4131-87b7-33daec215661">Page 6 of 8</p><p class="" id="311624a6-370f-42c0-92f1-17d5010e9ecb">4. S-crRNA_v1 (10 ng/ul)
+5. ​Lateral-Flow-Reporter (20 uM)
+6. SUPERase•In RNase Inhibitor
+7. Lucigen T7 Polymerase
+8. Ribonucleotide Solution
+9. MgCl2 (120mM)
+10. RPA reaction from Step (1)
+<strong>Total</strong></p><p class="" id="fcae012e-47e9-4973-bcd8-5ba7278b6a6a">1 ul
+1 ul
+1 ul</p><p class="" id="9344cc58-380e-472e-9cb7-02466f52199c">0.6 ul
+0.8 ul
+1 ul
+1 ul
+<strong>20 ul</strong></p><p class="" id="b3e1787c-fbb3-4e2a-b6ff-58cce12f9119">For each Orf1ab gene RPA reaction, set up a Cas13 detection reaction as follows:</p><p class="" id="aa266b3e-a601-4139-a1a3-c0f3a6e7de47">1. Cleavage Buffer (400mM Tris pH 7.4)
+2. ddH2O
+3. LwaCas13a protein (resuspended)
+4. Orf1ab-crRNA_v1 (10 ng/ul)</p><p class="" id="9ab44341-d874-4af4-9595-d5de1ef6f1ce">5. Lateral-Flow-Reporter (20 uM)
+6. SUPERase•In RNase Inhibitor
+7. Lucigen T7 Polymerase
+8. Ribonucleotide Solution</p><p class="" id="e0d7f849-5f3a-40a5-9301-27af346cd2c9">9. MgCl2 (120mM)
+10. RPA reaction from Step (1)
+<strong>Total</strong></p><p class="" id="6b1bff20-548f-439d-97bb-5a0c55f1968f">2 ul
+9.6 ul
+2 ul
+1 ul
+1 ul
+1 ul
+0.6 ul
+0.8 ul
+1 ul
+1 ul
+<strong>20 ul</strong></p><p class="" id="e3fb2573-d02b-4b1f-84d2-599b2ac941fe">After all reactions are set up, vortex to mix thoroughly, spin down in a centrifuge, and
+incubate at 37°C for 30 minutes in a pre-warmed water bath. After incubation, place
+reaction tubes back on ice and proceed to Step (3) for lateral flow read out.</p></details></li></ul><ul class="toggle" id="f2aeac28-02e0-489d-80f9-ca129e79e18c"><li><details open=""><summary>Method 4</summary><figure id="3b8beae6-cb5d-4460-8d6d-f94a8aff7d62"><div class="source"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/eua200466-sherlock-ifu-_fda-authorized-copy_-05062020-final.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/093566e3-d713-464a-967a-c738f67fbf4f/eua200466-sherlock-ifu-_fda-authorized-copy_-05062020-final.pdf</a></div></figure><p class="" id="1cc6bf58-9389-40c0-b725-300776d3d490"><strong>Material</strong></p><figure class="image" id="c0d335c9-6d59-44fb-9b51-71d5f8bb3869"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.30.02_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.30.02_AM.png" style="width:1252px"/></a></figure><p class="" id="6f2b9733-a18e-4db3-805b-821b335eaf6b">
+</p><p class="" id="23b8086a-fef5-477e-8fb2-dc6fbe702f5e"><strong>4. CRISPR Cas Reaction Preparation</strong></p><ol class="numbered-list" id="1aa1c4eb-1c92-42e6-825e-a42637926270" start="1"><li><strong>Preheat a fluorescence microplate reader to 37°C.</strong></li></ol><ol class="numbered-list" id="376525fe-c771-456a-b825-51c10b6bd905" start="2"><li><strong>For each target tested label a 1.5 mL tube with the target name (i.e. O) and “Cas Mix”. Prepare a
+</strong><strong>CRISPR Cas Master Mix using the following recipe in Table 8 below, scaling as required for the
+number of assays to be run (one Cas assay for every RT-LAMP reaction). A minimum total volume
+to complete 5 reactions is recommended (</strong><em><strong>N </strong></em><strong>≥ 5 in Table 8).
+</strong><strong>Note</strong><strong>: The mix, without MgCl2, can be prepared while the RT-LAMP amplification is
+running and stored in a cool block. Add the MgCl2 to the mix last, immediately before
+moving on to the next step.
+</strong><strong>i. </strong><strong>Repeat step 5.b. for the remaining 2 targets using a new 1.5 mL tube for each target (i.e. N, or
+RP).</strong></li></ol><p class="" id="2ac02a45-07cd-4d77-93e1-4835028ffadc"><strong>c. </strong>Pulse vortex for 3 seconds and spin down for 3 seconds in a microcentrifuge after all components
+are added.</p><p class="" id="4da7aa7a-b367-4793-9d82-2b62521f1f1d"><strong>CAUTION</strong>: Do not allow the completed mix to sit for longer than 10 minutes prior to
+moving on to the next step.</p><figure class="image" id="e39a8a8a-1a91-4b0d-920a-a3885eb78657"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.26.07_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.26.07_AM.png" style="width:1154px"/></a></figure><p class="" id="c19d3780-5d9f-471c-a046-8e8a9208d7d3"><strong>5. </strong><strong>CRISPR Cas Detection</strong><strong>
+Caution: </strong><strong>Perform work in a unidirectional workflow in separate locations, from areas without
+specimen/nucleic acid or amplicon to areas with amplified nucleic acid.</strong></p><p class="" id="4ec914bc-d3ab-4f6f-8b2b-bc13f6004c8e"><strong>a. </strong>Label a strip tube (0.2 mL) with the target name (i.e. O) and strip number according to
+recommend plate layout in Figure 2. Add 20 μL of the CRISPR Cas Master Mix made in step 4 into
+one well for each sample and control to be amplified. Close strip tube.</p><p class="" id="2f672bcd-ebaf-411d-86c3-bcfe5fe5fa01"><strong>i. Repeat </strong>step 5.a. for the remaining 2 targets using a new strip tube for each target (i.e.
+N, or RP).</p><ol class="numbered-list" id="7423b7d1-7384-441e-800f-dc1a8d988e2b" start="1"><li><strong>In an isolated, clean dead box, carefully open one of the aliquoted CRISPR Cas Master Mix strip
+tubes (i.e. O) using a strip tube opener.</strong></li></ol><ol class="numbered-list" id="b81d156e-10de-46f2-9b55-9708d3fdd62b" start="2"><li><strong>Open the corresponding target (i.e. O) RT-LAMP amplicon strip tube, placed in a different rack
+after amplification in step 3.c. is complete. Change gloves.</strong></li></ol><ol class="numbered-list" id="29f54111-fe6e-4044-8c59-6410b55b276d" start="3"><li><strong>Using multi-channel pipette, carefully add 5 μL of the RT-LAMP amplicon to the corresponding
+CRISPR Cas Master Mix strip tube. Eject tips.</strong></li></ol><figure class="image" id="6e8553bd-88c0-4367-8af7-4351292b70a0"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.26.39_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-02_at_12.26.39_AM.png" style="width:1002px"/></a></figure><p class="" id="86f13e37-e025-40ca-abec-3351c47d3043">e. Carefully close the caps of the CRISPR Cas Detection strip tube (RT-LAMP amplicon + CRISPR Cas
+Master Mix). Carefully close the amplified RT-LAMP amplicon strip tubes and dispose after use.
+Change gloves.
+f. Flick the CRISPR Cas Detection strip tube to mix and spin down for 3 seconds in a mini centrifuge
+with a 0.2 mL tube adaptor. Change gloves.</p><div class="indented"><p class="" id="997444e2-b5cb-4af7-9e3b-8b0afd5118ac"><strong>i. Repeat </strong>step 5.b. to 5.f. for the remaining CRISPR Cas Master Mix strip tubes.</p></div><p class="" id="f1bf0543-0925-449b-8d02-d9cc8e6caf0f">g.  Carefully open each CRISPR Cas Detection strip tube using a strip tube opener. Change gloves.
+h. Using a multichannel pipette, carefully add 20 μL from the CRISPR Cas Detection strip tube to a Corning® 384 Well Plate (Black/Clear Bottom) according to recommended plate layout, Figure 2.</p><p class="" id="aa7ab32d-6e20-4b72-8b0a-b97d5c4e83b8"><strong>CAUTION: Do not go to the second stop of the pipette to avoid the introduction of bubbles to
+the reaction wells.</strong></p><div class="indented"><p class="" id="3e7b5340-cde2-437f-890b-7fce307059bd"><strong>i. Repeat </strong>step 5.g. to 5.h. for the remaining CRISPR Cas Detection strip tubes.</p></div><p class="" id="cc93a515-7ce3-4056-81e6-d85c6fbf85c0">i. Seal the plate with an Optical Seal.
+j. Open the plate reader software to create a read procedure.</p><ol class="numbered-list" id="a7bff0d6-773f-4d66-8c75-f15ffd6520e9" start="1"><li><strong>Set setpoint temperature to 37°C.</strong></li></ol><ol class="numbered-list" id="f516e78c-7aa5-4cf5-94f9-3f96808a5f12" start="2"><li><strong>Select “Kinetic” run reading with a total read time of 10 minutes, and data collection
+</strong><strong>intervals at 2.5 minutes.</strong></li></ol><ol class="numbered-list" id="b04b53f3-ba6f-4c2d-9819-0a4894fdec0b" start="3"><li><strong>Select filter settings in read details to 485nm/528nm filter set with the gains setting set to
+</strong><strong>“extended”.</strong></li></ol><ol class="numbered-list" id="6b8dac59-20d6-4959-9fd3-4b2e0a5ffa1d" start="4"><li><strong>Highlight the rows and columns of the plate to be read in the plate settings.</strong></li></ol><ol class="numbered-list" id="d9a38b65-6f13-4f40-adc8-5aa949d78626" start="5"><li><strong>If a warning about “Max V” calculations appears, press “OK” and continue.</strong></li></ol><ol class="numbered-list" id="bc2bd7ef-345b-455a-8017-9541b37c4d0f" start="6"><li><strong>Press green arrow to start, (i.e. “Create experiment and read now”).</strong></li></ol><ol class="numbered-list" id="7053bb69-fabf-4c4e-a880-6f26805d5909" start="7"><li><strong>Save experiment in a designated place with an appropriate unique name</strong></li></ol><ol class="numbered-list" id="6217e380-26a7-408c-b641-74da830f8cce" start="8"><li><strong>When plate loader, extends, load plate</strong></li></ol><p class="" id="344d4c0a-177d-4c6b-ac3a-9005011292bb"><strong>CAUTION: Ensure plate is loaded in correct orientation</strong></p><p class="" id="fa568bd0-49bb-4acf-ba4a-0e1652732d8a"><strong>ix. </strong>Press “OK” to load plate.</p></details></li></ul><p class="" id="fb5d6d15-4bce-48c2-95f8-e462029b7b2f">
+</p></details></li></ul></details></li></ul><ul class="toggle" id="8d44d36d-c524-402a-a963-f7c301f9a06c"><li><details open=""><summary>gRNA Design</summary><p class="" id="eb8548bf-0b8f-422e-9b06-de49f5be9e1c">
+</p><ol class="numbered-list" id="32ba7d43-db8b-4dcc-9fab-1b6bb6cff325" start="1"><li>Go to this website: <a href="http://bioinfolab.miamioh.edu/CRISPR-RT/interface/C2c2.php">http://bioinfolab.miamioh.edu/CRISPR-RT/interface/C2c2.php</a></li></ol><ol class="numbered-list" id="1d3af9b8-93d1-45e3-8958-3eb5da16df8a" start="2"><li>Insert the target RNA sequence: this should be regions between the amplification primers. Choose the correct reference transcriptome. Use the default settings.<figure class="image" id="661cf2e3-bfb8-414f-a54c-35580e79254d"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_3.33.11_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_3.33.11_AM.png" style="width:2064px"/></a></figure><p class="" id="3942613c-cf25-4d5c-8ed9-ecd91f401b3e">3. Target candidates are shown. Target candidates with fewer number of target transcripts have higher target specificity in the transcriptome.</p><figure class="image" id="1019db14-55f2-482b-a08f-d0a96ab00382"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_4.54.49_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_4.54.49_AM.png" style="width:2870px"/></a></figure><p class="" id="6ca860b0-35a2-4219-b519-9492b482e974">
+</p><p class="" id="4abd8d15-c34f-4f2c-ba12-ed3f597fe6d1">4. The crRNA (pink color-coded) is accessed and shown below. </p><figure class="image" id="9b11ee99-6891-4170-b6e1-aa78df048ce3"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_3.57.19_AM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-08-05_at_3.57.19_AM.png" style="width:1582px"/></a></figure><p class="" id="c201a6fc-0411-45b8-babf-266ab473de6f">
+</p></li></ol><p class="" id="fbb4e3e2-a91d-4033-9140-64f8630f87a7">
+</p></details></li></ul></details></li></ul><p class="" id="c0d06d9d-c8b8-4be8-8d06-2ddabced83e4">
+</p><figure class="image" id="839c7f81-ba7b-41d5-80fa-e8e0e2fa6021"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-06-15_at_1.39.39_PM.png"><img src="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/Screen_Shot_2020-06-15_at_1.39.39_PM.png" style="width:1746px"/></a></figure><div class="collection-content" id="4996ea6e-19d4-4d97-b68d-67ad441d2353"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="84cab7e0-dfc9-4239-a804-31e89646b3e1"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/References%204996ea6e19d44d97b68d67ad441d2353/(East-Seletsky,%202016)%2084cab7e0dfc94239a80431e89646b3e1.html">(East-Seletsky, 2016)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/nature19802.pdf?fbclid=IwAR3Y0JWvr72Gr6A63zxu4J5Bs0S0yQy9WJcN3tJt5TWapyOnsJ1HHdasL_Y">https://www.nature.com/articles/nature19802.pdf?fbclid=IwAR3Y0JWvr72Gr6A63zxu4J5Bs0S0yQy9WJcN3tJt5TWapyOnsJ1HHdasL_Y</a></td></tr><tr id="86aed315-bbf8-4b40-9ebd-73c0e448042d"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/References%204996ea6e19d44d97b68d67ad441d2353/(Kellner,%202019)%2086aed315bbf84b409ebd73c0e448042d.html">(Kellner, 2019)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/s41596-019-0210-2?proof=true1">https://www.nature.com/articles/s41596-019-0210-2?proof=true1</a></td></tr><tr id="a517b4f8-7bdc-4699-80e0-3df95db2b5bf"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/References%204996ea6e19d44d97b68d67ad441d2353/(Zhang,%202020)%20a517b4f87bdc469980e03df95db2b5bf.html">(Zhang, 2020)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.broadinstitute.org/files/publications/special/COVID-19%20detection%20(updated).pdf">https://www.broadinstitute.org/files/publications/special/COVID-19%20detection%20(updated).pdf</a></td></tr><tr id="4e4066d8-8b82-4a25-bf10-c9171e5a78d2"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/References%204996ea6e19d44d97b68d67ad441d2353/(Ran,%202013)%204e4066d88b824a25bf10c9171e5a78d2.html">(Ran, 2013)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/nprot.2013.143">https://www.nature.com/articles/nprot.2013.143</a></td></tr><tr id="e325e9ba-1267-45fa-96b9-84aa58dc976f"><td class="cell-title"><a href="CRISPR%20Cas%20Systems%20e241d45f711643d2945bb9bd53ef2b08/References%204996ea6e19d44d97b68d67ad441d2353/Untitled%20e325e9ba126745fa96b984aa58dc976f.html">Untitled</a></td><td class="cell-VU*J"></td></tr></tbody></table></div></div></article></div></body></html>

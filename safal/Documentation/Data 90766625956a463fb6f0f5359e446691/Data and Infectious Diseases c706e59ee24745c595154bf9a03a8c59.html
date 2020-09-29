@@ -1,0 +1,1354 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Data and Infectious Diseases </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrum {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrum li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrum li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrum li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrum li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrum"><li><a href="../Data 90766625956a463fb6f0f5359e446691.html">Data</a></li><li>Data and Infectious Diseases </li></ul><div id="page"><article class="page sans" id="c706e59e-e247-45c5-9515-4bf9a03a8c59"><header><h1 class="page-title">Data and Infectious Diseases </h1></header><div class="page-body"><p class="" id="3c00c91c-fa25-44e0-96fe-2445070d89ea"><span class="user">@Prajjwal Bhattarai</span> </p><p class="" id="a78b996e-e8d1-44a9-9cf0-1aada76204e3">
+</p><p class="" id="be979f50-07f3-4741-8d2b-8fc6a3aca402"><strong>Data Sources</strong></p><p class="" id="6e68426b-2acd-43ca-a226-e4d59dfcf9f7">Data sources for infectious diseases mainly focus on biosurveillance in humans, which can be either in the form of lab-tested records (<a href="https://www.who.int/influenza/gisrs_laboratory/flunet/en/">Flunet</a>) or aggregated web-scraped/ user-submitted records (<a href="https://promedmail.org/">ProMed</a>, <a href="https://www.healthmap.org/en/">HealthMap</a>). These are tailored for general awareness to the public and alertness for growing epidemics and do not include distinct sample details. While these databases have limited data regarding animals (even lesser so to amphibians), the design and implementation details can be applied, if we need to make our own database. <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Daughton,%202017%20e5ae74814319470ba9ca0ed9771cb7be.html">Daughton, 2017</a> </p><p class="" id="953da2ea-dda7-4b63-94b4-d65273790a02"></p><div class="indented"><p class="" id="cda5f603-bd5d-41d5-9414-4e698c825f1a">For amphibians, <a href="https://amphibiandisease.org/">Amphibian Disease Portal</a> is a disease based resource directly applicable to our project. The data is collected as samples, tested for bd or bsal. At the minimum, each record has geolocation, collected year, genus, and the prevalence of the disease. They have about 30 k samples,  with a disproportionate 25k from North America. </p></div><p class="" id="36495f7f-f4f5-455e-b42d-9b1cf67cfd6c">
+</p><p class="" id="c06ce709-3ac4-48f7-8b11-680d40b1c13e"><a href="https://amphibiaweb.org/">Amphibianweb</a> and <a href="https://www.notion.so/Oliviera-2017-96cacf1eb6f047529ff0fcd999a1eaf4">AmphiBIO</a> can be useful sources of amphibian traits related to ecology, morphology, and reproduction, which may be required for analysis and modeling.</p><p class="" id="1c6eab8e-ae4f-4170-bd22-13314291bfdb">
+</p><p class="" id="d63740b8-4653-446c-ad4e-7c2bda372b58"><strong>Contribution</strong></p><p class="" id="49dcc778-1e81-4e6b-8f21-f6d9ce7a8fb7">Amphibianweb uses <a href="https://geome-db.org/">Geome-db</a> as a backend. Geome-db allows users to submit sample data, which in our case, will be used by Amphibianweb. A sample submission to geome-db requires the following minimum specifications:</p><ul class="bulleted-list" id="9304d60f-c41f-4e7f-b065-3992b62f363d"><li>Location in lattidue/longitude coordinates</li></ul><ul class="bulleted-list" id="9f8262a9-3303-4b7e-a586-a906d55fdfab"><li>Time collected</li></ul><ul class="bulleted-list" id="af0d49e0-9415-48f3-b3af-a6caca0a3799"><li>genus</li></ul><ul class="bulleted-list" id="4ae3f95e-3bc1-4c9a-a36b-6caf9f258ee1"><li>Record basis (Live/Deceased Organism, Fossil samples etc)</li></ul><ul class="bulleted-list" id="5d0eb269-972a-4185-a4a7-783ab2efa2a1"><li>Sample type (Swabbing, tissue, blood etc)</li></ul><ul class="bulleted-list" id="31c103eb-e1b4-4f43-bc79-5dc610a8c930"><li>Disease tested and detected </li></ul><p class="" id="2f0060b1-7eab-4585-98eb-5b2d81fc9f85">
+</p><p class="" id="dc6abf45-7f66-4561-93b1-03401689bc84">Integration with the diagnostic device could be possible with a script to automate the process of uploading the sample data to geome-db, however it depends upon whether or not the device has computational resources. It would also require a GPS chip for the coordinates and a method to determine the sample's genus (whether entered by the user or through other means). A deep learning model based to predict the genus based on the picture of the amphibian could be implemented, based on <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Hansen,%202019%20513a91a66c774909a14b47ec79df9e8a.html">Hansen, 2019</a> which implements in on pictures of insects, however, its accuracy and applicability for amphibians are uncertain.</p><p class="" id="811657fb-da80-43eb-86ba-0510e42b6cd0"></p><div class="indented"><p class="" id="52547907-02f4-43b4-a9a5-12fccaead909">Making an in-house database with the diagnostics tests logged to the database, and then contributing it to the external sources is also viable. We will still have the requirements in the device as above, but do not need access to the internet. Possible database design can be taken from <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Deck,%202017%208f0a8558f945476a9f883efcea05f735.html">Deck, 2017</a> for sample-based design and <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Daughton,%202017%20e5ae74814319470ba9ca0ed9771cb7be.html">Daughton, 2017</a> for biosurveillance oriented design.</p></div><p class="" id="2117078c-2e89-4139-b09f-5f9c6d00557b">
+</p><p class="" id="55964606-8add-451f-90c3-61eb3a9ec24f"><strong>Visualization &amp; Exploratory Tools</strong></p><p class="" id="27c4fc55-0e9e-4520-a67c-28eead317874">
+</p><p class="" id="c7e4b483-5172-4ff0-bfef-2d341e738632"><a href="https://bioportal.ucdavis.edu/dashboard">UCDavis Bioportal</a> is an example of a visualization tool for an infectious disease that is specifically built to analyze the trend and predict an endemic.</p><p class="" id="446618a6-cc63-4751-8145-d337ab993a27">
+</p><p class="" id="8aa3edb8-09ef-4725-a279-0ab8dd9fac12">Amphibian Disease Portal as well as geome-db have the same front-end for data visualization and querying, which is currently, it is very basic and has a simple overlay of the location of samples in the database with a map of the world. We can make a better, more interactive visualization tool using R and Shiny. Based solely off the combination of data available from geome, amphibianweb and amphibio the following visualizations can be added:</p><ul class="bulleted-list" id="31ebc5aa-4b27-495c-9fbf-6820c6587ee8"><li>A time based graph showing the spread of the disease</li></ul><ul class="bulleted-list" id="c6dda99f-6815-4e59-b9cd-13025a0b58de"><li>A phylogenic tree of the species that are getting affected or of the pathogen if the additional genetic information is available in the geom-db sample </li></ul><ul class="bulleted-list" id="a1c85366-2c0f-44b1-ac01-994c0b68271f"><li>Searching using additional  parameters like weather conditions and ecological traits </li></ul><p class="" id="addf5ddf-84a9-44e7-8219-16210a6ed0d2">
+</p><p class="" id="4c4a792d-9d0e-4382-9364-7e3d55bb8e45">In addition, endemic modeling, risk assessment, and simulation tools can be added. <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Heslop,2018%200c9745c750b74bc7bfee000aba6ff1c4.html">Heslop,2018</a> contains a list of public, open-source tools of a similar purpose-built with human endemics in mind. By tweaking some of the variables, we can implement it in our visualization tools. Similarly, a hypothesis testing model from <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Adams,%202010%2029ae2970273549688cb5b5159dceb236.html">Adams, 2010</a> can be integrated, which can help determine the statistical likelihood of false negatives of negative samples.</p><p class="" id="67c40a08-0f61-42d3-86f7-1b910ebbe6d8">
+</p><p class="" id="7dfa65cb-8636-47db-ab26-8df5021011fc"><strong>Analysis, modeling and prediction</strong></p><p class="" id="24fb0d1a-ab1c-48e9-811e-ae2b181a12c1">The limited disease-related data from Amphibian Disease Portal presents a significant problem in any analysis, modeling, or prediction. <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Olson,%202013%20b1bbe1cdf2794e34a911f742aaf8e5e1.html">Olson, 2013</a> performed a correlative analysis of the spread of bd with various environmental factors like temperature, precipitation, and ecological habitat based on the data of <a href="http://bd-maps.net">bd-maps.net</a> (a predecessor to Amphibian Disease Portal). A possible replication of this analysis with more sophisticated models could show differing results. The heavy data bias from North America will prevent a challenge in generalizing the results to a wider geographical area.</p><p class="" id="82aee98d-c06f-48ac-8665-a74fcd034a13">
+</p><p class="" id="f67b7299-cfa4-462c-b5ba-23cc2380ec34">A few works have been done in modeling an endemic, but mostly for isolated species. <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Drawert,2017%20da9bed4001c34d009df4515277f35efc.html">Drawert,2017</a> uses a deterministic as well as a stochastic model to simulate a bd endemic in an isolated species in the Sierra Nevada mountains, ultimately with a purpose to pick the best conservation strategy. The controlled, isolated environment is a big limiting factor on the general adoption of this model.</p><p class="" id="d62d44f2-0094-4cc8-ae9a-a20b152f9ae3">
+</p><p class="" id="44394976-48d8-4b85-a5cf-ebd38363c583">
+</p><p class="" id="b6280c76-0256-413b-a839-2b42b8266e1b"><strong>Follow up questions</strong></p><p class="" id="2b75a2a6-a30e-4916-8eeb-a849e1a533a8">
+</p><p class="" id="b142e1d0-0e57-4737-8b85-9d7283201cd4">How/why do they do genus assessment right now?</p><p class="" id="fec0f0c9-c261-4021-9de8-46bac8275700"><strong>How</strong></p><ul class="bulleted-list" id="29da21d6-5ba9-4aee-a741-f7f7c8137b1b"><li>The strict definition of the genus seems to be not strictly codified and based on various ecological, morphological, and genetic factors. Even for amphibians, a codified heuristic that is universal amongst all of the amphibian species is hard to find.</li></ul><ul class="bulleted-list" id="f5f76aaf-ad6b-4c55-861d-bc6c502c4d5e"><li>The higher-level division is based on the easily observable difference (frogs/toads vs salamanders), then factors like common physical characteristics, DNA sequences, or any molecular evidence that can be grouped together as the same phylogenetic group.</li></ul><ul class="bulleted-list" id="32983bb4-03d6-4405-9a62-da13bbf78f3f"><li> As a byproduct genus classification will be correlated with geography, habitat and temperature, but a generalized codified system is not possible</li></ul><p class="" id="82e88c5c-bcc8-4732-8a91-ffbba2d06094">Sources: <a href="https://amphibiaweb.org/amphibian/speciesnums.html">AmphibianWeb</a>, <a href="https://ssarherps.org/wp-content/uploads/2017/10/8th-Ed-2017-Scientific-and-Standard-English-Names.pdf">List of Amphibian Names</a></p><p class="" id="85bd9070-6b9b-4c8d-a043-f9d36b9631b4"><strong>Why</strong></p><ul class="bulleted-list" id="af14acbc-d9d5-4c91-99d5-5de0ae947c0a"><li>Most of the modeling and prediction done with amphibian disease data seem to be restricted to one genus or species. So, I think genus is important high-level metadata that can be used to filter and group the data and see differing conclusions on analysis</li></ul><p class="" id="f2427034-fefc-470f-bd2f-d755c95e2155">
+</p><p class="" id="533c7e16-5217-4f26-90d1-31d46e2ea784">Is there a need for visualization and data exploration? </p><ul class="bulleted-list" id="cc075efd-a6a7-4da2-9a5c-f3a603b4a5a0"><li>Ask the researchers who are involved with amphibian research and have worked with <a href="http://amphibiandisease.org">amphibiandisease.org</a> before. </li></ul><p class="" id="495b0a7a-a460-4627-949a-d138a9ca9bad">
+</p><p class="" id="dc704976-890b-4ba6-b9a8-c5d19947115d"><strong>Contact details</strong></p><div class="indented"><p class="" id="bf5c6cb6-7c47-47e8-b6a1-c4766ba501d7">People to email <a href="https://docs.google.com/spreadsheets/d/1Kpn0Rs2rmkvyihGDVbZI6sBDc5XuFV5RrLa2V6v-iJI/edit?usp=sharing">spreadsheet</a></p><p class="" id="e9851f31-1d92-4b71-947d-b501718cbba8"><a href="https://docs.google.com/document/d/19xQacSqqX2JR8QzaF2HWjGg50OYWDhgBMfUOe57Da5M/edit?usp=sharing">Email draft</a></p></div><p class="" id="035f2272-c3f2-4755-b388-86561b9ff5ee">
+</p><p class="" id="08086bbb-4a8b-4ca4-aa8c-0d95448f454e">Should we attempt analysis, modeling and prediction?</p><ul class="bulleted-list" id="f2aee342-ca9a-4ea8-b1af-980c0f3e384b"><li>Ask Dr Penner about issues with generalization across species</li></ul><ul class="bulleted-list" id="effa8e01-263d-41cf-87c6-92eec6fa03cc"><li>Could be tailored towards conservation agencies to pick the best conservation strategy. (Genus would be important in this case) <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Drawert,2017%20da9bed4001c34d009df4515277f35efc.html">Drawert,2017</a> </li></ul><ul class="bulleted-list" id="0df46e2a-ff9c-4951-8b72-84a8bd91b2ad"><li>Simulations (that do not necessarily have great predictive power) can be an experimental addition to the visualization tool. For instance, <a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Dur-e-Ahmad,%202014%205d6e06b9e16549f8a699dcf995ae8d59.html">Dur-e-Ahmad, 2014</a> accounts for exposure to bd from the larvae stage and accounts for death from bd as well as reproduction based on initial parameters. This may be useful in setting a tolerable bd quantity in a population.</li></ul><p class="" id="6b5eb28d-2ed5-46a1-9e04-211af875728b">
+</p><p class="" id="89d5f9e8-6edc-4d42-a702-04c21050b094"><strong>Questions for Dr. Penner</strong></p><ul class="bulleted-list" id="6f5e0fb5-517c-41f6-bb0c-c9ac1bfa86f6"><li>How much of a dealbreaker is the lack of genus in the usability of our data?</li></ul><ul class="bulleted-list" id="c350da5f-b078-496b-967a-a4567d63e0d4"><li>Visualization questions</li></ul><ul class="bulleted-list" id="e8b37f05-686c-415d-b82c-0010a5b942bd"><li>Are generalized models for all amphibians useful? How much additional variables will we need to include in our model until it's useful beyond just experimentation</li></ul><ul class="bulleted-list" id="576177e1-7cbe-4b36-bce0-bfae00482dd5"><li>Questions about stochastic models and their interpretability. How useful will these models be actually picking a valid conservation strategy</li></ul><p class="" id="65388c7c-4fab-4bc2-9a67-c5c6a3865924">
+</p><div class="collection-content" id="58f37b5e-ecda-4929-86d4-d60a8d4e6817"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, Year)</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>URL</th></tr></thead><tbody><tr id="96cacf1e-b6f0-4752-9ff0-fcd999a1eaf4"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Oliviera,%202017%2096cacf1eb6f047529ff0fcd999a1eaf4.html">Oliviera, 2017</a></td><td class="cell-zhvA"><a href="https://www.nature.com/articles/sdata2017123">https://www.nature.com/articles/sdata2017123</a></td></tr><tr id="e5ae7481-4319-470b-a9ca-0ed9771cb7be"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Daughton,%202017%20e5ae74814319470ba9ca0ed9771cb7be.html">Daughton, 2017</a></td><td class="cell-zhvA"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5547458/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5547458/</a></td></tr><tr id="513a91a6-6c77-4909-a14b-47ec79df9e8a"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Hansen,%202019%20513a91a66c774909a14b47ec79df9e8a.html">Hansen, 2019</a></td><td class="cell-zhvA"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.5921">https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.5921</a></td></tr><tr id="8f0a8558-f945-476a-9f88-3efcea05f735"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Deck,%202017%208f0a8558f945476a9f883efcea05f735.html">Deck, 2017</a></td><td class="cell-zhvA"><a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2002925">https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2002925</a></td></tr><tr id="0c9745c7-50b7-4bc7-bfee-000aba6ff1c4"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Heslop,2018%200c9745c750b74bc7bfee000aba6ff1c4.html">Heslop,2018</a></td><td class="cell-zhvA"><a href="https://www.sciencedirect.com/science/article/pii/S1755436517300804">https://www.sciencedirect.com/science/article/pii/S1755436517300804</a></td></tr><tr id="b1bbe1cd-f279-4e34-a911-f742aaf8e5e1"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Olson,%202013%20b1bbe1cdf2794e34a911f742aaf8e5e1.html">Olson, 2013</a></td><td class="cell-zhvA"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0056802">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0056802</a></td></tr><tr id="da9bed40-01c3-4d00-9df4-515277f35efc"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Drawert,2017%20da9bed4001c34d009df4515277f35efc.html">Drawert,2017</a></td><td class="cell-zhvA"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5582134/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5582134/</a></td></tr><tr id="29ae2970-2735-4968-8cb5-b5159dceb236"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Adams,%202010%2029ae2970273549688cb5b5159dceb236.html">Adams, 2010</a></td><td class="cell-zhvA"><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/08-2319.1">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/08-2319.1</a></td></tr><tr id="5d6e06b9-e165-49f8-a699-dcf995ae8d59"><td class="cell-title"><a href="Data%20and%20Infectious%20Diseases%20c706e59ee24745c595154bf9a03a8c59/References%2058f37b5eecda492986d4d60a8d4e6817/Dur-e-Ahmad,%202014%205d6e06b9e16549f8a699dcf995ae8d59.html">Dur-e-Ahmad, 2014</a></td><td class="cell-zhvA"><a href="https://www.hindawi.com/journals/aaa/2014/145398/">https://www.hindawi.com/journals/aaa/2014/145398/</a></td></tr></tbody></table></div></div></article></div></body></html>

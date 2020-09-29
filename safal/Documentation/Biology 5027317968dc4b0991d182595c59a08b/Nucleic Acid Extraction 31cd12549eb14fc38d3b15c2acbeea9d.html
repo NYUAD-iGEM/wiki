@@ -1,0 +1,1367 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Nucleic Acid Extraction</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrumb"><li><a href="../Biology 5027317968dc4b0991d182595c59a08b.html">Biology</a></li><li>Nucleic Acid Extraction</li></ul><div id="page"><article class="page sans" id="31cd1254-9eb1-4fc3-8d3b-15c2acbeea9d"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_beige.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🧫</span></div><h1 class="page-title">Nucleic Acid Extraction</h1></header><div class="page-body"><p class="" id="9c409b50-6323-4839-8271-9c5e9ac22000"><span class="user">@Adrian Villanueva</span> <span class="user">@Antonina Bar</span> </p><p class="" id="247fd754-6fdf-4807-9069-80a279e9c7bf">
+</p><ul class="toggle" id="ae21cd7e-07a0-4222-8240-070474790219"><li><details open=""><summary><strong>Lysis Protocol</strong></summary><p class="" id="4fb541d5-432b-4d16-81b9-ba43bca78162">
+</p><p class="" id="0323b458-6d23-4f21-8c6d-e4b25fc740dc">
+</p><p class="" id="afcc99a1-8591-4367-a3ba-6e605364e7eb"><strong>~~ WORK IN PROGRESS ~~</strong></p><p class="" id="2064e529-5592-4c26-9a52-8340e12a45c5">
+</p><p class="" id="b8f99704-9390-43df-9ea3-eda52e190d40">
+</p></details></li></ul><ul class="toggle" id="541aaf7a-21d6-457c-8cbf-f971b2ea7dbb"><li><details open=""><summary><strong>RNA Extraction Protocols</strong></summary><p class="" id="2adb418e-a15a-42b1-966b-bad4156c4119">
+</p><ul class="toggle" id="7b7d3e9c-79cc-4489-8f8a-482e32bb47fb"><li><details open=""><summary><strong><mark class="highlight-teal">RNeasy RNA Extraction </mark></strong><a href="https://www.qiagen.com/be/products/top-sellers/rneasy-micro-kit/#orderinginformation"><strong><mark class="highlight-teal">(Link)</mark></strong></a></summary><p class="" id="2694a41d-c831-46ff-8731-552873cf275a">Protocol can take from <code><strong>30 minutes - 40 minutes</strong></code> by <strong>QIAGEN</strong></p><ol class="numbered-list" id="0be43456-5260-4895-a73e-e460d6b8aaf3" start="1"><li>Cells: Harvest a maximum of 5 x 105 cells, as a cell pellet, or by direct lysis in the vessel. Add 350 µl Buffer RLT and homogenize.</li></ol><p class="" id="6cbe032c-8ce8-4d5a-9e59-37ffc2206489">Tissues: Disrupt and homogenize ≤5 mg tissue in 350 µl Buffer RLT using the TissueRuptor® or TissueLyser instruments. Centrifuge the lysate for 3 min at maximum speed. Carefully remove the supernatant by pipetting and use it for step 2.</p><p class="" id="ca776842-aae3-4e15-afb9-2c1854c614b3">Microdissected cryosections: Collect the sample directly into an appropriate volume of Buffer RLT. (The volume depends on the collection vessel used for microdissection, but should not exceed 65 µl [Leica® instruments] or 300 µl [other instruments].) Adjust the volume to 350 µl with Buffer RLT. Vortex for 30 s.</p><ol class="numbered-list" id="a6da81ba-c674-46cc-ad17-156c31a44621" start="1"><li>Add 1 volume of 70% ethanol to the lysate, and mix well by pipetting. Do not centrifuge. Proceed immediately to step 3.</li></ol><ol class="numbered-list" id="c5c02626-a8aa-435d-a329-0f5cece325a9" start="2"><li>Transfer the sample, with any precipitate, to an RNeasy MinElute spin column in a 2 ml collection tube (supplied). Close the lid and centrifuge for 15 s at ≥8000 x g. Discard the flow-through.</li></ol><ol class="numbered-list" id="8b47a982-d9ea-4144-8db9-54d7f892d1ad" start="3"><li>Add 350 µl Buffer RW1 to the RNeasy MinElute spin column. Close the lid. Centrifuge for 15 s at ≥8000 x g. Discard the flow-through.</li></ol><ol class="numbered-list" id="8ebff629-5349-44fd-96b2-7e7dd38fd97f" start="4"><li>Add 10 µl DNase I stock solution to 70 µl Buffer RDD. Mix by inverting the tube. Add the DNase I incubation mix (80 µl) directly to the RNeasy MinElute spin column membrane. Place on the benchtop (20–30°C) for 15 min. Add 350 µl Buffer RW1 to the RNeasy MinElute spin column. Close the lid, and centrifuge for 15 s at ≥8000 x g. Discard the collection tube.</li></ol><ol class="numbered-list" id="93db5c83-a5e2-4242-9f09-99388748ea93" start="5"><li>Place the RNeasy MinElute spin column in a new 2 ml collection tube (supplied). Add 500 µl Buffer RPE to the spin column. Close the lid, and centrifuge for 15 s at ≥8000 x g. Discard the flow-through.</li></ol><ol class="numbered-list" id="9bec94ad-6f0c-40bd-90d9-34f75f8691b0" start="6"><li>Add 500 µl of 80% ethanol to the RNeasy MinElute spin column. Close the lid, and centrifuge for 2 min at ≥8000 x g. Discard the collection tube.</li></ol><ol class="numbered-list" id="25987660-53ee-4b9f-ac15-08695095feb3" start="7"><li>Place the RNeasy MinElute spin column in a new 2 ml collection tube (supplied). Open the lid of the spin column, and centrifuge at full speed for 5 min to dry the membrane. Discard the flow-through and collection tube.</li></ol><ol class="numbered-list" id="e82cc144-4f77-4309-a975-2995d1822e73" start="8"><li>Place the RNeasy MinElute spin column in a new 1.5 ml collection tube (supplied). Add 14 µl RNase-free water directly to the center of the spin column membrane. Close the lid gently, and centrifuge for 1 min at full speed to elute the RNA.</li></ol></details></li></ul><ul class="toggle" id="04be7e99-226e-4dcc-b1a5-5409ffa6f8f6"><li><details open=""><summary><mark class="highlight-teal"><strong>Quick-RNA Miniprep Kit </strong></mark><mark class="highlight-teal"><a href="https://www.zymoresearch.com/collections/quick-rna-kits/products/quick-rna-miniprep-kit"><strong>(Link)</strong></a></mark></summary><p class="" id="c728a444-41e9-441a-a85d-2134c0e2bdd8">RNA Extraction in <code><strong>10 minutes</strong></code> by <strong>ZYMO Research</strong></p></details></li></ul><ul class="toggle" id="1243081a-4f40-4050-8b81-b7d671759626"><li><details open=""><summary><mark class="highlight-teal"><strong>QuickExtract™ RNA Extraction Kit </strong></mark><a href="https://www.lucigen.com/QuickExtract-RNA-Extraction-Kit/#:~:text=The%20QuickExtract%E2%84%A2%20RNA%20Extraction,the%20RNA%20for%20cDNA%20synthesis."><mark class="highlight-teal"><strong>(Link)</strong></mark></a></summary><p class="" id="13bc0fe3-41de-468c-bc59-079b5aa3a2df">RNA Extraction in <code><strong>~20 minutes</strong></code> by <strong>Lucigen</strong></p></details></li></ul><p class="" id="c451a90d-6bea-4b76-84a2-435aff7ab54c">
+</p></details></li></ul><ul class="toggle" id="0d52f838-49c0-45a1-a847-c2556f55c457"><li><details open=""><summary><strong>DNA Extraction Protocols</strong></summary><p class="" id="69088b39-111c-405a-8f0a-96ced16b918b"><em>This protocol below is taken from a protocol textbook</em></p><ul class="toggle" id="4207d307-3fb5-4937-a8fe-be392fc47397"><li><details open=""><summary><mark class="highlight-teal"><strong>Isolation of High-molecular-weight DNA from Mammalian Cells using Proteinase K and Phenol</strong></mark></summary><p class="" id="d21f9500-596d-4335-bc3a-117a2860e8fe"><strong>Extraction of DNA from lysate</strong></p><ol class="numbered-list" id="1f359522-0b93-45e6-a59e-51f1c8b45618" start="1"><li>Transfer lysate to one or more centrifuge tubes. The tubes should not be more than one-third full.</li></ol><ol class="numbered-list" id="469f993f-bd20-4ecb-9ec2-c4e97e7ed7ed" start="2"><li>Add proteinase K to a final concentration of 100 µg/mL to each centrifuge tubes. Using a glass rod, mix the enzyme solution gently.</li></ol><ol class="numbered-list" id="db68ebc8-4a92-4c22-b78c-a0e39382f9b5" start="3"><li>Incubate lysate in a water bath for 3 hours at 50 ˚C. Swirl the solution from time to time.</li></ol><ol class="numbered-list" id="fb65d642-a37b-476f-affa-1c1673fa154d" start="4"><li>Cool the solution to room temperature and add an equal volume of phenol equilibrated with 0.1 M Tris-Cl (pH 8.0). Gently mix the two phases by slowly turning the tube end-over-end for 10 minutes on a tube mixer or roller apparatus. If the two phases have not formed an emulsion at this stage, place the tube on a roller apparatus for 1 hour.</li></ol><ol class="numbered-list" id="a567f865-d800-4e7a-9d15-79e916e31eca" start="5"><li>Separate the two phases by centrifugation at 5000g (I don’t know what centrifuge we’ll use so I don’t know what RPM) for 15 minutes at room temperature.</li></ol><ol class="numbered-list" id="e40f74be-b84c-43b7-88c5-39ae709d5232" start="6"><li>Use a wide-bore pipette to transfer the viscous aqueous phase to a fresh centrifuge tube.<ol class="numbered-list" id="2b5a2155-3470-40c0-942e-bdb414fcf09d" start="1"><li>When transferring the aqueous phase (usually the upper phase), it is important to draw the DNA into the pipette very slowly.</li></ol></li></ol><ol class="numbered-list" id="2c32154a-aa32-4448-bed7-efc0c56040a8" start="7"><li>Repeat the extraction with phenol twice more and add them to previous aqueous phases.</li></ol><ol class="numbered-list" id="390cc25d-e46e-464a-951a-3e86ba22f41f" start="8"><li>Isolate DNA</li></ol><p class="" id="ab7e62bc-c41e-44b6-8fb1-1a93d5f7c500"><strong>DNA Isolation in the size range of 150-200 kilo-bases</strong></p><ol class="numbered-list" id="2341cc7d-0fdf-4a38-8226-d57998fe981d" start="1"><li>Transfer aqueous phase to a dialysis bag, and allow the bag to increase 1.5-2 fold during dialysis.</li></ol><ol class="numbered-list" id="4d44851d-afdb-485d-9f29-6b55932ac756" start="2"><li>Dialyze the solution at 4 ˚C against 4 liters of dialysis buffer. Change the buffer three times at intervals of ≥ 6 hours. Typically dialysis takes ≥24 hours to complete.</li></ol><p class="" id="6061bf78-7733-45bd-a6d8-687d5f962915"><strong>DNA Isolation in the size range of 100-150 kilo-bases</strong></p><ol class="numbered-list" id="7e498b8b-e7b5-4b2a-8131-4059b80a83e5" start="1"><li>After the extraction, transfer the aqueous phase to a fresh centrifuge tube and add ⅕ of the volume of 10 M ammonium acetate. Add 2 volumes of ethanol at room temperature and swirl the tube until the solution is thoroughly mixed.</li></ol><ol class="numbered-list" id="27c2d43f-4e4f-417a-9b0a-f64d602c9d5a" start="2"><li>DNA Precipitate should form. Remove the precipitate in one piece using a shepherd’s crook.</li></ol><ol class="numbered-list" id="9d4864ea-49e6-4423-aa19-2635037d6695" start="3"><li>If the precipitate is fragmented then centrifugate at 5000g for 5 minutes at room temperature</li></ol><ol class="numbered-list" id="8bb4b98f-4b86-4a3d-913e-bedb73539e7e" start="4"><li>Wash the DNA precipitate twice with 70% ethanol.</li></ol><ol class="numbered-list" id="eed782cc-f3c2-450a-9dfc-d49bd1f11efd" start="5"><li>Remove the 70% ethanol as much as possible and allow it to dry but not completely dry.</li></ol><ol class="numbered-list" id="d4d4d698-abc8-4f66-9257-6aa4442f40c1" start="6"><li>Add 1 mL of TE buffer (pH 8.0) for each 0.1 mL of cells in step 1. Place the tube on a rocking platform and gently rock the solution for 12-24 hours at 4 ˚C until the DNA has completely dissolved. Store the DNA solution at 4 ˚C.</li></ol></details></li></ul><p class="" id="2847f8a4-bccf-41c7-a312-f00972b00a4f"><em>Meanwhile, the protocols here are more convenient to use as this will allow us to purchase an extraction kit.</em></p><ul class="toggle" id="66eaed31-62e3-4687-b531-0678fe66f48a"><li><details open=""><summary><mark class="highlight-teal"><strong>DNeasy DNA Extraction </strong></mark><a href="https://www.qiagen.com/br/products/top-sellers/dneasy-blood-and-tissue-kit/#productdetails"><mark class="highlight-teal"><strong>(Link)</strong></mark></a></summary><p class="" id="0fbc2a68-0d4d-4778-a31b-a4a30bd33b71">Protocol can take from <strong><code>20 minutes - 1 hour</code></strong><strong> </strong>by <strong>QIAGEN</strong></p><ol class="numbered-list" id="5974e7b9-1fc2-483d-beba-a480fcf30fbe" start="1"><li>Place sample into a collection microtube.</li></ol><ol class="numbered-list" id="649b3d57-db33-4654-b187-9bcbc3a767c2" start="2"><li>Prepare a working solution containing 20 µL of proteinase K stock solution and 180 µL buffer ATL per sample, and mix by vortexing. Immediately pipet all into each collection microtube. Tightly seal the microtubes using the caps provided.</li></ol><ol class="numbered-list" id="6e13f475-915d-4457-8fc9-35117c435ec8" start="3"><li>Place the clear cover over each rack, and mix by inverting.</li></ol><ol class="numbered-list" id="17a69ea8-abf3-4d7b-b521-1597d723550d" start="4"><li>Incubate at 56 ˚C overnight or until the samples are completely lysed. Place a weight on top of the caps during the incubation. Mix occasionally during incubation.</li></ol><ol class="numbered-list" id="8022814c-5c88-4fd3-b8d4-64d47119d61e" start="5"><li>Cover the racks and vigorously shake for 15 seconds. Ensure that samples are completely lysed to avoid clogging wells of the DNeasy 96 plate.</li></ol><ol class="numbered-list" id="f1b2daea-d7d2-4a4f-9c76-4182905e7fd6" start="6"><li>Remove the caps and add 410 µL buffer AL-ethanol mixture to each sample, and tightly reseal using new caps.</li></ol><ol class="numbered-list" id="076db877-f608-437c-b43a-a7fd46699e72" start="7"><li>Place a clear cover over each rack and shake the racks vigorously for 15 seconds.</li></ol><ol class="numbered-list" id="1f995eb2-3d36-44b8-8ee5-36b48f224e69" start="8"><li>Place 2 DNeasy 96 plates on top of S-Blocks. Mark the DNeasy 96 plates for later sample identification.</li></ol><ol class="numbered-list" id="d595fbbb-dd47-4a21-9561-1537145b15db" start="9"><li>Carefully remove microtube caps and transfer the lysate of each sample to each well of the DNeasy 96 plates.</li></ol><ol class="numbered-list" id="a5678b22-d766-44bb-beb0-af0db43c4363" start="10"><li>Seal each plate with an AirPore Tape Sheet. Centrifuge for 10 min at 3800g.</li></ol><ol class="numbered-list" id="30cb094c-3b6b-4be0-b847-81d9dd115e66" start="11"><li>Remove the tape. Add µL buffer AW1 to each sample.</li></ol><ol class="numbered-list" id="0aae53cc-9feb-4c13-a786-4e00c4fa4fdf" start="12"><li>Repeat step 10 with a new tape sheet and centrifuge for 5 minutes at 3800g.</li></ol><ol class="numbered-list" id="22727f43-dd86-48ad-a201-c4919047fa01" start="13"><li>Add µL buffer AW2 to each sample</li></ol><ol class="numbered-list" id="b23f0dc8-bbb9-46a0-8649-577f12cace43" start="14"><li>Centrifuge for 15 minutes at 3800g.</li></ol><ol class="numbered-list" id="1502a932-27ce-44d0-96c4-a26474c28d3c" start="15"><li>Place each DNeasy 96 plate on a new rack of Elution microtubes RS.</li></ol><ol class="numbered-list" id="beba6c8e-39bc-4e61-8cb6-dd20b67a0472" start="16"><li>Add 200 µL buffer AE to each sample, and seal with new AIrpore tape sheets. Incubate for 1 min at room temperature. Centrifuge for 2 min at 3800g.</li></ol><ol class="numbered-list" id="0ea01df4-c921-4a0f-bd6b-f2cd639d8c19" start="17"><li>Seal the elution microtubes RS with new caps to store the eluted DNA.</li></ol></details></li></ul><ul class="toggle" id="cbadab32-a303-4b3a-9a4d-dab6af2fb93b"><li><details open=""><summary><mark class="highlight-teal"><strong>Prepman Ultra </strong></mark><a href="https://www.thermofisher.com/order/catalog/product/4318930#/4318930"><mark class="highlight-teal"><strong>(Link)</strong></mark></a></summary><p class="" id="743014df-2c0d-4293-ab0e-fa7ea0705514">DNA Extraction in <code><strong>15 minutes</strong></code><strong> </strong>by <strong>Thermofisher Scientific</strong></p></details></li></ul><p class="" id="d6d4da42-1e3c-47f3-a057-8b354baba309">
+</p><p class="" id="2b56dd69-6c5d-4b0a-9e72-08287d6c0c13">
+</p></details></li></ul><p class="" id="3ec00c2e-d732-42fa-95d2-6b57ae074a8b">
+</p><h1 class="" id="d7a8f0e0-90ac-47d9-840a-2c9814d2315f"><strong>Nucleic Acid Extraction W/o a Centrifuge by</strong></h1><ul class="toggle" id="a701845e-e951-40c0-8b82-00a019cae520"><li><details open=""><summary>Mechanical Means</summary><p class="" id="ff5158d6-4515-47f2-8632-51c51a58690f">
+</p><h3 class="" id="4bf9c708-4efd-4f8f-96e3-5b32243a9282">Cell Disruption</h3><p class="" id="1e4e3ba9-c465-4be3-b6a2-6d658f2b571c">Cell Disruption, the first step in extraction normally requires a centrifuge. But, it seems there are other mechanical/chemical methods out there that can disrupt the cell.</p><p class="" id="34681951-2106-4638-a4e3-cc251c85dc1d">
+</p><p class="block-color-gray" id="1d7b0bcc-2369-495f-a17f-f83946a68f61"><a href="https://www.hindawi.com/journals/bmri/2017/9306564/">"Cell disruption </a>or disintegration can be achieved by physical and/or chemical methods, whose main aim is to disrupt the cell wall and/or cellular membranes. Disruption methods are mainly based on properties of the sample and for this purpose a wide range of tools and approaches are used either alone or combined to achieve tissue/cell disruption [7]. Lytic enzymes, chaotropic agents, and different types of detergents are the main components of chemical lysis, while mechanical method disrupts the cells by grinding, shearing, bead beating, and shocking [8]. It is interesting to note that if one technique does not yield good results, another might prove successful. Osmotic shock methods have yielded, in certain cases, better results than common NA purifications protocols such as phenol-chloroform extraction and bead beating [9]."</p><p class="" id="9f60caeb-3cad-4a73-8cbf-0a9c3c58b076">
+</p><h3 class="" id="24ac440f-d6ca-4708-8a95-f1c7d581fcce">PDQeX Rapid Nucleic Acid Extractor</h3><figure id="9aeba7fc-7a8c-4d73-a502-6247a4fd9f74"><div class="source"><a href="https://www.youtube.com/watch?v=AkIYrioKLnM">https://www.youtube.com/watch?v=AkIYrioKLnM</a></div></figure><p class="" id="b31a697d-d6c9-4e93-8d18-1d6e0f1bfd25">
+</p><p class="" id="5f7e6fbd-56f6-4170-aa7e-0639cd06ffae">Important notes:</p><ul class="bulleted-list" id="a5659006-5d13-4733-bce7-2d59689d95ba"><li>Very expensive (5000$)</li></ul><ul class="bulleted-list" id="2eabc5d1-5690-45f4-8614-b8963269e53a"><li>Reaches temperatures to 75 and 95 celcius. In addition to high temperatures, a cocktail of enzymes and other chemicals are used to lyse the cells and extract the nucleic acid from the cells.</li></ul><ul class="bulleted-list" id="d63589c3-6d75-4b38-b3a7-8940b5490cb3"><li>We could possibly mimic its design? </li></ul><ul class="bulleted-list" id="f404d7ab-48a5-4a75-9ea2-683e01cf3952"><li>Only mentions bacterial cells</li></ul><p class="" id="369c7579-70b6-4482-964e-baf66117a5ed"><a href="https://www.future-science.com/doi/10.2144/btn-2019-0006?url_ver=Z39.88-2003&amp;rfr_id=ori:rid:crossref.org&amp;rfr_dat=cr_pub%20%200www.ncbi.nlm.nih.gov">Link to their science article</a></p><p class="" id="ba0f4b4e-a7cd-4b9f-876a-ee3dfa01e5ac">
+</p><h3 class="" id="3efef743-d71d-4fd5-9bb5-291e0ddedae3"><a href="https://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S1516-89132012000200020&amp;lang=en">Fungal (Yeast) DNA Extraction</a></h3><p class="" id="27e6f89c-513a-462a-89eb-47448de34e58">This method employs a centrifuge-less DNA extraction method by boiling and freeze-thawing.</p><p class="" id="f057f956-b1d3-4af7-acfa-cfdb359dd240">However, this method requires to expose the sample in extreme temperatures: 90 °C and -18 °C. Most probably impractical.</p><p class="" id="26c80b3e-d58b-450b-b98f-5b9fda25bae0">
+</p><h3 class="" id="80a451b7-16ed-472e-9ff6-4bcf5d5113b9">Bead Beating</h3><p class="" id="80b2990c-a9dd-4cb9-9e88-670b40e62e12">Bead beating is a mechanical method of disrupting biological samples. Essentially, bead beating is accomplished by rapidly agitating a given sample in grinding media i.e. bead water, as a result, breaking open the cell containing the target DNA.</p><p class="" id="ab3d7f62-c470-4234-a0c4-8dae483aa446">
+</p><figure class="image" id="694fd414-3747-43ec-bbf2-54d512d26070"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled.png"><img src="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled.png" style="width:289px"/></a></figure><p class="" id="25b38560-2336-4b52-8c9a-1a5bbe47623f">
+</p><p class="" id="b1979da8-b151-49b3-9fea-75c8ab6e00a9">This <a href="https://www.claremontbio.com/OmniLyse_Cell_Lysis_Kits_s/56.htm">OmniLyse</a> product can lyse cells, including fungal cells within 1 minute using a bead beating method. </p><p class="" id="59d0ba72-99d1-48c4-a612-a82d356a67bc">
+</p><h3 class="" id="24a42002-5d10-4118-a8cc-d653a04a3870"><a href="https://homogenizers.net/products/french-press-g-m"><strong>French Pressure Cell Press</strong></a></h3><p class="" id="338e58e9-550d-45b1-8eec-81655670d7dd">This is the earlier methods employed for cell disruption. Utilizing high pressure, the french pressure cell press is essentially a hydraulic press that forces cells through a narrow crevice, ultimately lysing the cells due to the shear forces created when pressed.</p><p class="" id="f99824f7-e593-4938-9945-0f84c19093fd">
+</p><p class="" id="76600c17-60da-4a6c-b77a-6c181bde2a1d">
+</p><figure class="image" id="e71c1ddf-cc92-4cde-9dee-6f0b7d7afbb2"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%201.png"><img src="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%201.png" style="width:240px"/></a></figure><p class="" id="3cc01854-01d6-4298-b709-226d6597f7e4">Figure. Cartoon Demonstration</p><figure class="image" id="82137cb1-a6b1-45d9-9b87-d01898bc2bed"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%202.png"><img src="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%202.png" style="width:336px"/></a></figure><p class="" id="e8e57957-bec8-4090-9c56-10bfcf1eadd2">Figure. An example of the french press apparatus</p><p class="" id="66bc108e-2016-4059-80a1-58b4cca0198e">
+</p><h3 class="" id="1fbcaa38-5d24-436e-af58-3e144dfc8fad"><a href="https://www.elisagenie.com/blog/sonication-protocol-for-cell-lysis/">Ultrasonication</a></h3><p class="" id="709a49c2-7cb1-4396-8aa7-4d82a424537b">Using sound energy, ultrasonication is an alternative method to agitate a sample of cells, ultimately leading to cell lysis. Ultrasonication typically requires frequencies of at least 20 kHz to function.</p><p class="" id="f2afab60-8c30-4fa8-9df4-2243e981aabd">
+</p><figure class="image" id="4afcea28-ebae-4c4a-8e9e-14610b3e0ac6"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%203.png"><img src="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Untitled%203.png" style="width:176px"/></a></figure><p class="" id="f0dca8c4-82bd-4500-85ec-b4f7aeaece3d">
+</p><p class="" id="ce7ed22a-b1c0-4ed1-9199-2b1beaa246e2">
+</p></details></li></ul><ul class="toggle" id="6c7d5a27-453d-4c56-912e-07d04f30df87"><li><details open=""><summary>Chemical Means</summary><p class="" id="b77f734e-41e7-447e-9ab6-0481057d8acc">
+</p><h3 class="" id="9c9670ef-dcfa-42d9-b531-d4a476365841"><a href="https://shop.biomeme.com/collections/m1-sample-prep/products/biomeme-m1-sample-prep-cartridge-kit">BIOMEME M1 PREP</a></h3><figure id="a745b045-95d9-4cd5-afa6-4827379405c7"><div class="source"><a href="https://vimeo.com/246982160">https://vimeo.com/246982160</a></div></figure><p class="" id="8dccb923-ab0a-4dd6-b867-8bf448b66d91">This kit claims to be able to extract and purify DNA within 1 minute. There really isn't much info on the exact details of the kit. But according to them, they use a lysis buffer to lyse the cells and the use of a silica membrane to selectively bind DNA and filter any unwanted material.</p><p class="" id="00ffcf87-7714-49a0-a802-977b66668d65">
+</p><h3 class="" id="e879a8f2-a58f-4738-8b4c-c5f84d2fef3a">Silica Matrices (Like Biomeme's M1 Prep)</h3><p class="" id="4ef2682b-37a4-43e0-82dd-6676e8cd46c3">
+</p><p class="" id="0fc83f09-e1dc-4003-9a78-4f9d38cc9aff">Based on the principle that DNA is negatively charged, a positively charged silica membrane is used to selectively bind DNA/RNA. According to <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0203011">this paper</a>, the rest of the cellular contaminants can be washed out using distilled water or a buffer like Tris-EDTA. Major limitation: It cannot be reused!</p><p class="" id="d7076d19-83c9-480a-b90f-0eee3133bd9e">
+</p><h3 class="" id="a42c0893-8a93-4805-9ddf-322cdb4ad671"><a href="https://biomedgrid.com/pdf/AJBSR.MS.ID.001234.pdf">Proteinase K</a></h3><p class="" id="32c1638c-8679-43e3-9bb0-88274aa7d1f1">
+</p><p class="" id="c8cce781-9732-40b3-8d4c-5eae096554e0">This is a common protease used to lyse the cells. In addition to proteinase K, SDS is also added to dissolve cell membranes and denature and unfold proteins. </p><p class="" id="3b93e157-1b40-4fc8-b48e-2fdd38739a4c">
+</p><figure class="link-to-page" id="8296540f-e2ff-404c-8953-25507a2d0fd0"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/Extraction%20Using%20Magnetic%20Beads%208296540fe2ff404c895325507a2d0fd0.html">Extraction Using Magnetic Beads</a></figure></details></li></ul><div class="collection-content" id="6241b195-5d90-4ba2-91c2-1ce2f4d9b5f1"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th></tr></thead><tbody><tr id="e10a4656-e04a-4ea8-b727-0ba494cbd211"><td class="cell-title"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/References%206241b1955d904ba291c21ce2f4d9b5f1/Sambrook%20and%20Russell,%201989%20e10a4656e04a4ea8b7270ba494cbd211.html">Sambrook and Russell, 1989</a></td><td class="cell-VU*J"><a class="url-value" href="Molecular Cloning: A Laboratory Manual (Third Edition)">Molecular Cloning: A Laboratory Manual (Third Edition)</a></td><td class="cell-C?p_"><strong>Must be accesed via NYUAD Library</strong></td></tr><tr id="043fedae-e019-41fc-86d5-13e10465a83c"><td class="cell-title"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/References%206241b1955d904ba291c21ce2f4d9b5f1/Untitled%20043fedaee01941fc86d513e10465a83c.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-C?p_"></td></tr><tr id="c9711062-7a32-4850-8cce-fd28d2afae9e"><td class="cell-title"><a href="Nucleic%20Acid%20Extraction%2031cd12549eb14fc38d3b15c2acbeea9d/References%206241b1955d904ba291c21ce2f4d9b5f1/Untitled%20c97110627a3248508ccefd28d2afae9e.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-C?p_"></td></tr></tbody></table></div></div></article></div></body></html>

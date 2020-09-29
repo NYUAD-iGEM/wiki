@@ -1,0 +1,1340 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>User Mapping</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrum {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrum li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrum li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrum li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrum li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrum"><li>User Mapping</li></ul><div id="page"><article class="page sans" id="e56c2ac7-a734-4885-9633-452081da82d7"><header><div class="page-header-icon undefined"><span class="icon">🎙️</span></div><h1 class="page-title">User Mapping</h1></header><div class="page-body"><figure class="block-color-gray_background callout" id="06a1e46f-7167-4557-b072-195500d4b806" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">🖇️</span></div><div style="width:100%">The user mapping team works to understand where a diagnostic device falls into ensuring animal biosecurity by identifying stakeholders. </div></figure><h1 class="" id="b3a16c34-c290-40f8-96fc-77b43a754e8a">Pages</h1><figure class="link-to-page" id="d654faf9-0dd5-4788-9bbf-93549913ab28"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/eDNA%20d654faf90dd547889bbf93549913ab28.html">eDNA</a></figure><figure class="link-to-page" id="03ef0367-931b-45fe-a58c-c4322dfe6f6c"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Value%20Proposition%2003ef0367931b45fea58cc4322dfe6f6c.html"> Value Proposition</a></figure><figure class="link-to-page" id="a2e2e40e-a443-4c74-8542-3f64c3573833"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Testing%20Pathway%20a2e2e40ea4434c7485423f64c3573833.html">Testing Pathway</a></figure><figure class="link-to-page" id="87e2ca78-19c5-420e-95c9-76c4087dd662"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Questions%2087e2ca7819c5420e95c976c4087dd662.html">Questions</a></figure><figure class="link-to-page" id="a0a1c21c-8f7c-4c2e-924f-82069456c106"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Current%20diagnostic%20methods%20a0a1c21c8f7c4c2e924f82069456c106.html">Current diagnostic methods</a></figure><figure class="link-to-page" id="586b2f2b-3684-45c1-847a-da80e6143b0b"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Case%20studies%20of%20animal%20infectious%20diseases%20586b2f2b368445c1847ada80e6143b0b.html">Case studies of animal infectious diseases</a></figure><figure class="link-to-page" id="7217315d-2e63-4a7a-a3ca-6c7c9a6de251"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251.html">Pre-arrival</a></figure><figure class="link-to-page" id="11b386d4-6f41-49a2-99c7-c3deb4f3b3ac"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Invasion%20Front%2011b386d46f4149a299c7c3deb4f3b3ac.html">Invasion Front</a></figure><figure class="link-to-page" id="9b4e0424-dadd-4b81-9216-f7a13df8166a"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Epidemic%209b4e0424dadd4b819216f7a13df8166a.html">Epidemic</a></figure><figure class="link-to-page" id="6dafb16d-5128-4897-b029-68017a2630b2"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Amphibian%20Decline%206dafb16d51284897b02968017a2630b2.html">Amphibian Decline</a></figure><figure class="link-to-page" id="52d52f60-cbfa-4cda-ac93-68de6afb944f"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Impact%2052d52f60cbfa4cdaac9368de6afb944f.html">Impact</a></figure><figure class="link-to-page" id="65988db7-5bf2-41b7-9b5b-09d7444c3f44"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Assessing%20Private%20Users%2065988db75bf241b79b5b09d7444c3f44.html">Assessing Private Users</a></figure><figure class="block-color-blue link-to-page" id="07bff867-0199-47a6-bf8a-e80bb0e467b2"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Stakeholder%20Organizations%2007bff867019947a6bf8ae80bb0e467b2.html">Stakeholder Organizations</a></figure><h1 class="block-color-purple" id="1605793b-0fa8-4d5f-b63a-3b7f0b0ac92b">Process</h1><ul class="bulleted-list" id="20e1f2f8-0f4a-47c7-a9a5-538d90df3912"><li>Following the identification of the three main aspects of animal biosecurity in this context (monitoring, research, and intervention), we broadly identified two major users: government institutions and researchers. </li></ul><ul class="bulleted-list" id="7ef8af3c-bad1-49fa-9f22-fc418958af02"><li>Usage by private entities such as pet owners and stores, zoos etc are being researched more to identify if there is a noticeable usage or need. </li></ul><ul class="bulleted-list" id="1c108a84-9e33-4a07-b99d-db9fcc2134e1"><li>We sought to identify where the use of a diagnostic device lied in these realms. </li></ul><div class="column-list" id="cae17514-734e-4a71-b1dd-7f8f5fbf00d9"><div class="column" id="2ad60d71-3ea6-4279-9a36-43cf6443a62c" style="width:50%"><h3 class="" id="d3e92576-7f9d-4505-9f0b-dba11ec06279">Institutions</h3><ol class="numbered-list" id="9111c210-c526-4e25-a4c4-320c983e5cfc" start="1"><li>Where in the monitoring efforts do government institutions utilize diagnostic devices?<ul class="bulleted-list" id="24150c7a-83fc-46f5-898c-38d57c1a363a"><li>Live animal imports Animal/pet trade</li></ul></li></ol><ol class="numbered-list" id="2d60949b-6235-467b-8773-1240ec61ade3" start="2"><li>Which bodies utilize a diagnostic device? </li></ol><ol class="numbered-list" id="5bcf3db5-8752-4f4c-976b-0fee7a7542e1" start="3"><li>To aid in engineering the product: how is a diagnostic device utilized in their activities? Where is it not but can be?</li></ol></div><div class="column" id="aec9ebbe-4d72-451d-a5fe-d2813d78e887" style="width:49.99999999999999%"><h3 class="" id="1a20033f-aba7-4cc0-913a-1e71d62d33d1">Researchers</h3><ol class="numbered-list" id="2e344300-abaf-421b-8579-30ff3f7e2863" start="1"><li>Where in their research does data collected from a diagnostic device come in?</li></ol><ol class="numbered-list" id="5ecf83e7-cd0e-4ff3-9785-cdbd586ab165" start="2"><li>How often are those use cases noticed in literature and ongoing research?</li></ol><ol class="numbered-list" id="33a90c5a-f2b3-4f20-b342-abdac00b6457" start="3"><li>To aid in engineering the product: how is a diagnostic device utilized in their activities? Issues with current methods</li></ol><p class="" id="b312159a-2b80-4a44-91ca-7650c92fba35">
+</p></div></div><ul class="bulleted-list" id="c38a60ba-9b47-47d6-91ca-54bdfb5e1e87"><li>Ensuring biosecurity for wildlife diseases has numerous conversations in the scientific community leading to toolboxes/strategies to effectively bridge science and management. </li></ul><ul class="bulleted-list" id="9771b7d7-0a50-4a20-94ba-230ed5482ff1"><li>As can be seen in the main team board, the role of governments is strongly tied to different stages of handling infectious wildlife diseases. </li></ul><ul class="bulleted-list" id="43055719-6efa-4e23-ba5a-4d2ab7a2a4fb"><li>Based on <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(Langwig%20et%20al%20,%202015)%20102206b6d5a44f57af35ffb70cc0dbfb.html">(Langwig et al., 2015)</a>'s work, we divided our user mapping process using three stages based on differences in disease dynamics and appropriate management actions: Pre‐arrival, Invasion front, Epidemic/Established. </li></ul><div class="column-list" id="ccaf5df8-7542-4203-afdb-bfddd152f541"><div class="column" id="8fa4c5d0-cbbf-441c-8471-986ebe837bcd" style="width:50%"><figure class="image" id="2aeaf20e-0bad-43dd-bc54-c1fa1b81a433"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/image.gif"><img src="User%20Mapping%20e56c2ac7a73448859633452081da82d7/image.gif" style="width:336px"/></a></figure></div><div class="column" id="d9a1951c-513f-4673-95a5-6f949232debf" style="width:50%"><figure class="image" id="ec58daa9-dfc5-45a4-aeb7-db7fea73f0be"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/image.jpeg"><img src="User%20Mapping%20e56c2ac7a73448859633452081da82d7/image.jpeg" style="width:557px"/></a></figure></div></div><ul class="bulleted-list" id="7857b157-af66-4bf7-bbc8-11aec74ec61d"><li>"Identifying the invasion stage of the pathogen in a region requires data on host abundance and <strong>pathogen prevalence</strong>, making the initial collection of these data a critical part of disease management." <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(Langwig%20et%20al%20,%202015)%20102206b6d5a44f57af35ffb70cc0dbfb.html">(Langwig et al., 2015)</a> </li></ul><ul class="bulleted-list" id="9fa1b2b7-bb99-4013-8fc8-506dbe37bd53"><li>We hope to map the different stages of an intervention to the activities carried out by different institutions and government entities. </li></ul><ul class="bulleted-list" id="4f4d8e00-9c47-4c13-9149-6d78c80d7da7"><li>The identified usage of a diagnostic device in animal biosecurity are the following: <ol class="numbered-list" id="f6844ec5-9591-4337-9dce-139eb33a0f8c" start="1"><li>Active testing as part of risk assessment</li></ol><ol class="numbered-list" id="40aa2153-bcaa-4684-95b6-119e196d4c47" start="2"><li>Pre-import testing</li></ol><ol class="numbered-list" id="fa14e2b3-9d7d-47a4-b471-65b8b31f3b28" start="3"><li>Personal usage by pet owners, stores, and zoos</li></ol><ol class="numbered-list" id="618178bb-5f5f-495d-8675-ca20a5058cf3" start="4"><li>Testing as part of prevention using host culling</li></ol><ol class="numbered-list" id="af07d83a-5945-4a66-8076-e1a4ef716399" start="5"><li>Disease prevalence test during invasion front</li></ol><ol class="numbered-list" id="32721e92-9016-48f0-b42b-702f3c9ac3e8" start="6"><li>Disease prevalence test during epidemic</li></ol></li></ul><ul class="bulleted-list" id="9a123ca3-6384-4045-8c7c-2815c943e8a4"><li>The pre-arrival stage is one of caution where a given disease could potentially spread to a given area. In the case of the Bsal and Bd for instance, even though cases have not reached an alarming rate in most parts of Europe, models indicate areas are susceptible to spread pending physical spread and climatic conditions amongst other reasons. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Amphibian%20Decline%206dafb16d51284897b02968017a2630b2.html">Amphibian Decline</a> Import restrictions, <strong>monitoring of target species</strong>, and pubic engagement are actions that could be taken during this first stage. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(Langwig%20et%20al%20,%202015)%20102206b6d5a44f57af35ffb70cc0dbfb.html">(Langwig et al., 2015)</a> </li></ul><ul class="bulleted-list" id="c0c6d458-ae6c-42cd-bb61-3e7d2cf3d418"><li>In the pre-arrival stage, we identified that most of the usage is by researchers working to assess the risk of the disease by identifying prevalence spread. </li></ul><ul class="bulleted-list" id="2047bced-efac-4a14-9ac8-0e726d0af2b6"><li>After collecting sample from a live animal, the amphibian is released at the point of capture. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(Tarrant%20et%20al%20,%202013)%2024138fd0accb4953a813cfb5bb05382d.html">(Tarrant et al., 2013)</a> The addition of a field use device at this stage would thus not contribute to biosecurity, besides perhaps to convenience. Stakeholders will be queried to see if they would be keen on not releasing animals if the diagnostic method gave quick results. </li></ul><ul class="bulleted-list" id="ba6d74a8-c77e-4e29-8f19-5dbafb50b8f5"><li>A potential method of advancement for a fully functional diagnostic device is through international membership organizations that have under their mandate reporting of diseases. </li></ul><ul class="bulleted-list" id="d1dea4ec-d5ef-4bfc-9d48-d7b868d14df6"><li>Active testing as part of risk assessment: <ul class="bulleted-list" id="01140308-ee47-404e-837c-0784dbca6151"><li>Unless part of a mandated risk assessment in the wake of cases/symptoms, there doesn't seem to be any case of frequent testing (monitoring) to ensure a habitat/species has been compromised. </li></ul></li></ul><ul class="bulleted-list" id="eee741ae-b320-4ef7-b28b-5732110289cc"><li>Pre-import testing<ul class="bulleted-list" id="1e2251a6-c16e-470e-968d-f119f2a02f24"><li>The European Food Safety Authority has found that enacting legislation that requires testing of the animals to demonstrate freedom from Bsal, before movement can take place, complemented with other measures such as quarantining, tracking and public awareness are possible risk mitigation measures to ensure sage international and EU trade of salamanders and their products. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(EFSA%20et%20al%20,%202017)%20f12a497261854fa4b1451aed141a9aa6.html">(EFSA et al., 2017)</a> </li></ul></li></ul><ul class="bulleted-list" id="84d9f4d8-ad88-4742-851b-363301cd6653"><li>The OIE has set principles and methods of validation of diagnostic assays for infectious diseases that need to be fulfilled for acceptance and usage in regulations. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Current%20diagnostic%20methods%20a0a1c21c8f7c4c2e924f82069456c106/References%20078678e76c614c8e999a0febb2ca62c2/(OIE,%202019)%20274db633256346898bdcb1be7c5544e9.html">(OIE, 2019)</a> </li></ul><p class="" id="a9c5f192-06c2-4b63-b65a-97cbb9aa4a4c">
+</p><figure class="image" id="5b87efbc-79cc-4675-9496-36701a96d832"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Untitled.png"><img src="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Untitled.png" style="width:432px"/></a></figure><ul class="bulleted-list" id="0911dfee-34e8-4601-908e-4001fe11321b"><li>An assay that has completed the first three stages of the validation pathway (figure above), including performance characterization, can be designated as “validated for the original intended purpose(s) and <em>become accepted</em> by the OIE.</li></ul><p class="" id="0cf28242-b1fc-492d-abe2-35d75202ac05">
+</p><ul class="bulleted-list" id="d559c903-92da-49f8-8cdb-64e47adfda92"><li>Currently, the OIE only has clinical signs and behavioral changes listed under field use methods. </li></ul><figure class="image" id="fc61af07-750f-40c0-af12-a1bcaa794f62"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Screen_Shot_2020-06-11_at_10.57.21_AM.tiff"><img src="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Screen_Shot_2020-06-11_at_10.57.21_AM.tiff" style="width:672px"/></a></figure><p class="" id="84f4f462-5893-4852-b949-4ee1dd1f0a7b"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(EFSA%20et%20al%20,%202017)%20f12a497261854fa4b1451aed141a9aa6.html">(EFSA et al., 2017)</a> </p><p class="" id="62a86f9e-85a4-411a-bacc-ec982427cbeb">
+</p><ul class="bulleted-list" id="4ee00aba-7d10-471b-b6d1-b040eca858af"><li>Some of the mitigation measures proposed by <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(Grant%20et%20l%20,%202017)%204da8099b4f1446029c8d131036878265.html">(Grant et l., 2017)</a> and evaluated by <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(EFSA%20et%20al%20,%202017)%20f12a497261854fa4b1451aed141a9aa6.html">(EFSA et al., 2017)</a> as ineffective have their roots in a lack of quick response which could potentially be enhanced with a diagnostic device. </li></ul><blockquote class="" id="0b465952-92c9-4c74-b21d-a843b0bb0cca">[Quarantine] measures could be applied for both imports into the EU and intra-EU movements. The recommended duration of quarantine is 6–8 weeks during which the salamanders are to be sampled by skin swabs and tested by PCR assay at the beginning and the end of quarantine, although the test, at this point in time, <strong>has not been yet validated and the uncertainty related to its performance is very high.</strong> <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(EFSA%20et%20al%20,%202017)%20f12a497261854fa4b1451aed141a9aa6.html">(EFSA et al., 2017)</a> </blockquote><ul class="bulleted-list" id="0b616ccd-0b1e-42c7-8d0f-bc4070d46a86"><li>When testing a conignment of amphibians during import or assessment, ensuring high confidence (95%) with worst-case DSe identified by <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Pre-arrival%207217315d2e634a7aa3ca6c7c9a6de251/References%2081e83faec4c04d4f909e4839e02c9dc1/(EFSA%20et%20al%20,%202017)%20f12a497261854fa4b1451aed141a9aa6.html">(EFSA et al., 2017)</a> (0.5) needs large sample sizes from the consignment. <figure class="image" id="f1637e31-04e0-4975-b72a-9f89e64fd82a"><a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Screen_Shot_2020-06-11_at_11.11.45_AM.tiff"><img src="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Screen_Shot_2020-06-11_at_11.11.45_AM.tiff"/></a></figure></li></ul><ul class="bulleted-list" id="fb9cb04b-5002-4c26-9144-bcbc1ccaaa12"><li>Our diagnostic device could thus improve the process in two ways: increase the sensitivity and specificity (requiring lower sample sizes) or have a comparable detection metrics to current methods but output results at a much lower turnover time.</li></ul><ul class="bulleted-list" id="5dac6d3d-704b-45ac-a687-9190b14845e6"><li>Discussion from Dr. Penner indicates that host culling is not actively sought for Bd and Bsal. However, some of that non-relaince of host culling as a containment major has to do with the unrelaiblity of current diagnostic methods. </li></ul><ul class="bulleted-list" id="d1eae54e-d847-43a7-947a-6c3401b7bea8"><li>Dr. Penner also confirmed that there would be an added advantage to a rapid field use device besides convenience since the researchers would then have the option of not releasing infected animals back into the habitat. </li></ul><ul class="bulleted-list" id="69a2de33-ad4b-450b-a0fc-ed3336534178"><li>Beyond managing the diagnostic techniques, Dr. Penner pointed out that additional skills are required for finding and identifying animals in the wild.</li></ul><ul class="bulleted-list" id="f745901a-e29c-4276-8bd8-fbfe444760a2"><li>Active surveillance is carried out varyingly amongst nations and governing bodies. The government of Germany, for example, only takes an active role with diseases related to birds and mammals. Amphibian and reptile diseases are analysed by researchers.</li></ul><ul class="bulleted-list" id="93f30893-afb9-4a17-9745-dd249dfd296a"><li>Given the other elements of this stage (testing, quarantine, and banning), Dr. Penner indicated that  the cost of testing as a limitation for the biosecurity measures in trade is high.</li></ul><blockquote class="" id="f504c6a3-954a-4537-b160-d376dba0c07f">... there are "waves" of higher rates of testing and lower efforts but not really continuous comparable standardized monitoring. Your machine could enable that. <a href="https://www.notion.so/Dr-Penner-User-Mapping-Questions-ddbbcf09fafb4e87a44252f5636b3bc9">Dr. Penner User Mapping Questions</a> </blockquote><ul class="bulleted-list" id="68e3dc28-3aa1-4070-925d-d3cd5f54ef1b"><li>The EPA (US Environmental Protection Agency) states high costs, some requiring sacrificing animals, others being invasive but nonlethal, while only a few being noninvasive to recommend laboratory investigations be considered on a higher-order or tier than routine bioassessments.</li></ul><ul class="bulleted-list" id="e59565f5-7a74-4130-99fc-977e716039e3"><li>Why PCR?<ul class="bulleted-list" id="427512c9-30ea-4099-8813-87bec6306b15"><li>Several diagnostic methods for Bsal detection have been described including histology/histopathology, PCR, qPCR, and lateral flow technology. However, the limitations of some of these techniques include (i) the need for experienced operators or experts to perform these assays, (ii) the ability of the tests to only detect and not quantify the pathogen in samples, (iii) the inability to detect low numbers of the pathogen and (iv) poor diagnostic sensitivity and specificity. The Bsal real-time PCR adequately addresses these limitations and is one of the premier methods for Bsal diagnostics in use. <a href="User%20Mapping%20e56c2ac7a73448859633452081da82d7/Testing%20Pathway%20a2e2e40ea4434c7485423f64c3573833/References%206903e1b32a6f4e5b9560a22b3a21e555/(Thomas%20et%20al,%202017)%20fff0ebd7d2504e36a7f1412de854971a.html">(Thomas et al, 2017) </a> </li></ul></li></ul><h3 class="" id="7c77eb56-0197-4652-8fa9-a94ae2b5b223">Takeaways from Dr. Langwig interview:</h3><ul class="bulleted-list" id="ed8e2f6b-2bf9-4560-93cf-4e7d83063614"><li>One issue with culling during pre-arrival (and culling in general) is that if the outbreak is much more widespread than your sampling, culling will be ineffective. However, if the spread is very localized, then knowing which animals are infected during pre-arrival would be helpful. Faster tests will always allow faster decisions.</li></ul><ul class="bulleted-list" id="3334d924-f5e9-4577-83ae-bc3e06cc1229"><li>Most of the time, the complications [with field work in collecting sample] come from being to accurately identify the species and catch and hold the animal appropriately as opposed to collecting the sample (which in our case is just a swab).</li></ul><ul class="bulleted-list" id="26b2102c-6225-4a06-972e-c430ebb7849b"><li>Sometimes researchers are leading the charge to collect samples, as has often been the case for chytridiomycosis. For other pathogens, sampling is more routine, usually conducted by government employees, often with more coordinated oversight by a central government.</li></ul><ul class="bulleted-list" id="eafc1879-2013-4c8a-bfd3-c121ad40193c"><li>Testing might be cheaper than implementing trade bans, depending on the product and specific risk. For example, the U.S. banned salamander imports, and while I don't know specific dollar amounts, I suspect the importation of salamanders to the U.S. is not generating a lot of value. (Dr. Karen Lips at U of Maryland was involved in this, and might be a good person to contact.) Therefore, banning salamander imports might be worth the cost tradeoff of testing every salamander. For something where profits were higher, I would think testing could be far more beneficial then costs associated with reductions in trade or sanitizing equipment.</li></ul><h2 class="" id="f6fd2a45-9ff0-4193-b3cd-d50018f85b7d">Takeaways from Dr. Penner: </h2><ul class="bulleted-list" id="9475c3c5-cfbd-42bc-9f4d-8a1731407d41"><li>No, culling is not a strategy currently promoted for Bd or Bsal. This has several reasons. Partly because diagnostics are never 100% reliable. Partly because this will not stop the spread of the disease because it is also transmitted by other vectors (i.e. other species and other means (e.g. soil, water). Testing all vectors is impossible. For Bd and BSal other researchers test avenues to cure the infected individuals, which looks promising in the case of Bsal. So the current idea is to remove infected individuals, keep them in captivity until free of the pathogen, monitor the environment until pathogen free as well, then release the individuals back into the wild.</li></ul><ul class="bulleted-list" id="db003ab9-ce6e-4948-a0bd-173e85c44010"><li>[If diagnostic were to be improved], researchers would be faster and would not release infected animals. These would not be culled but cured and released at a later point in time. This is not possible with current methods.  One has to wait until infections have spread widely, then find living animals which will all be collected (not only infected individuals) and treated in captivity until release.</li></ul><ul class="bulleted-list" id="d3fb3aff-385a-4f99-b2b5-e7763f2642e4"><li>Currently researchers [collect samples] but in case this will prove to be a reliable method, hired personnel would most likely be included as well.</li></ul><ul class="bulleted-list" id="0cf868e1-ebb9-4f78-b93e-4c6d57e91162"><li>Currently, the government in Germany only takes an active role in diseases related to birds and mammals. Amphibian and reptile diseases are analyzed by researchers.</li></ul><ul class="bulleted-list" id="6d1c2c66-84a3-4ee8-b286-92341d339203"><li>Q: One of the barriers to a rigorous measure during the pre-arrival stage is the significant cost and impact on trade. (Langwig et al., 2015) Given the other elements of this stage (testing, quarantine, and banning), how significant is the cost of testing as a limitation for the biosecurity measures?<ul class="bulleted-list" id="3f21c63e-2de9-4cbe-871e-ce729a973401"><li>In my opinion, costs are significant because research is conducted on the basis of money acquired by third-party funds. Thus limited and only available for specific projects. Thus there are "waves" of higher rates of testing and lower efforts but not really continuos comparable standardized monitoring. Your machine could enable that.</li></ul></li></ul></div></article></div></body></html>

@@ -1,0 +1,1381 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Reporting Mechanism</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>
+
+/* CLEAR DEFAULT SETTINGS **************************************************/
+	#sideMenu, #top_title, .patrollink, #firstHeading,  #home_logo, #sideMenu { display:none; }
+	#content { padding:0px; width:100%; margin-top:-7px; margin-left:0px; border:none;}
+	body, html {background-color:white; width: 100%; height: 100%;}
+	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+
+	#bodyContent a[href ^="https://"], .link-https { padding-right:0px;}
+
+
+#page {
+  /* Indent toggle children */
+  /* Indent toggle children */
+  margin: 2em auto;
+    max-width: 900px;
+    color: #37352f;
+    font: initial;
+
+}
+#page html {
+  -webkit-print-color-adjust: exact;
+}
+#page * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+#page html,
+#page body {
+  margin: 0;
+  padding: 0;
+}
+#page body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+#page a,
+#page a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+#page .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+#page h1,
+#page h2,
+#page h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#page .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+#page h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+#page h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+#page h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+#page .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+#page .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+#page figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+#page figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+#page mark {
+  background-color: transparent;
+}
+#page .indented {
+  padding-left: 1.5em;
+}
+#page hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+#page img {
+  max-width: 100%;
+}
+@media only print {
+  #page img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+@page {
+  #page {
+    margin: 1in;
+  }
+}
+#page .collection-content {
+  font-size: 0.875rem;
+}
+#page .column-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page .column {
+  padding: 0 1em;
+}
+#page .column:first-child {
+  padding-left: 0;
+}
+#page .column:last-child {
+  padding-right: 0;
+}
+#page .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+#page .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+#page .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+#page .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+#page .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+#page table,
+#page th,
+#page td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+#page table {
+  border-left: none;
+  border-right: none;
+}
+#page th,
+#page td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+#page th {
+  color: rgba(55, 53, 47, 0.6);
+}
+#page ol,
+#page ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+#page li > ol:first-child,
+#page li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+#page ul > li {
+  list-style: disc;
+}
+#page ul.to-do-list {
+  text-indent: -1.7em;
+}
+#page ul.to-do-list > li {
+  list-style: none;
+}
+#page .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+#page ul.toggle > li {
+  list-style: none;
+}
+#page ul {
+  padding-inline-start: 1.7em;
+}
+#page ul > li {
+  padding-left: 0.1em;
+}
+#page ol {
+  padding-inline-start: 1.6em;
+}
+#page ol > li {
+  padding-left: 0.2em;
+}
+#page .mono ol {
+  padding-inline-start: 2em;
+}
+#page .mono ol > li {
+  text-indent: -0.4em;
+}
+#page .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+#page .toggle > li > details {
+  padding-left: 1.7em;
+}
+#page .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+#page .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+#page .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+#page time {
+  opacity: 0.5;
+}
+#page .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+#page img.icon {
+  border-radius: 3px;
+}
+#page .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+#page .user-icon-inner {
+  font-size: 0.8em;
+}
+#page .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+#page .page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+#page .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+#page .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+#page .page-header-icon img {
+  border-radius: 3px;
+}
+#page .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+#page p > .user {
+  opacity: 0.5;
+}
+#page td > .user,
+#page td > time {
+  white-space: nowrap;
+}
+#page input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+#page p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#page .image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+#page .code,
+#page code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+#page code {
+  color: #eb5757;
+}
+#page .code {
+  padding: 1.5em 1em;
+}
+#page .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#page .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+#page blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid #37352f;
+}
+#page .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+#page .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+#page .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+#page .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#page .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+#page .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+#page .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+#page .sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#page .code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#page .serif {
+  font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif;
+}
+#page .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+#page .pdf .sans {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC", "Noto Sans CJK KR";
+}
+#page .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC", "Noto Sans Mono CJK KR";
+}
+#page .highlight-gray {
+  color: #9b9a97;
+}
+#page .highlight-brown {
+  color: #64473a;
+}
+#page .highlight-orange {
+  color: #d9730d;
+}
+#page .highlight-yellow {
+  color: #dfab01;
+}
+#page .highlight-teal {
+  color: #0f7b6c;
+}
+#page .highlight-blue {
+  color: #0b6e99;
+}
+#page .highlight-purple {
+  color: #6940a5;
+}
+#page .highlight-pink {
+  color: #ad1a72;
+}
+#page .highlight-red {
+  color: #e03e3e;
+}
+#page .highlight-gray_background {
+  background: #ebeced;
+}
+#page .highlight-brown_background {
+  background: #e9e5e3;
+}
+#page .highlight-orange_background {
+  background: #faebdd;
+}
+#page .highlight-yellow_background {
+  background: #fbf3db;
+}
+#page .highlight-teal_background {
+  background: #ddedea;
+}
+#page .highlight-blue_background {
+  background: #ddebf1;
+}
+#page .highlight-purple_background {
+  background: #eae4f2;
+}
+#page .highlight-pink_background {
+  background: #f4dfeb;
+}
+#page .highlight-red_background {
+  background: #fbe4e4;
+}
+#page .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+#page .block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+#page .block-color-brown {
+  color: #64473a;
+  fill: #64473a;
+}
+#page .block-color-orange {
+  color: #d9730d;
+  fill: #d9730d;
+}
+#page .block-color-yellow {
+  color: #dfab01;
+  fill: #dfab01;
+}
+#page .block-color-teal {
+  color: #0f7b6c;
+  fill: #0f7b6c;
+}
+#page .block-color-blue {
+  color: #0b6e99;
+  fill: #0b6e99;
+}
+#page .block-color-purple {
+  color: #6940a5;
+  fill: #6940a5;
+}
+#page .block-color-pink {
+  color: #ad1a72;
+  fill: #ad1a72;
+}
+#page .block-color-red {
+  color: #e03e3e;
+  fill: #e03e3e;
+}
+#page .block-color-gray_background {
+  background: #ebeced;
+}
+#page .block-color-brown_background {
+  background: #e9e5e3;
+}
+#page .block-color-orange_background {
+  background: #faebdd;
+}
+#page .block-color-yellow_background {
+  background: #fbf3db;
+}
+#page .block-color-teal_background {
+  background: #ddedea;
+}
+#page .block-color-blue_background {
+  background: #ddebf1;
+}
+#page .block-color-purple_background {
+  background: #eae4f2;
+}
+#page .block-color-pink_background {
+  background: #f4dfeb;
+}
+#page .block-color-red_background {
+  background: #fbe4e4;
+}
+#page .select-value-color-default {
+  background-color: rgba(206, 205, 202, 0.5);
+}
+#page .select-value-color-gray {
+  background-color: rgba(155, 154, 151, 0.4);
+}
+#page .select-value-color-brown {
+  background-color: rgba(140, 46, 0, 0.2);
+}
+#page .select-value-color-orange {
+  background-color: rgba(245, 93, 0, 0.2);
+}
+#page .select-value-color-yellow {
+  background-color: rgba(233, 168, 0, 0.2);
+}
+#page .select-value-color-green {
+  background-color: rgba(0, 135, 107, 0.2);
+}
+#page .select-value-color-blue {
+  background-color: rgba(0, 120, 223, 0.2);
+}
+#page .select-value-color-purple {
+  background-color: rgba(103, 36, 222, 0.2);
+}
+#page .select-value-color-pink {
+  background-color: rgba(221, 0, 129, 0.2);
+}
+#page .select-value-color-red {
+  background-color: rgba(255, 0, 26, 0.2);
+}
+#page .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+#page .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+#page .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  white-space:nowrap;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+
+.side-btn {
+    width: 4%;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    background-color: teal;
+    z-index: 999;
+}
+
+.side-section {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    color: white;
+}
+
+.side-menu-btn {
+    position: relative;
+    top: 80%;
+    left: 0%;
+}
+
+.parallax-container {
+    justify-content: center;
+}
+
+/* the menu to exit animation */
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 90%;
+}
+
+.menu svg {
+    width: 100%;
+    height: 10%;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+button:focus {
+    background-color: transparent;
+}
+
+
+</style></head><body><ul class="breadcrumb"><li><a href="../Biology 5027317968dc4b0991d182595c59a08b.html">Biology</a></li><li>Reporting Mechanism</li></ul><div id="page"><article class="page sans" id="fa41c625-c8e4-4aea-af19-b4d1c85ab44f"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_beige.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Reporting Mechanism</h1></header><div class="page-body"><p class="" id="f6f7d8fd-e5ca-4bc4-b527-21a42fbb41c8"><span class="user">@Adrian Villanueva</span> <span class="user">@Yujeong Oh</span> <span class="user">@Marko Susic</span> </p><p class="" id="9906f37b-770b-4e56-b379-6220b3755dab">
+</p><p class="" id="e3a0aeb7-37c0-4845-a6a1-ae62f4cca9d1">Each reporting mechanism is dependent on the CRIPSR system used for the project i.e. Toehold switches are generally more geared towards CRISPR/Cas9 Systems.</p><p class="" id="9dbf455b-5bcb-4e12-af4d-61644c961184">
+</p><ul class="toggle" id="59f0e060-51e4-4c4f-868f-e39bffb124ac"><li><details open=""><summary><strong>Toehold Switch (Cas9)</strong></summary><p class="block-color-teal" id="ccfd86d9-d6ac-4e7e-a221-705bdccd86ea"><strong>Toehold Switches Activating An Reporter Protein</strong></p><p class="block-color-teal" id="0a5fd696-13d2-4db0-8b7f-c7c1c862d2b7">(From Team ODYSSEE - Winner of best diagnostics project 2019)</p><figure class="image" id="6e18a32a-2a2b-4fa7-8947-9ef1cff48900"><a href="https://lh6.googleusercontent.com/w1vnMeA_kIrz-5UvyoBafRuSsLcLyQ6EWc2pA69hWNqyJyUFRiQsxMgUnppnTPE0coLkmihg9T1S8zcRA6uDc0h5SOqH78emmmTS9c0GbcPykltIX-YEi4plExTu-Pe8LmieZu2e"><img src="https://lh6.googleusercontent.com/w1vnMeA_kIrz-5UvyoBafRuSsLcLyQ6EWc2pA69hWNqyJyUFRiQsxMgUnppnTPE0coLkmihg9T1S8zcRA6uDc0h5SOqH78emmmTS9c0GbcPykltIX-YEi4plExTu-Pe8LmieZu2e" style="width:576px"/></a></figure><h3 class="" id="675bc242-7f4d-4b1d-a2d4-75724d9c8ed4"><mark class="highlight-teal"><strong>Figure 1. Illustration of toehold switch</strong></mark></h3><p class="" id="0f6046dd-1525-4208-bd8d-6641d9c684d7">The toehold switch has this hairpin loop such that it prevents a ribosome from binding to the start site of the RNA sequence. We would then need a complimentary trigger that would bind to the RNA sequence right before the loop, causing the hairpin to unwind and allow for translation to occur. In our case, we can code for a reporter gene.</p><p class="" id="8f0b08fd-069f-4575-9329-13a0c13d7dbd">Common reporter genes:</p><ul class="bulleted-list" id="7dd751a5-6e89-4651-b057-84e132f00d50"><li>GFP (Green fluorescent protein)</li></ul><ul class="bulleted-list" id="17da46eb-e47e-4978-a270-bcfa96f72810"><li>Luciferase</li></ul><p class="" id="e46b9f68-2e93-4b64-9ba1-01b057da5e49">
+</p><p class="" id="eec09a25-8384-451e-9464-f84a64918a73">Potential:</p><ul class="bulleted-list" id="343d3fa7-6e3a-46d3-af6f-6736f1459e0c"><li>Chromoprotein; colorimetric detection</li></ul><p class="" id="d90b1e80-441b-4404-b1c0-8052d9811ca2">
+</p><p class="" id="42267a9e-1873-40ae-a382-261d3be5f2a6">This Toehold Switch is normally coupled with CRISPR Cas9 systems. A study by K. Pardee (2016) shows detection of Zika virus using CRISPR-Cas9 system and toehold switch: </p><ul class="bulleted-list" id="7e3879df-6dfb-41e6-9736-a0e1b24b182e"><li>Theory: Toehold switch sensors are programmable synthetic riboregulators that control the translation of a gene via the binding of a trans-acting trigger RNA. The switches contain a hairpin structure that blocks gene translation in cis by sequestration of the ribosome binding site (RBS) and start codon. Upon a switch binding to a complementary trigger RNA, sequestration of the RBS and start codon is relieved, activating gene translation (Figures 2A and 2B ) (Green et al., 2014). To allow for colorimetric detection of trigger RNA sequences, the sensors can be designed to regulate translation of the enzyme LacZ, which mediates a color change by converting a yellow substrate (chlorophenol red-β-D-galactopyranoside) to a purple product (chlorophenol red).</li></ul><div class="collection-content" id="db21fbca-044c-4004-8014-8087381ec3f1"><h4 class="collection-title">References for Toehold Switch</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="83c8b066-d8ea-4f68-a14b-a3f627a0e96d"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Toehold%20Switch%20db21fbca044c400480148087381ec3f1/S%20Auslander,%20M%20Fussenegger%2083c8b066d8ea4f68a14ba3f627a0e96d.html">S Auslander, M Fussenegger</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/516333a#:~:text=The%20development%20of%20RNA%2Dbased,precise%2C%20low%2Dcost%20diagnostics.">https://www.nature.com/articles/516333a#:~:text=The%20development%20of%20RNA%2Dbased,precise%2C%20low%2Dcost%20diagnostics.</a></td></tr><tr id="20234696-36e9-487e-96a0-86e70ad554a0"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Toehold%20Switch%20db21fbca044c400480148087381ec3f1/AA%20Green,%20PA%20Silver,%20JJ%20Collins,%20P%20Yin%202023469636e9487e96a086e70ad554a0.html">AA Green, PA Silver, JJ Collins, P Yin</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/science/article/pii/S0092867414012896">https://www.sciencedirect.com/science/article/pii/S0092867414012896</a></td></tr><tr id="b787d0dc-d558-469f-be82-e8e35b9d013f"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Toehold%20Switch%20db21fbca044c400480148087381ec3f1/Y%20Li,%20S%20Li,%20J%20Wang,%20G%20Liu%20b787d0dcd558469fbe82e8e35b9d013f.html">Y Li, S Li, J Wang, G Liu</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh">https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh</a></td></tr><tr id="7ba630aa-e0b0-4994-a939-2cd79fda7747"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Toehold%20Switch%20db21fbca044c400480148087381ec3f1/K%20Pardee,%202016%207ba630aae0b04994a9392cd79fda7747.html">K. Pardee, 2016</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.cell.com/fulltext/S0092-8674(16)30505-0">https://www.cell.com/fulltext/S0092-8674(16)30505-0</a></td></tr><tr id="0af6fff5-d668-4753-a767-e4f46b211dfb"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Toehold%20Switch%20db21fbca044c400480148087381ec3f1/Untitled%200af6fff5d6684753a767e4f46b211dfb.html">Untitled</a></td><td class="cell-VU*J"></td></tr></tbody></table></div><p class="" id="dbbb302b-c2fd-4612-8030-a1bb4906c47e">
+</p></details></li></ul><ul class="toggle" id="fb7ec198-f599-4300-8212-b409355d44ef"><li><details open=""><summary></summary></details></li></ul><ul class="toggle" id="329e288a-e9d3-40c9-a395-a303c1aba592"><li><details open=""><summary><strong>Quenched ssDNA Reporter (Cas12)</strong></summary><p class="" id="c5b43601-0288-4543-86d8-a11b59656d55">
+</p><figure class="image" id="b80203bc-0439-4f9b-b325-c73bcdead113"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled.png" style="width:1168px"/></a></figure><h3 class="" id="56695180-180b-40d4-b0eb-be4e229a3d42"><mark class="highlight-teal">Figure 1. An example of a quenched ssDNA reporter coupled with Cas12 System</mark></h3><p class="" id="6adb24f5-4bda-4917-a216-79b7faf0d398">
+</p><p class="" id="8f1f7e46-604f-4994-9b49-4bbc2e7c1595">Due to the ability of the Cas12a enzyme to trigger collateral ssDNA cleavage after detection, the Cas12a system can be coupled with a fluorescent quenched ssDNA reporter to easily relay a visible signal to the user.</p><h3 class="" id="211f3f96-6470-4163-9dfc-a775377e84e5"><mark class="highlight-teal">attomolar sensitivity with DETECTR protocol (Chen et al., 2018)</mark></h3><p class="" id="34c5eb02-826f-4076-8085-9e89400d4a81">
+</p><div class="collection-content" id="46e8fd17-f0d2-41ef-a194-69774bf37ef3"><h4 class="collection-title">References for Quenched ssDNA Reporter</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="094925d6-ec56-476d-9482-ba2f43c13059"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Quenched%20ssDNA%20Reporter%2046e8fd17f0d241efa19469774bf37ef3/Y%20Li,%20S%20Li,%20J%20Wang,%20G%20Liu%20094925d6ec56476d9482ba2f43c13059.html">Y Li, S Li, J Wang, G Liu</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh">https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh</a></td></tr><tr id="48b5bcee-9396-4a2a-83e7-bc8c494f805d"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Quenched%20ssDNA%20Reporter%2046e8fd17f0d241efa19469774bf37ef3/(Janice%20S%20Chen%20et%20al%20,%202018)%2048b5bcee93964a2a83e7bc8c494f805d.html">(Janice S. Chen et al., 2018)</a></td><td class="cell-VU*J"><a class="url-value" href="https://science.sciencemag.org/content/360/6387/436">https://science.sciencemag.org/content/360/6387/436</a></td></tr></tbody></table></div><p class="" id="47b40b06-10c8-429d-8a36-845ca71ae8dd">
+</p><p class="" id="71e8d1ff-d579-4a33-803a-f07e15566d32">
+</p><p class="" id="ecad8ac3-ba1b-422d-8121-4dfe5cf75690">
+</p></details></li></ul><ul class="toggle" id="18710b76-c4a3-40bc-b742-653f391a05d3"><li><details open=""><summary><strong>Lateral Flow Readout using FAM-Biotin Reporter (Cas12) </strong></summary><p class="" id="2702281f-8a4c-46b7-8d75-4fdfda9ff704">
+</p><h3 class="block-color-teal" id="c320e9e1-59ec-4fa3-af21-e4093176356a">0.24 fM sensitivity </h3><p class="" id="ea2d6805-2605-48c4-8f69-9c8692a380c0">
+</p><figure class="image" id="bd9d2727-0dda-47e0-9de5-3ead5c8a8b23"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-15_at_11.33.49_PM.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-15_at_11.33.49_PM.png" style="width:1690px"/></a></figure><p class="" id="2de159ff-70df-4857-a93e-2592ea659529">
+</p><figure class="image" id="e095e089-8726-4571-bc2f-dcbe7fc52e02"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_10.10.33_AM.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_10.10.33_AM.png" style="width:1184px"/></a></figure><figure class="image" id="9ba3c24d-7195-4be1-8a4a-39c013371638"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_10.16.14_AM.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_10.16.14_AM.png" style="width:192px"/></a></figure><ul class="bulleted-list" id="db925ebc-8836-43d6-b7a8-8eb439c1186a"><li>Detection using a FAM-biotin labelled ssDNA reporter molecule<ul class="bulleted-list" id="5b2343b2-75eb-472d-a9af-86213c38cf15"><li>Biotin-labeling is commonly used for non-radioactive labeling and purification of proteins and other target molecules.</li></ul></li></ul><ul class="bulleted-list" id="0aa6ceb7-b4ea-4389-992f-2552f7b7d657"><li>Uncleaved reporter molecules are captured at the first line. </li></ul><ul class="bulleted-list" id="109698e5-3b04-47b1-8a00-de3d0e35458d"><li>The cleaved reporter molecules after indiscriminate cleavage activity of Cas12 enzyme are captured at the second line</li></ul><ul class="bulleted-list" id="cdb1dc11-a74d-4122-a66c-d8ae57e38551"><li>Fluorescent signal was detectable &lt;1 min </li></ul><ul class="bulleted-list" id="9f88a9e1-a26c-45da-ace2-89ee80e7e1c4"><li>Visual signal by lateral flow was detectable within 5 min</li></ul><p class="" id="822082f4-75b4-497f-a5c2-a37b6deb0624">
+</p><figure class="image" id="0ee8eaba-740e-4cfd-b2d1-c44a297fd967"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_1.01.43_PM.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-16_at_1.01.43_PM.png" style="width:288px"/></a></figure><ul class="bulleted-list" id="bf1f492f-ca17-466a-83e9-a19d31529aba"><li>Universal LFA kit by HybriDetect; applicable to genomic product detection</li></ul><p class="" id="70ec5ce3-b51d-4f23-b1d3-c3a4390c7740">
+</p><p class="" id="de6e4a25-575a-452d-8a47-5d6b3112761c"><strong>Case study:</strong></p><p class="" id="c48ce5f3-78b0-465d-b2f7-a7f8f77559ff"><a href="https://www.nature.com/articles/s42003-020-0796-5#Sec8">https://www.nature.com/articles/s42003-020-0796-5#Sec8</a></p><ul class="bulleted-list" id="f4318994-ff9c-41a4-b40f-00e73ad141bc"><li>Detection of African swine fever virus DNA using RAA+CRISPR-Cas12a and lateral flow</li></ul><p class="" id="6c87df3b-2f9d-48fc-ae14-60903febb4dd"><a href="https://www.nature.com/articles/s41587-020-0513-4?fbclid=IwAR2TuzuCkiRGe5UxVvONg6BQbceSr1y3coXgfk2V4l4efjfG4AKNBh8lGlk">https://www.nature.com/articles/s41587-020-0513-4?fbclid=IwAR2TuzuCkiRGe5UxVvONg6BQbceSr1y3coXgfk2V4l4efjfG4AKNBh8lGlk</a></p><ul class="bulleted-list" id="f5acadf6-96cc-43db-b193-2fbccfa97ba4"><li> Detection of SARS-CoV-2 RNA using RT-LAMP+CRISPR-Cas12a and lateral flow</li></ul><div class="collection-content" id="68b7b0d5-6ec7-4041-bc99-84352b4124c4"><h4 class="collection-title">References for Lateral flow readout</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="0318b7d7-22eb-4e32-85b4-22088df070fa"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Lateral%20flow%20readout%2068b7b0d56ec74041bc9984352b4124c4/(Broughton,%202020)%200318b7d722eb4e3285b422088df070fa.html">(Broughton, 2020)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/s41587-020-0513-4?fbclid=IwAR2TuzuCkiRGe5UxVvONg6BQbceSr1y3coXgfk2V4l4efjfG4AKNBh8lGlk">https://www.nature.com/articles/s41587-020-0513-4?fbclid=IwAR2TuzuCkiRGe5UxVvONg6BQbceSr1y3coXgfk2V4l4efjfG4AKNBh8lGlk</a></td></tr><tr id="411d15a1-bdeb-46b7-a197-66d595b418b3"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Lateral%20flow%20readout%2068b7b0d56ec74041bc9984352b4124c4/HybriDetect%20411d15a1bdeb46b7a19766d595b418b3.html">HybriDetect</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.milenia-biotec.com/en/product/hybridetect/">https://www.milenia-biotec.com/en/product/hybridetect/</a></td></tr><tr id="2629d97f-df17-4209-983b-4b58e49c73b6"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Lateral%20flow%20readout%2068b7b0d56ec74041bc9984352b4124c4/(Wang,%202020)%202629d97fdf174209983b4b58e49c73b6.html">(Wang, 2020)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.nature.com/articles/s42003-020-0796-5#Sec8">https://www.nature.com/articles/s42003-020-0796-5#Sec8</a></td></tr></tbody></table></div><p class="" id="c4eaca99-2491-4e41-9fc0-78802e276437">
+</p><p class="" id="8644d814-e2e9-40f3-b6d6-6fbc342f7b40">
+</p><p class="" id="687e6a15-f3a5-4164-86c2-83e770c4e17d"> </p></details></li></ul><ul class="toggle" id="458b1184-18e2-4212-8a09-9d682ae68d8d"><li><details open=""><summary><strong>Turbidity-based Readout using Liquid-liquid phase separation (Cas12)</strong></summary><ul class="bulleted-list" id="b2d294f2-5f8e-4912-bd3b-cd2612810bad"><li>Long nucleic acid polymers and positively charged polyelectrolytes can undergo liquid-liquid phase separation into a polymer-rich and a polymer-depleted phase</li></ul><ul class="bulleted-list" id="4960612c-e7e6-409e-8908-9ffb2a6dc9f6"><li>LLPS increases solution turbidity, which is visible to the naked eye.</li></ul><ul class="bulleted-list" id="e68014d3-bd44-46e1-ad7c-25de59889007"><li>Solution with target becomes transparent; whereas, the solution without target is still turbid</li></ul><ul class="bulleted-list" id="8fe1e97e-4c88-4b13-a94c-09e6dae3eed6"><li>Adding charged single stranded poly(dT) DNA as a reporter</li></ul><ul class="bulleted-list" id="e2937b07-0f00-4008-ac10-7353a010faf9"><li>Detection sensitivity at a micromolar level; less sensitive compared to FQ reporter</li></ul><ul class="bulleted-list" id="4e1d4765-58e3-420e-a6c4-82d449cfe748"><li>Only one research paper related to this mechanism<figure class="image" id="76236ad0-7ca8-45e5-be75-3c41c1befd9b"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-18_at_2.31.27_PM.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Screen_Shot_2020-06-18_at_2.31.27_PM.png" style="width:1022px"/></a></figure><div class="collection-content" id="8ef04c9a-643a-49a4-8b34-8defcd3cbb60"><h4 class="collection-title">References for Turbidity-based readout</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th></tr></thead><tbody><tr id="5cb17a0c-651d-462f-b8eb-b915a57acd0e"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Turbidity-based%20readout%208ef04c9a643a49a48b348defcd3cbb60/(Spoelstra,%202019)%205cb17a0c651d462fb8ebb915a57acd0e.html">(Spoelstra, 2019)</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.biorxiv.org/content/10.1101/471482v2.full.pdf">https://www.biorxiv.org/content/10.1101/471482v2.full.pdf</a></td><td class="cell-Yrl'"></td></tr><tr id="2de10a2f-8ef9-4a17-82fe-f51db1b17093"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Turbidity-based%20readout%208ef04c9a643a49a48b348defcd3cbb60/Untitled%202de10a2f8ef94a1782fef51db1b17093.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-Yrl'"></td></tr><tr id="4c78db00-7241-4a29-8fff-33a1763d3c8c"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Turbidity-based%20readout%208ef04c9a643a49a48b348defcd3cbb60/Untitled%204c78db0072414a298fff33a1763d3c8c.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-Yrl'"></td></tr></tbody></table></div><p class="" id="5e65aa26-3f40-43b2-9854-37c6918e8401">
+</p><p class="" id="603b22d2-d2ca-4b34-a4ea-f49ce8fde2cf">
+</p></li></ul></details></li></ul><ul class="toggle" id="e4e908a3-59fb-4f13-aca6-53da4ebfe7ce"><li><details open=""><summary><strong>Electrochemical sensing using hpDNA reporter (Cas12)</strong></summary><p class="" id="f096472b-981f-4edc-a780-b02e56b6f8d0"><mark class="highlight-teal"><strong>"Under the optimal conditions, as low as 30 pM target DNA was detected in about 60 min with 3.5 orders of magnitude dynamic range from 50 pM to 100 nM."</strong></mark></p><ul class="bulleted-list" id="0bdff631-707f-4ad8-b897-9b52f65c63c0"><li>An electrochemical technique has received much attention due to easy construction, cost-effective, miniaturization, rapid response, high selectivity, and sensitivity.</li></ul><ul class="bulleted-list" id="e3332759-4337-4aff-9daa-091b09b80ea2"><li>a universal CRISPR/Cas12a-based electrochemical biosensor, termed E-CRISPR, has been established for DNA and protein detection.<ul class="bulleted-list" id="9ac8e29e-9960-42b6-91b2-dbd5452266b2"><li>conventional linear ssDNA reporter is still employed to assemble on the electrode as a sensing interface, which may compromise the analytical performance of the biosensor.</li></ul><p class="" id="7717cfff-9092-4f06-b318-4c103fb32ca5">
+</p><p class="" id="53ae8fe0-38f0-4ba5-b2dd-53bc73bef956">In the study by Zhang (2020), </p></li></ul><ul class="bulleted-list" id="5b13e1bf-4de7-43e0-b162-c308aa926ec6"><li>A hairpin DNA (hpDNA) linked with methylene blue (MB) tag is employed to investigate the interfacial cleavage activity of Cas12a for developing an electrochemical DNA sensor.</li></ul><ul class="bulleted-list" id="abfe52ae-c91d-41aa-8193-b90be550b802"><li>The electrochemical differential pulse voltammetry (DPV) measurements were performed.</li></ul><ul class="bulleted-list" id="9756bae8-dcfd-419a-baf8-aacb26980b7f"><li>Principle:<ul class="bulleted-list" id="dbbca34d-7ac6-42b7-9545-bbd2e0895486"><li>crRNA bind to Cas12a for the formation of a CRISPR complex</li></ul><ul class="bulleted-list" id="ccc49220-0bf1-4448-84eb-70d56fa5e6cd"><li>CRISPR complex recognizes and cuts target DNA based on crRNA sequence and PAM sequence</li></ul><ul class="bulleted-list" id="8437c702-e0ed-42d1-ab54-e11546956ba9"><li>nonspecific ssDNA cutting by CRISPR complex</li></ul><ul class="bulleted-list" id="f91224fb-3f3b-4f10-9902-20eeb69c8a42"><li>hpDNA consisting of a thiol group at the 5′ terminus and a methylene blue (MB) tag at the 3′ terminus is covalently modified to a gold electrode (GE) through S–Au bonding.<ul class="bulleted-list" id="85d6bc58-acb9-4d4e-8990-d370ae3a8a97"><li>In the absence of the target, the Cas12a cannot cleave the hpDNA reporter. </li></ul></li></ul><ul class="bulleted-list" id="8f7b10a8-cdb2-4380-9390-925e562d59d0"><li>So, the formation of a stem-loop structure brings the MB tag near the GE surface, resulting in a high redox response being detected. In the presence of the target, the ssDNase activity of Cas12a is activated, cleaving the loop region of hpDNA into short fragments and leading to the dissociation of the stem part of hpDNA.</li></ul><ul class="bulleted-list" id="35c4b1aa-daa8-4292-9c46-b1791e341de8"><li>The melting temperature (Tm) of the duplex stem decreases from about 48 °C to lower than 10 °C (estimated with the IDT Oligo Analyzer, under the conditions of 10 mM Mg2+ and 100 mM Na+), therefore releasing the MB from GE and decreasing the peak current. Therefore, the established electrochemical biosensor could convert per target recognition event into numerous disintegration of the hpDNA reporter on the interface for highly sensitive electrochemical DNA biosensing.</li></ul></li></ul><p class="" id="c0490085-a7f6-4b8d-b4cd-d0d4b550d0b6">
+</p><p class="" id="65668b0d-fa73-4fd1-a3f1-5c92322aa40e">Reagents:</p><ul class="bulleted-list" id="76f00b2b-7990-4f6e-93d1-e09e724a27dc"><li>NEBuffer
+- 1 M NaCl
+- 0.5 M Tris - HCl
+- 0.1 M MgCl2
+- 0.01 M DTT
+- 7.9 pH</li></ul><ul class="bulleted-list" id="d97b9bf3-c411-4e8f-8ac7-199c819765a5"><li>Cas12a</li></ul><ul class="bulleted-list" id="eb0c8f50-8d8e-460e-ba3f-6d931ea1025c"><li>crRNA</li></ul><ul class="bulleted-list" id="f5c73fea-ada7-426b-924c-d265356fb3f2"><li>U RNase inhibitor</li></ul><ul class="bulleted-list" id="49f6e98a-94c2-4b4d-92c9-b0173fed4ca2"><li>Target DNA.</li></ul><ul class="bulleted-list" id="4b2f1505-f6b7-471e-a92b-479e86196033"><li>Prepared hpDNA biosensor</li></ul><p class="" id="f7965694-b07b-4085-8812-4374e65867a3">Reagents used are stable.</p><p class="" id="8a81217f-f026-4ba8-bc5d-629b816cfa6a">
+</p><p class="" id="994ab11e-0cf1-4e92-bead-1b8f953e12a5">
+</p><p class="" id="289b2e1f-c3dd-46d7-8ff2-09a6098813d2">Doesn't fit in budget
+</p><p class="" id="2be8b1ac-059b-46aa-a3b5-f2fd920ac8d3">
+</p><div class="collection-content" id="88531b8a-6c5d-40ea-be6b-2b58c73ffeda"><h4 class="collection-title"> References for Electrochemical sensing</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th></tr></thead><tbody><tr id="8818384d-553e-4d74-bb8a-2c3d1fac0bca"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Electrochemical%20sensing%2088531b8a6c5d40eabe6b2b58c73ffeda/(D%20Zhang,%202020)%208818384d553e4d74bb8a2c3d1fac0bca.html">(D. Zhang, 2020)</a></td><td class="cell-VU*J"><a class="url-value" href="https://pubs.acs.org/doi/10.1021/acssensors.9b02461">https://pubs.acs.org/doi/10.1021/acssensors.9b02461</a></td><td class="cell-Yrl'"></td></tr><tr id="01331746-82b9-41d6-9d63-7d286eb45249"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Electrochemical%20sensing%2088531b8a6c5d40eabe6b2b58c73ffeda/Untitled%200133174682b941d69d637d286eb45249.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-Yrl'"></td></tr><tr id="ef3ccc56-3750-4cab-8bfc-4154e747f2b3"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Electrochemical%20sensing%2088531b8a6c5d40eabe6b2b58c73ffeda/Untitled%20ef3ccc5637504cab8bfc4154e747f2b3.html">Untitled</a></td><td class="cell-VU*J"></td><td class="cell-Yrl'"></td></tr></tbody></table></div></details></li></ul><p class="" id="b47cb42f-b4c3-411c-8a15-1942501cd607">
+</p><ul class="toggle" id="c4ec4118-be1e-4f7e-9993-bf170475f966"><li><details open=""><summary><strong>Quenched ssRNA Reporter (Cas13)</strong></summary><p class="" id="d63753e0-f587-473e-ae63-61451f0757d4">
+</p><figure class="image" id="fd6094c1-fa73-4d7c-b37b-5528b77e6be7"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled%201.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled%201.png" style="width:1254px"/></a></figure><p class="" id="2df902c3-5eb6-4f0a-917a-d6a1786c3159">
+</p><h3 class="" id="d0c2a434-1dde-49fe-82c7-79643a03c874"><mark class="highlight-teal">Figure 1. An illustration of a quenched ssRNA reporter coupled with Cas13 System</mark></h3><p class="" id="f0d8953c-cad0-4f94-a1c1-a9e4209e8618">Similar mechanism as the quenched ssDNA Reporter, this reporter exploits the ability of Cas13 to cleave ssRNA after detection. After detection, the Cas13 enzyme cleaves nearby fluorescent quenched ssRNA reporters to relay a visible signal to the user.</p><ul class="bulleted-list" id="df841cfa-23f0-4f2b-ae6f-29750cd7b132"><li>By scaling up the pre-amplification RPA step, we found that LwaCas13a could give detection signal for <strong>200, 80, and 8zM input samples </strong>and allow for single-molecule volume inputs of 250μL and 540μL (fig. S21A–B), and PsmCas13b could detect 200zM input samples in 250μL reactions (fig. 21C). (Jonathan S. Gootenberg et al.)</li></ul><h2 class="" id="a0704c4c-3d8a-467a-ac55-c6ae7d5edb71">Low-cost fluorescence reader</h2><ul class="bulleted-list" id="23970147-ddba-48e2-a860-1f8f38b1a39e"><li>Cas13a paper-based nucleic acid assay</li></ul><ul class="bulleted-list" id="afe0cd8f-e96c-4e02-8831-b64fac43fab3"><li>All necessary reagents can be lyophilized (freeze-dried) and stored on filter paper; detector could be used to apply SHERLOCK in low resource settings</li></ul><ul class="bulleted-list" id="ac2e95f7-8b60-4cb1-b713-7759572c3412"><li>6.8 nM Fluorescein sensitivity</li></ul><ul class="bulleted-list" id="3502b002-56db-4602-94b8-2ce3d8b04fc8"><li>Pocket-sized and under 15$ cost</li></ul><ul class="bulleted-list" id="518a2d63-5155-43a7-84f7-9f9ae7c2ba2c"><li>Sample distinguishable from background activity within 20 minutes</li></ul><figure class="image" id="baab7d5e-d24f-4f5d-b742-d33aee64b6d8"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/detector.jpg"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/detector.jpg" style="width:1728px"/></a></figure><h3 class="" id="b5b34dff-a1f0-4b67-a039-b96aad4926d1">Figure 3. Portable low-cost detector</h3><p class="" id="45369911-9a56-423e-97bd-9059d3af31ea">
+</p><p class="" id="f0cb05c4-9b82-4dea-9c69-312a5ed5fdff">
+</p><p class="" id="24af26c5-37bb-4c97-afb7-a53f045e3302">
+</p><div class="collection-content" id="428ca099-c18b-462a-9aeb-56ee22700dcc"><h4 class="collection-title">References for Quenched ssRNA Reporter</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>(Author, year)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th></tr></thead><tbody><tr id="2daf3ef3-bda5-4404-954e-2cabe5539231"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Quenched%20ssRNA%20Reporter%20428ca099c18b462a9aeb56ee22700dcc/Y%20Li,%20S%20Li,%20J%20Wang,%20G%20Liu%202daf3ef3bda54404954e2cabe5539231.html">Y Li, S Li, J Wang, G Liu</a></td><td class="cell-VU*J"><a class="url-value" href="https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh">https://www.sciencedirect.com/science/article/pii/S0167779918303603?casa_token=5B0T_CntfK8AAAAA:DzZm3np084geoxf_xdwxF6m1JJtx_72rDO01eufS0amJI8gYeFNrsLfobdFg3sz1bo5hlnSh</a></td><td class="cell-82p*"></td></tr><tr id="b7da7d78-43fe-47e6-b4e4-d054a5edc68f"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Quenched%20ssRNA%20Reporter%20428ca099c18b462a9aeb56ee22700dcc/Florian%20Katzmeier%20et%20al%20b7da7d7843fe47e6b4e4d054a5edc68f.html">Florian Katzmeier et al.</a></td><td class="cell-VU*J"><a class="url-value" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0220091">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0220091</a></td><td class="cell-82p*"></td></tr><tr id="7adeb2e7-74b7-44d5-a297-bcf0519d743f"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20for%20Quenched%20ssRNA%20Reporter%20428ca099c18b462a9aeb56ee22700dcc/Jonathan%20S%20Gootenberg%20et%20al%207adeb2e774b744d5a297bcf0519d743f.html">Jonathan S. Gootenberg et al.</a></td><td class="cell-VU*J"><a class="url-value" href="https://science.sciencemag.org/content/360/6387/439/tab-pdf">https://science.sciencemag.org/content/360/6387/439/tab-pdf</a></td><td class="cell-82p*"></td></tr></tbody></table></div><p class="" id="e87689fd-bbd4-404a-bd9b-92b436a7407d">
+</p></details></li></ul><ul class="toggle" id="b1e349e8-8647-445a-a191-72a2977897fd"><li><details open=""><summary><strong>Lateral Flow Readout by destruction FAM-biotin reporter (Cas13)</strong></summary><figure class="image" id="f4760be4-8cf1-45de-bb0f-b7d9ed814c99"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/lateral.jpg"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/lateral.jpg" style="width:1441px"/></a></figure><ul class="bulleted-list" id="3661b093-c506-448c-8d48-6116aa202cc2"><li>Lateral-flow readout based on the destruction of a FAM-biotin reporter</li></ul><ul class="bulleted-list" id="336cfc6e-ec18-491e-99f7-dfc5a8fc4f0d"><li>Allows for detection on commercial lateral flow strips</li></ul><ul class="bulleted-list" id="e33eeb88-1789-4fb8-a0ad-861a110023e1"><li>Abundant reporter accumulates anti-FAM antibody-gold nanoparticle conjugates at the first line on the strip, preventing binding of the antibody-gold conjugates to protein A on the second line</li></ul><ul class="bulleted-list" id="5ad86dbe-2b2c-4610-b4bf-162c1d52c61c"><li>Cleavage of reporter would reduce accumulation at the first line and result in signal on the second line</li></ul><ul class="bulleted-list" id="c47322a0-add2-40fa-8944-6433279402db"><li>Rapid closed tube assay format in which the entire SHERLOCK reaction is performed in a one-pot assay without any sample purification (demonstration in the paper)</li></ul><ul class="bulleted-list" id="b3316a8d-7719-4620-a29e-1d32ea2f5de4"><li>We tested this design for instrument-free detection of ZIKV or DENV ssRNA, and found that detection was possible in under 90 minutes with sensitivities down to the <strong>2 aM condition </strong>(Jonathan S. Gootenberg et al.)</li></ul><p class="" id="a349dc43-f59e-4a9e-b37d-4bb7ba6c4170">
+</p><div class="collection-content" id="16d140a5-8647-4b22-bba1-f1c51f4ee86f"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Author</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="037fc048-82d9-4229-9c0a-bb487b4025bd"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%2016d140a586474b22bba1f1c51f4ee86f/Jonathan%20S%20Gootenberg%20et%20al%20037fc04882d942299c0abb487b4025bd.html">Jonathan S. Gootenberg et al.</a></td><td class='cell-6p"x'><a class="url-value" href="https://science.sciencemag.org/content/360/6387/439/tab-pdf">https://science.sciencemag.org/content/360/6387/439/tab-pdf</a></td></tr><tr id="f2b8f258-3234-4779-8c14-a2b8b97c443a"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%2016d140a586474b22bba1f1c51f4ee86f/Untitled%20f2b8f258323447798c14a2b8b97c443a.html">Untitled</a></td><td class='cell-6p"x'></td></tr></tbody></table></div></details></li></ul><ul class="toggle" id="384a6173-d024-4ffe-9d45-c291c499763a"><li><details open=""><summary><strong>Electrochemical Microfluidic Biosensor (Cas13)</strong></summary><h3 class="" id="f647a3d9-fb22-4060-8dee-c0d1f954a1a8"><mark class="highlight-teal">10 pM Sensitivity</mark></h3><figure class="image" id="57451365-cf13-4d37-ab8d-5bf01111b7ea"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/electro.jpg"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/electro.jpg" style="width:1361px"/></a></figure><ul class="bulleted-list" id="ccc919da-4fc1-409f-ae4d-78308d5270ac"><li>Used on miRNA in original paper (likely could be adapted)</li></ul><ul class="bulleted-list" id="ed53b418-8964-4993-96e3-b3b999c81d03"><li>Low-cost electrochemical biosensor developed using dry film photoresist (DFR) technology</li></ul><ul class="bulleted-list" id="cf786f75-a95d-4fc4-a037-ebaf66464b59"><li>Detection of enzymatically produced hydrogen peroxide takes place in the electrochemical cell</li></ul><ul class="bulleted-list" id="71575327-37ee-430f-b204-89381441f828"><li>After RNA targeting (off-chip), cleaved and non-cleaved reporter RNAs bind to the immobilized streptavidin on the microfluidic chip</li></ul><ul class="bulleted-list" id="ea98ffa1-3ab5-4203-a020-1b90090067e3"><li>Fluorescein antibodies coupled to glucose oxidase (GOx), which are only capable of binding to uncleaved reporter RNAs, are introduced to enable enzymatic reading of the assay</li></ul><ul class="bulleted-list" id="a4a7e5b0-76fc-423e-b511-ffa0043d95d0"><li>By pumping glucose through the microfluidic biosensor, GOx catalyzes its substrate, producing hydrogen peroxide which is amperometrically detected in the electrochemical cell</li></ul><ul class="bulleted-list" id="b4330b45-cf69-45af-9165-294284825483"><li>The resulting amperometric signal is directly proportional to the amount of immobilized GOx (bound to uncleaved reRNA), and therefore inversely proportional to the concentration of target sample RNA</li></ul></details></li></ul><p class="" id="b9939b8e-a30c-43f1-9290-b3393b31fac3">
+</p><p class="" id="b610d126-2ce6-4a00-bd9e-a49233896209">
+</p><div class="collection-content" id="15c80929-e546-4366-a614-d454c02b9746"><h4 class="collection-title">Sensitivity Comparison</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Reporting mechanism</th><th><span class="icon property-icon"><svg class="typesText" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>CRISPR-Cas12 (DETECTR)</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>CRISPR-Cas13 (SHERLOCK)</th></tr></thead><tbody><tr id="e554ebbe-0871-475e-9bc9-eb980316f8b5"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Sensitivity%20Comparison%2015c80929e5464366a614d454c02b9746/Fluorescence%20e554ebbe0871475e9bc9eb980316f8b5.html">Fluorescence</a></td><td class="cell-|m#S">1aM</td><td class="cell-_HV*"><a class="url-value" href="80zM">80zM</a></td></tr><tr id="1297d9d5-ba86-4f2a-b29f-da32577656d1"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Sensitivity%20Comparison%2015c80929e5464366a614d454c02b9746/FAM-Biotin%20(Lateral%20Flow)%201297d9d5ba864f2ab29fda32577656d1.html">FAM-Biotin (Lateral Flow)</a></td><td class="cell-|m#S">0.24fM</td><td class="cell-_HV*"><a class="url-value" href="2aM">2aM</a></td></tr><tr id="b6d046ca-154c-4b9a-afe3-4db64d92657e"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Sensitivity%20Comparison%2015c80929e5464366a614d454c02b9746/Electrochemical%20(E-CRISPR)%20b6d046ca154c4b9aafe34db64d92657e.html">Electrochemical (E-CRISPR)</a></td><td class="cell-|m#S">30pM</td><td class="cell-_HV*"><a class="url-value" href="10pM">10pM</a></td></tr></tbody></table></div><figure class="image" id="57f6b541-1e42-40f1-95a6-e6a8cfeb8fb6"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled%202.png"><img src="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/Untitled%202.png" style="width:120px"/></a></figure><p class="" id="79c1f625-94b0-44d5-8f0d-dbf19182fb9e">Figure. For Reference</p><div class="collection-content" id="e7962436-69f9-4b10-baa5-69523d1b467b"><h4 class="collection-title">References</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg class="typesTitle" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Author</th><th><span class="icon property-icon"><svg class="typesUrl" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" viewbox="0 0 14 14"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Link</th></tr></thead><tbody><tr id="f6561fac-bd84-4cfa-95ae-4541552fe949"><td class="cell-title"><a href="Reporting%20Mechanism%20fa41c625c8e44aeaaf19b4d1c85ab44f/References%20e796243669f94b10baa569523d1b467b/Richard%20Bruch%20et%20al%20f6561facbd844cfa95ae4541552fe949.html">Richard Bruch et al.</a></td><td class="cell-MJ0?"><a class="url-value" href="https://pubmed.ncbi.nlm.nih.gov/31663165/">https://pubmed.ncbi.nlm.nih.gov/31663165/</a></td></tr></tbody></table></div><p class="" id="8615b5fd-5f10-4551-89ac-32db231ed3d6">
+</p><p class="" id="cb785ca9-699f-43de-bba2-1848d65350f9">Others:</p><ul class="toggle" id="6f4efceb-ab22-491a-a530-ead290186281"><li><details open=""><summary>Gold nanoparticles</summary><p class="" id="bf812327-7ff1-418d-bb2a-917915bd9fbf">Shen Q, Nie Z, Guo M, et al. Simple and rapid colorimetric sensing of enzymatic cleavage and oxidative damage of single-stranded DNA with unmodified gold nanoparticles as indicator, Chem Commun, 2009(pg. 929-31)</p><ul class="bulleted-list" id="b3e26fee-7cf5-4332-a850-ca615cdc56c0"><li>there is no paper that combine this technique with CRISPR technique</li></ul><ul class="bulleted-list" id="d3245ba1-bbf8-44de-bb85-7e658f4811a4"><li>length-dependent adsorption of ssDNA to gold nanoparticles (AuNPs) via electrostatic interactions: with longer ssDNA sequences adsorbing more slowly to AuNPs compared with shorter sequences. </li></ul><ul class="bulleted-list" id="bb30b711-81ae-4ddc-a4a9-7f2d9e88ed3b"><li>In the absence of nuclease S1, the intact ssDNA oligonucleotides adsorb slowly to the AuNPs (Figure 5). </li></ul><ul class="bulleted-list" id="338d889e-8b04-4325-a268-747a4d8ab695"><li>The addition of salts triggers the aggregation of AuNPs resulting in a red-to-blue colorimetric signal. </li></ul><ul class="bulleted-list" id="efb454ee-8ce3-485a-9980-31bced228586"><li>However, the addition of nuclease S1 results in the enzymatic cleavage of DNA into shorter fragments, which assembly rapidly upon the AuNP surface. The subsequent addition of salt fails to promote aggregation due to electrostatic repulsion between the AuNPs, and thus no color change is observed.</li></ul></details></li></ul><p class="" id="1bdb91ab-de67-4671-83f5-ea2e8b5935fc">
+</p><p class="" id="99aca2c0-a7eb-40dd-bb7e-fd86275b8159">
+</p><p class="" id="7f2ec95b-a274-4374-b2a0-ff0fbd7c9835">
+</p></div></article></div></body></html>
