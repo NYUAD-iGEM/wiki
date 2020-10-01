@@ -1,4 +1,4 @@
-var activeid = '';
+var activeid = 'Menu';
 
 $(document).ready(function () {
     
@@ -20,6 +20,7 @@ $(document).ready(function () {
   $('.parallax').parallax();
   $('.carousel').carousel();
   $('.slider').slider({ height: 800 });
+  /*
   $('.scrollspy').scrollSpy({
     getActiveElement: function (id) {
       if (activeid != id) {
@@ -29,6 +30,8 @@ $(document).ready(function () {
     },
   });
 
+*/
+    
   $('#side').click(function () {
     var elem = document.getElementById('sidenav-9');
     var instance = M.Sidenav.getInstance(elem);

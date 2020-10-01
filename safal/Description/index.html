@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>New page</title>
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.css">
+        <link rel="stylesheet" href="../css/style_old.css">
+    </head>
+    <body>
+        <div id="side" class="side-btn btn-flat"> 
+            <div class="side-section center">Menu</div>
+            <button class="menu sidenav-close" aria-label="Main Menu" id="butt"> 
+                <svg viewbox="0 0 100 100"> 
+                    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"/> 
+                    <path class="line line2" d="M 20,50 H 80"/> 
+                    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"/> 
+                </svg>                 
+            </button>             
+        </div>
+        <div id="my-content"> 
+            <div class="progress"> 
+                <div id="pgbar" class="determinate" style="width: 0%"></div>                 
+            </div>
+            <div class="description-container">
+                <ul class="description-ul">
+                    <li class="description-li">
+                        <h2>
+                            Step One </h2>
+                        <p>
+                            Talked with Dr penner </p>
+                    </li>
+                    <li class="description-li">
+                        <h2>
+                            Step Two </h2>
+                        <p>
+                            Researched into amphibian decline </p>
+                    </li>
+                    <li class="description-li">
+                        <h2>
+                            Step Three </h2>
+                        <p>
+                            Researched into fungal diseases </p>
+                    </li>
+                    <li class="description-li">
+                        <h2>
+                            Step Four </h2>
+                        <p>
+                            Understood the diagnostic pathaway </p>
+                    </li>
+                </ul>
+                <div class="description-pic-container">
+                    <img class="description-pic-background" src="https://www.wallpapertip.com/wmimgs/2-25739_free-dual-monitor-wallpaper-nature-dual-monitor-wallpaper.jpg">
+                </div>
+            </div>             
+        </div>
+        <ul class="sidenav" id="sidenav-9"> 
+            <li> 
+                <a href="sass.html">Sass</a> 
+            </li>             
+            <li> 
+                <a href="badges.html">Components</a> 
+            </li>             
+            <li> 
+                <a href="collapsible.html">JavaScript</a> 
+            </li>             
+        </ul>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/index.js"></script>
+        <script type="text/javascript" src="../js/materialize.js"></script>
+        <script type="text/javascript" src="../js/gsap.min.js"></script>
+        <script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
+        <script>
+        let t1=gsap.timeline({
+			scrollTrigger: {
+				trigger: ".description-pic-container",
+				start: "top top",
+        // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
+				end: () => "+=" + document.querySelector(".description-container").offsetHeight, 
+				scrub: true,
+				pin: true,
+        anticipatePin: 1
+			},
+			defaults: {ease: "none"},
+		});
+            
+            t1.fromTo(".description-pic-background",{xPercent: 0, x: 0}, {xPercent: -100});
+        
+        </script>
+    </body>
+</html>
