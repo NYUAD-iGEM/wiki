@@ -557,3 +557,7 @@ button:focus {
 }
 
 /* END DESCRIPTION PAGE */
+/* START TEXT PAGE TEMPLATE */
+.toc {
+    padding-left: 0px;
+}

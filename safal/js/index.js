@@ -20,6 +20,7 @@ $(document).ready(function () {
   $('.parallax').parallax();
   $('.carousel').carousel();
   $('.slider').slider({ height: 800 });
+    
   /*
   $('.scrollspy').scrollSpy({
     getActiveElement: function (id) {
