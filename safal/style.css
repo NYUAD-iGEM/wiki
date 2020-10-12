@@ -1,284 +1,351 @@
 * {
-  font-family: sans-serif;
+    font-family: sans-serif;
 
-  /* putting this here for the smooth animation on clicking the button on home */
-  scroll-behavior: smooth;
+    /* putting this here for the smooth animation on clicking the button on home */
+    scroll-behavior: smooth;
 }
 
 html {
-  overflow-x: hidden;
-  overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /* scrollbar css */
-
 #content {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('assets/landing.jpg');
-  background-attachment: fixed;
-  background-size: cover;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('assets/landing.jpg');
-  background-attachment: fixed;
-  background-size: cover;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .sidenav-trigger {
-  color: white;
-  /* margin-left: 8em; */
+    color: white;
+
+    /* margin-left: 8em; */
 }
 
 /* this is the second image that slowly appears on the landing page */
 .cover {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
     url('assets/landing-2.jpg');
-  background-attachment: fixed;
-  background-size: cover;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .navbar-container {
-  position: fixed;
-  width: 100vw;
-  height: 3em;
-  margin: 0 auto;
-  padding: 2em 8em 5em 8em;
-  z-index: 997;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    position: fixed;
+    width: 100vw;
+    height: 3em;
+    margin: 0 auto;
+    padding: 2em 8em 5em 8em;
+    z-index: 997;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 .landing {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 }
 
 .main-logo {
-  width: 100px;
+    width: 100px;
 }
 
 /* changed this into an id for more specificity */
 #main-text-container {
-  width: 70%;
-  text-align: center;
-  color: white;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 70%;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .down-icon {
-  position: absolute;
-  margin-top: 4em;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    margin-top: 4em;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* down arrow animation */
 .round {
-  position: relative;
-  border: 3px solid #fff;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  transform: scale(0.5);
+    position: relative;
+    border: 3px solid #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    transform: scale(0.5);
 }
 
 span {
-  z-index: 999;
-  height: 3px;
-  margin: 1px;
-  width: 25px;
-  background: #fff;
-  transition: 0.4s ease;
+    z-index: 999;
+    height: 3px;
+    margin: 1px;
+    width: 25px;
+    background: #fff;
+    transition: 0.4s ease;
 }
 
 span:first-child {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 35%;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 35%;
 }
 
 span:nth-child(2) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 35%;
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 35%;
 }
 
 span:nth-child(3) {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 54%;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 54%;
 }
 
 span:nth-child(4) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 54%;
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 54%;
 }
 
 .round:hover span:nth-child(1) {
-  transform: rotate(-135deg);
+    transform: rotate(-135deg);
 }
 
 .round:hover span:nth-child(2) {
-  transform: rotate(135deg);
+    transform: rotate(135deg);
 }
 
 .round:hover span:nth-child(3) {
-  transform: rotate(225deg);
+    transform: rotate(225deg);
 }
 
 .round:hover span:nth-child(4) {
-  transform: rotate(-225deg);
+    transform: rotate(-225deg);
 }
 
 /* down animation end */
 .placeholder {
-  height: 1000px;
+    height: 1000px;
 }
 
 /* START PANEL CSS */
 .projects {
-  position: relative;
-  height: 100vh;
+    position: relative;
+    height: 100vh;
 }
 
-.panel {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+.panel,
+.second-panel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 }
 
-.left-panel {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 50%;
+.left-panel,
+.second-left-panel {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 50%;
 }
 
 .left-panel-2,
-.left-panel-3 {
-  overflow: hidden;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 50%;
-  transform: translate(0%, 100%);
+.second-left-panel-2,
+.left-panel-3,
+.second-left-panel-3,
+.left-panel-4,
+.second-left-panel-4 {
+    overflow: hidden;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 50%;
+    transform: translate(0%, 100%);
 }
 
 .background {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 
 .background-1 {
-  background-image: url(https://www.hpmagicwords.com.br/assets/images/website/home/project/background_1.jpg);
-  background-size: cover;
-  background-position: center center;
+    background-image: url("assets/Set_1.1_Left.jpg");
+    background-size: cover;
+    background-position: center center;
 }
 
 .background-2 {
-  background-image: url(https://www.theauthoredascension.com/wp-content/uploads/2011/12/Fleet-Foxes-Helplessness-Blues1.jpg);
-  background-size: cover;
-  background-position: center center;
-  transform: translate(0%, -100%);
+    background-image: url(https://www.theauthoredascension.com/wp-content/uploads/2011/12/Fleet-Foxes-Helplessness-Blues1.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(0%, -100%);
 }
 
 .background-3 {
-  background-image: url(https://i.pinimg.com/originals/dc/6d/23/dc6d23d534fef45be258bcf2e6706ae3.jpg);
-  background-size: cover;
-  background-position: center center;
-  transform: translate(0%, -100%);
-}
-
-.right-panel {
-  position: absolute;
-  left: 50%;
-  top: 0%;
-  height: 50%;
-  width: 50%;
-}
-
-.right-panel-2,
-.right-panel-3 {
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  top: 0%;
-  height: 50%;
-  width: 50%;
-  transform: translate(-100%, 0px);
+    background-image: url(assets/Set_1.3_Left.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(0%, -100%);
 }
 
 .background-4 {
-  background-image: url(https://www.theauthoredascension.com/wp-content/uploads/2011/12/Fleet-Foxes-Helplessness-Blues1.jpg);
-  background-size: cover;
-  background-position: center center;
+    background-image: url(assets/Set_1.4_left.png);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(0%, -100%);
+}
+
+.second-background-1 {
+    background-image: url("assets/Set_2.1_Left.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+.second-background-2 {
+    background-image: url(https://www.theauthoredascension.com/wp-content/uploads/2011/12/Fleet-Foxes-Helplessness-Blues1.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(0%, -100%);
+}
+
+.second-background-3 {
+    background-image: url(assets/Set_1.3_Left.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(0%, -100%);
+}
+
+.right-panel,
+.second-right-panel {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    height: 50%;
+    width: 50%;
+}
+
+.right-panel-2,
+.second-right-panel-2,
+.right-panel-3,
+.second-right-panel-3,
+.right-panel-4,
+.second-right-panel-4 {
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    height: 50%;
+    width: 50%;
+    transform: translate(-100%, 0px);
 }
 
 .background-5 {
-  background-image: url(https://2ab9pu2w8o9xpg6w26xnz04d-wpengine.netdna-ssl.com/wp-content/uploads/2017/06/Crack-Up-Cover-Crop-1480x832.jpg);
-  background-size: cover;
-  background-position: center center;
-  transform: translate(100%, 0%);
+    background-image: url(assets/Set_1.2_TR.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(100%, 0%);
 }
 
 .background-6 {
-  background-image: url(http://cdn.animalhi.com/1920x1200/20121102/proverb%20album%20covers%20fleet%20foxes%201920x1200%20wallpaper_www.animalhi.com_11.jpg);
-  background-size: cover;
-  background-position: center center;
-  transform: translate(100%, 0%);
+    background-image: url(assets/Set_1.3_TR.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(100%, 0%);
+}
+
+.background-7 {
+    background-image: url(assets/Set_1.4_TR.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(100%, 0%);
+}
+
+.second-background-4 {
+    background-image: url(assets/Set_2.1_Right.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.second-video-background-5 {
+    transform: translate(100%, 0%);
+}
+
+.second-background-6 {
+    background-image: url(assets/Set_1.3_TR.jpg);
+    background-size: cover;
+    background-position: center center;
+    transform: translate(100%, 0%);
 }
 
 /* changed this to flexbox to center content */
-.text-panel {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  height: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.text-panel,
+.second-text-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text-panel .text {
-  text-align: center;
-  width: 70%;
+    text-align: center;
+    width: 70%;
 }
 
-.text-panel-title {
-  border-right: solid 3px rgba(0, 255, 0, 0.75);
-  white-space: nowrap;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0 auto;
-  width: 0ch;
+.second-text-panel .text {
+    text-align: center;
+    width: 70%;
+}
+
+.text-panel-title,
+.second-text-panel-title {
+    border-right: solid 3px rgba(0, 255, 0, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0 auto;
+    width: 0ch;
 }
 
 /* .text-panel-description {
@@ -291,17 +358,13 @@ span:nth-child(4) {
   transform: translateY(0);
   opacity: 1;
 } */
-
 /* we add this class on a certain trigger to start the animation */
-
 /* Animation */
 /* .text-animate {
   animation: animated-text 1s steps(10, end) 1s 1 normal both,
     animated-cursor 600ms steps(10, end) infinite;
 } */
-
 /* text animation */
-
 /* @keyframes animated-text {
   from {
     width: 0;
@@ -310,9 +373,7 @@ span:nth-child(4) {
     width: 10ch;
   }
 } */
-
 /* cursor animations */
-
 /* @keyframes animated-cursor {
   from {
     border-right-color: rgba(0, 255, 0, 0.75);
@@ -322,67 +383,79 @@ span:nth-child(4) {
   }
 } */
 /* animation ends here */
-
 .fp-text {
-  position: absolute;
-  left: 11%;
-  top: 30%;
-  overflow: hidden;
+    position: absolute;
+    left: 11%;
+    top: 30%;
+    overflow: hidden;
 }
 
 .fp-list {
-  position: absolute;
-  left: 11%;
-  top: 75%;
+    position: absolute;
+    left: 11%;
+    top: 75%;
 }
 
 .active {
-  color: red;
+    color: red;
 }
 
 /* SLIDER */
 .slider-background {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
 .slider-background-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .slider-background-image {
-  position: absolute;
-  top: 0px;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background-image: url(assets/slider-bg.jpg);
-  background-size: cover;
-  background-position: center center;
+    position: absolute;
+    top: 0px;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background-image: url(assets/slider-bg.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.slider-text-container {
+    width: 70%;
+    text-align: center;
 }
 
 .slider-right-text {
-  position: absolute;
-  left: 60%;
-  top: 0;
-  height: 100%;
-  width: 40%;
+    position: absolute;
+    left: 60%;
+    top: 0;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: vertical;
+    align-items: center;
+    justify-content: center;
 }
 
 .slider-left-text {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 40%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 }

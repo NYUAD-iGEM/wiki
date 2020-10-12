@@ -91,15 +91,14 @@
 .block-panel {
     position: relative;
     height: inherit;
-    width: inherit;
+    width: 100%;
     margin: 0;
-    overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(320px, 1fr));
     grid-column-gap: 5%;
     grid-row-gap: 29px;
-    padding: 10%;
+    padding: 5%;
 }
 
 .block-panel-child-top {
