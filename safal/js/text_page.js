@@ -2,10 +2,6 @@ $(document).ready(function () {
     
     $('.scrollspy').scrollSpy({
     getActiveElement: function (id) {
-      if (activeid != id) {
-        animatetextchange(id);
-        activeid = id;
-      }
         return 'a[href="#' + id + '"]'; 
     }
   });

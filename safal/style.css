@@ -1,6 +1,5 @@
 * {
-    font-family: sans-serif;
-
+    /* font-family: sans-serif; */
     /* putting this here for the smooth animation on clicking the button on home */
     scroll-behavior: smooth;
 }
@@ -340,12 +339,18 @@ span:nth-child(4) {
 
 .text-panel-title,
 .second-text-panel-title {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
     border-right: solid 3px rgba(0, 255, 0, 0.75);
     white-space: nowrap;
     overflow: hidden;
     color: rgba(0, 0, 0, 0.7);
     margin: 0 auto;
     width: 0ch;
+}
+
+.text-panel-description {
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /* .text-panel-description {

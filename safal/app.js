@@ -148,7 +148,7 @@ gsap.to('.text-panel-title', {
     start: 'top top', // the default values
     duration: 2,
     toggleActions: 'restart none restart reset',
-    // markers: true,
+    markers: true,
   },
 });
 //3
@@ -163,10 +163,10 @@ gsap.to('.text-panel-title', {
   ease: 'power1.out',
   scrollTrigger: {
     trigger: '.left-panel-3',
-    start:() => '+=' + document.querySelector('.panel').offsetHeight , // the default values
-    duration: 1,
+    start:()=> '+=' + document.querySelector('.panel').offsetHeight, // the default values
+    duration: 2,
     toggleActions: 'restart none restart restart',
-    //markers: true,
+    markers: true,
   },
 });
 //4
@@ -184,7 +184,7 @@ gsap.to('.text-panel-title', {
     start: () => '+=' + document.querySelector('.panel').offsetHeight*2, // the default values
     duration: 1,
     toggleActions: 'restart none restart restart',
-    //markers: true,
+    markers: true,
   },
 });
 // text animation end//
