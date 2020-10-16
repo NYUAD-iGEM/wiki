@@ -87,6 +87,25 @@ gsap.to('.title-button', {
     scrub: 1,
   },
 });
+
+
+let tll=gsap.timeline({
+  // onStart: () => {
+  //   document.querySelector('.text-panel-title').style.opacity = '1';
+  //   document.querySelector('.text-panel-title').classList.add('text-animate');
+  // },
+  scrollTrigger: {
+    trigger: '#placeholder',
+    start: 'top top',
+    // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
+    end: () => '+=' + document.querySelector('#placeholder').offsetHeight,
+    scrub: 0.4,
+    pin: true,
+    // anticipatePin: 1,
+  },
+  defaults: { ease: 'none' },
+});
+        
 ///////////////////////////////////////////////////////
 
 let tl2 = gsap.timeline({
@@ -115,7 +134,7 @@ gsap.to('.text-panel-title', {
     title.textContent = 'Amphibian Decline';
     desc.textContent ="Since the mid-1900s, a strange flesh-eating fungus has spread across the world, infecting hundreds of different species of amphibians and condemning more species to extinction than any other pathogen ever recorded. This deadly disease descended into a global pandemic that has already wiped out over 90 species and caused declines in at least 501 frog and salamander species.";
   },
-  width: '16ch',
+  width: '14.5ch',
   ease: 'power1.out',
   scrollTrigger: {
     trigger: '.panel',
@@ -148,7 +167,6 @@ gsap.to('.text-panel-title', {
     start: 'top top', // the default values
     duration: 2,
     toggleActions: 'restart none restart reset',
-    markers: true,
   },
 });
 //3
@@ -166,7 +184,6 @@ gsap.to('.text-panel-title', {
     start:()=> '+=' + document.querySelector('.panel').offsetHeight, // the default values
     duration: 2,
     toggleActions: 'restart none restart restart',
-    markers: true,
   },
 });
 //4
@@ -184,7 +201,6 @@ gsap.to('.text-panel-title', {
     start: () => '+=' + document.querySelector('.panel').offsetHeight*2, // the default values
     duration: 1,
     toggleActions: 'restart none restart restart',
-    markers: true,
   },
 });
 // text animation end//
@@ -339,7 +355,7 @@ tl4.addLabel('second', 1);
 tl4
   .fromTo('.second-right-panel-2', { xPercent: -100, x: 0 }, { xPercent: 0 }, 'first')
   // ...and the image the opposite way (at the same time)
-  .fromTo('.second-background-5', { xPercent: 100, x: 0 }, { xPercent: 0 }, 'first')
+  .fromTo('.second-video-background-5', { xPercent: 100, x: 0 }, { xPercent: 0 }, 'first')
 
   .fromTo('.second-left-panel-2', { yPercent: 100, y: 0 }, { yPercent: 0 }, 'first')
 

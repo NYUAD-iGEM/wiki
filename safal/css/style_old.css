@@ -386,7 +386,6 @@ a.arrow:hover svg g circle {
 }
 
 .sidenav {
-    background-color: teal;
     z-index: 998;
     left: 4%;
 }
@@ -416,8 +415,9 @@ a.arrow:hover svg g circle {
     top: 0px;
     height: 100%;
     position: fixed;
-    background-color: teal;
     z-index: 999;
+    background: url("../assets/Menu BG.jpg");
+    background-size: cover;
 }
 
 .side-section {
